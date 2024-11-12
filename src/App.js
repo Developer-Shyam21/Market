@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+
+
+import { ConfigProvider } from 'antd';
 import './App.css';
+import Routers from './Router/Routers';
+import { PrimaryColor, SecondaryColor,thiredColor } from './Config';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <>
+  <ConfigProvider
+  theme={{
+    token: {
+      fontFamily: `"Open Sans", sans-serif`,
+      // colorPrimary: PrimaryColor,
+      colorPrimary: thiredColor,
+      colorPrimaryHover: SecondaryColor,
+    },
+  }} 
+  >
+    
+
+<Routers/>
+  </ConfigProvider>
+  </>
 }
 
 export default App;

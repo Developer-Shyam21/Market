@@ -1,0 +1,11 @@
+
+.ant-layout-sider {
+    height: 100vh;
+    background-color: white;
+    min-width: 289px !important;
+}
+.demo-logo-vertical{
+   margin-top: 50px;
+   padding: 0 1.25rem;
+   
+}
