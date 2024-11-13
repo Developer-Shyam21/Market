@@ -9,19 +9,22 @@ import { ContextsApi } from "../../ContextApi/Index";
 export const Register = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
-  const nevigate = useNavigate()
+  const nevigation = useNavigate()
 const { registerData ,setRegisterData } = useContext(ContextsApi);
 
-  const onFinish = (values) => {
+const onFinish = (values) => {
+  const newUser = { ...values };
+  
+  setRegisterData((prevData) => {
+    const updatedData = [...prevData, newUser];
+    localStorage.setItem("userData", JSON.stringify(updatedData));
+    return updatedData;
+  });
+  
+  form.resetFields();
+  nevigation("/login");
+};
 
-
-    const newUser = {...values}
-    setRegisterData([ ...registerData, newUser ]);
-     
-    localStorage.setItem("userData", JSON.stringify(registerData));
-    form.resetFields();
-    nevigate("/login")
-  };
 
   return ( 
     <>
