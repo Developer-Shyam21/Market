@@ -39,27 +39,27 @@ export const Wrapper = styled.div`
   }
 
   .ant-form-item .ant-form-item-label > label {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
   }
-  .ant-input {
-    border-color: rgb(95, 26, 70);
-    background-color: rgb(253, 243, 241);
-    padding: 7px 11px;
-    font-size: 16px;
-    line-height: 1.5;
-    border-radius: 8px;
-  }
+
+
+    .ant-input,
   .ant-input-password {
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
     border-radius: 8px;
   }
+  .ant-input-outlined {
+   border-color: rgb(95, 26, 70);
+    background-color: rgb(253, 243, 241);
+    padding: 7px 11px;
+  }
   .forgot-link {
     text-align: right;
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .ant-btn {

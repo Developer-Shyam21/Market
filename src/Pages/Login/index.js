@@ -1,7 +1,6 @@
 import { Col, Row, Typography, Form, Input, Button } from "antd";
 import React, { useState } from "react";
 import { useForm } from "antd/es/form/Form";
-// import "../Css/Login.css";
 import Market from "../../Images/logo-main.png";
 import GraficImage from "../../Images/grafica-principale.svg";
 import { Wrapper } from "./style";
