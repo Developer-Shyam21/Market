@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
+import React, { Suspense, useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import {
   createBrowserRouter,
   Navigate,
@@ -13,42 +13,56 @@ import { User } from "../Pages/User";
 import ProtectedRoute from "./ProtectedRoute";
 
 
-ReactDOM.createRoot(document.getElementById("root")).render(
- 
-);
-
 const Routers = () => {
 
-    const router = createBrowserRouter([
-        {
-          path: "/",
-          element: <Navigate to="/Deshboard"/>,
-        },
-        {
-            path:"/login",
-            element: <LogIn/>
-        },
-        {
-          path:"/register",
-          element:<Register/>
-        },
-        {
-          path:"/deshboard",
-          element: (
-            <ProtectedRoute>
-              <DeshBoard/>
-            </ProtectedRoute>
-          ),
-          children: [{
-            path:"manageUser",
-            element: <User />
-          }]
-        }
-      ]);
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-      return <>
- <RouterProvider router={router} />
-      </>
-}
+  useEffect(() => {
+    localStorage.setItem("isLoggedIn", "false")
 
+   
+  }, []);
+
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element:isLoggedIn ? <Navigate to="/Deshboard" /> : <Navigate to="/login" />
+    },
+    {
+      path: "/login",
+      element: <LogIn />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/Deshboard",
+      element: (
+        <ProtectedRoute>
+          <Suspense  >
+            <DeshBoard />
+          </Suspense>
+        </ProtectedRoute>
+      ),
+      children: [
+        {
+          path: "manageUser",
+          element: <User />,
+        },
+      ],
+    },
+    {
+      path: "*",
+      element: <Navigate to="/" />,
+    },
+  ]);
+
+
+  return (
+    <RouterProvider router={router} />
+  );
+};
+
+ReactDOM.createRoot(document.getElementById("root")).render(<Routers />);
 export default Routers;

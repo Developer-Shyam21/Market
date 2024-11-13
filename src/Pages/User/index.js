@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { PlusOutlined } from "@ant-design/icons";
+import { EditOutlined, PlusOutlined,DeleteOutlined } from "@ant-design/icons";
 import {
   Button,
   Card,
+  Col,
   Divider,
   Flex,
   Form,
@@ -11,11 +12,14 @@ import {
   Modal,
   Row,
   Select,
+  Table,
+  Tag,
   Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
 import { Wrapper } from "./style";
+
 
 export const User = () => {
   const { Search } = Input;
@@ -27,14 +31,260 @@ export const User = () => {
     setVisible(false);
   };
 
+
+  const UserData = [
+    {
+      key: 1,
+      name: "John Doe",
+      email: "john.doe@example.com",
+      mobile: "+1 (555) 123-4567",
+      accounttype: "Seller",
+      channel: "Web",
+      pandingreports: 3,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 2,
+      name: "Jane Smith",
+      email: "jane.smith@example.com",
+      mobile: "+1 (555) 234-5678",
+      accounttype: "-",
+      channel: "Mobile",
+      pandingreports: 5,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 3,
+      name: "Michael Johnson",
+      email: "michael.johnson@example.com",
+      mobile: "+1 (555) 345-6789",
+      accounttype: "Seller",
+      channel: "API",
+      pandingreports: 0,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 4,
+      name: "Sarah Lee",
+      email: "sarah.lee@example.com",
+      mobile: "+1 (555) 456-7890",
+      accounttype: "Vendor",
+      channel: "Web",
+      pandingreports: 2,
+      status: "Reviewed",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 5,
+      name: "David Brown",
+      email: "david.brown@example.com",
+      mobile: "+1 (555) 567-8901",
+      accounttype: "Seller",
+      channel: "Mobile",
+      pandingreports: 7,
+      status: "Reviewed",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 6,
+      name: "Emily Wilson",
+      email: "emily.wilson@example.com",
+      mobile: "+1 (555) 678-9012",
+      accounttype: "Vendor",
+      channel: "API",
+      pandingreports: 1,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 7,
+      name: "Robert Taylor",
+      email: "robert.taylor@example.com",
+      mobile: "+1 (555) 789-0123",
+      accounttype: "Vendor",
+      channel: "Web",
+      pandingreports: 4,
+      status: "Reviewed",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 8,
+      name: "Laura Martinez",
+      email: "laura.martinez@example.com",
+      mobile: "+1 (555) 890-1234",
+      accounttype: "Seller",
+      channel: "Mobile",
+      pandingreports: 6,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 9,
+      name: "James Anderson",
+      email: "james.anderson@example.com",
+      mobile: "+1 (555) 901-2345",
+      accounttype: "Seller",
+      channel: "API",
+      pandingreports: 8,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+    {
+      key: 10,
+      name: "Mary Harris",
+      email: "mary.harris@example.com",
+      mobile: "+1 (555) 012-3456",
+      accounttype: "Vendor",
+      channel: "Web",
+      pandingreports: 0,
+      status: "Under Review",
+      switchuser: "Switch User",
+      action: "Action",
+    },
+  ];
+
+  
+
+  const columns = [
+    {
+      title: "#",
+      dataIndex: "key",
+      key: "key",
+    },
+    {
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
+      render: (text) => (
+        <Row align="middle">
+          <Col>
+            <img
+              src="/path/to/logo.png"
+              alt="Logo"
+              style={{ width: 20, height: 20, marginRight: 10 }}
+            />
+          </Col>
+          <Col>{text}</Col>
+        </Row>
+      ),
+    },
+    {
+      title: "Email",
+      dataIndex: "email",
+      key: "email",
+    },
+    {
+      title: "Mobile",
+      dataIndex: "mobile",
+      key: "mobile",
+    },
+    {
+      title: "Account Type",
+      dataIndex: "accounttype",
+      key: "accounttype",
+      render: (accounttype) => (
+        <span
+          style={{
+            fontWeight: "700",
+            fontSize:"14px",
+            color:
+              accounttype === "Seller"
+                ? "rgb(255, 155, 1)"
+                : accounttype === "Vendor"
+                ? "rgb(0, 113, 220)"
+                : "black",
+          }}
+        >
+          {accounttype}
+        </span>
+      ),
+    },
+    {
+      title: "Channel",
+      dataIndex: "channel",
+      key: "channel",
+    },
+    {
+      title: "panding Reports",
+      dataIndex: "pandingreports",
+      key: "pandingreports",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+      key: "status",
+      render: (status) => (
+        <Tag style={{
+          fontSize:"14px"
+        }}
+          color={status === "Under Review" ? "blue" : status === "Reviewed" ? "green" : "default"}
+        >
+          {status}
+        </Tag>
+      ),
+    },
+    {
+      title: "Switch User",
+      dataIndex: "switchuser",
+      key: "switchuser",
+    },
+    {
+      title: "Action",
+      dataIndex: "action",
+      key: "action",
+      render: (_, record) => (
+        <div>
+          <Button
+            type="link"
+            icon={<EditOutlined />}
+            onClick={() => handleEdit(record)}
+          >
+           
+          </Button>
+          <Button
+            type="link"
+            danger
+            icon={<DeleteOutlined />}
+            onClick={() => handleDelete(record.key)}
+          >
+           
+          </Button>
+        </div>
+      ),
+    },
+  ]
+
+
+  const handleDelete = (key) => {
+    console.log("delete key:", key);
+  };
+
+  const handleEdit = (record) => {
+    console.log("edit record:", record);
+    // setModalVisible(true);
+    // setFormData(record);
+  };
+
   return (
     <>
       <Wrapper>
-        <Card>
+       
             
           <div className="User-Section">
             <Flex gap={10}>
-            <Search style={{ width: "100%" }} />
+            <Search style={{ width: "100%" }} placeholder="Search..."  />
             <Select
               placeholder="Active"
               style={{
@@ -67,12 +317,22 @@ export const User = () => {
             </div>
           </div>
           <Divider />
+
+          <Table columns={columns} dataSource={UserData} />
           <Modal
             title="Add User"
             okText="Submit"
             onOk={form.submit}
             open={visible}
             onCancel={() => setVisible(false)}
+            bodyStyle={{
+              maxHeight: "calc(-320px + 100vh)", 
+              overflowY: "auto", 
+              scrollbarWidth: "thin",
+              scrollbarColor:"#eff2f5 transparent",
+              paddingRight:"15px",
+              marginBottom:"15px"
+            }}
           >
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
               <Form.Item
@@ -80,7 +340,7 @@ export const User = () => {
                 name="name"
                 rules={[{ required: true, message: "Please input the name!" }]}
               >
-                <Input placeholder="Name" />
+                <Input  />
               </Form.Item>
 
               <Form.Item
@@ -91,7 +351,7 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input placeholder="Email" />
+                <Input  />
               </Form.Item>
 
               <Form.Item
@@ -102,7 +362,7 @@ export const User = () => {
                   { min: 6, message: "Password must be at least 6 characters" },
                 ]}
               >
-                <Input.Password placeholder="Password" />
+                <Input.Password  />
               </Form.Item>
 
               <Form.Item
@@ -123,7 +383,7 @@ export const User = () => {
                   }),
                 ]}
               >
-                <Input.Password placeholder="Confirm Password" />
+                <Input.Password  />
               </Form.Item>
 
               <Form.Item
@@ -153,7 +413,7 @@ export const User = () => {
                   },
                 ]}
               >
-                <Input placeholder="Contact Number" />
+                <Input  />
               </Form.Item>
 
               <Form.Item
@@ -176,7 +436,7 @@ export const User = () => {
                   },
                 ]}
               >
-                <Input placeholder="Reference Contact Name" />
+                <Input  />
               </Form.Item>
 
               <Form.Item
@@ -190,7 +450,7 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input placeholder="Reference Email" />
+                <Input  />
               </Form.Item>
 
               <Form.Item
@@ -200,7 +460,7 @@ export const User = () => {
                   { required: true, message: "Please input the seller name!" },
                 ]}
               >
-                <Input placeholder="Amazon Seller Name" />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -211,11 +471,11 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input placeholder="Amazon Seller Email" />
+                <Input  />
               </Form.Item>
             </Form>
           </Modal>
-        </Card>
+        
       </Wrapper>
     </>
   );

@@ -1,19 +1,29 @@
 import { Col, Row, Typography, Form, Input, Button, Checkbox } from "antd";
-import React from "react";
+import React,{useContext} from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import { Wrapper } from "./style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { ContextsApi } from "../../ContextApi/Index";
 
 export const Register = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
+  const nevigate = useNavigate()
+const { registerData ,setRegisterData } = useContext(ContextsApi);
 
   const onFinish = (values) => {
-    console.log("Success:", values);
+
+
+    const newUser = {...values}
+    setRegisterData([ ...registerData, newUser ]);
+     
+    localStorage.setItem("userData", JSON.stringify(registerData));
+    form.resetFields();
+    nevigate("/login")
   };
 
-  return (
+  return ( 
     <>
       <Wrapper>
         <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>

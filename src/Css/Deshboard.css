@@ -3,9 +3,37 @@
     height: 100vh;
     background-color: white;
     min-width: 289px !important;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    overflow-y: hidden;
 }
 .demo-logo-vertical{
    margin-top: 50px;
    padding: 0 1.25rem;
    
+}
+
+.ant-layout-header{
+    font-family: Poppins, "sans-serif";
+    min-height: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background: linear-gradient(45deg, rgb(221, 209, 221), white);
+    padding-right: 16px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    backdrop-filter: blur(8px);
+    position: sticky !important;
+    top: 0px !important;
+}
+
+.ant-breadcrumb{
+    color: black;
+    font-size: 16px;
+    font-weight: bold;
+}
+.ant-breadcrumb .anticon{
+    font-size: 16px;  
 }
