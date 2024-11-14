@@ -12,7 +12,6 @@ import {
   Select,
   Table,
   Tag,
-  Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";

@@ -4,23 +4,17 @@ import {
   Button,
   Col,
   Divider,
-  Flex,
   Form,
   Input,
   Modal,
   Row,
-  Select,
   Table,
-  Tag,
-  Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import TextArea from "antd/es/input/TextArea";
 import { Wrapper } from "./style";
 
 
 export const Admin = () => {
-  const { Search } = Input;
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
 

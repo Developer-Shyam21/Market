@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useEffect, useState } from 'react'
 
 
 export const ContextsApi = createContext() ;
@@ -7,8 +7,14 @@ const  ContextProvider = ({children}) => {
 
     const [registerData,setRegisterData] = useState([])
     const [loginData,setLoginData] = useState([])
+    const [getregisterData,setGetRegisterData] = useState();
 
-
+    useEffect(() => {
+      const storedData = JSON.parse(localStorage.getItem("userData"));
+      if (storedData) {
+        setGetRegisterData(storedData);
+      }
+    }, []); 
 
   return (
   <ContextsApi.Provider value={{
@@ -16,6 +22,7 @@ const  ContextProvider = ({children}) => {
     setRegisterData,
     loginData,
     setLoginData,  
+    getregisterData
   }}>{children}</ContextsApi.Provider>
 );
 }

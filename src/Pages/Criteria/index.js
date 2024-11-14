@@ -21,7 +21,6 @@ import TextArea from "antd/es/input/TextArea";
 import { Wrapper } from "./style";
 
 export const Criteria = () => {
-  const { Search } = Input;
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
 

@@ -1,14 +1,14 @@
-import React, { Suspense, useContext } from "react";
+import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import DeshBoard from "../Pages/DeshBoard";
 import { Register } from "../Pages/Register";
 import { LogIn } from "../Pages/Login";
 import ProtectedRoute from "./ProtectedRoute";
 import { Users } from "./user";
-import { ContextsApi } from "../ContextApi/Index";
+
 
 const Routers = () => {
-  const { loginData } = useContext(ContextsApi);
+  const loginData = JSON.parse(localStorage.getItem("UserLoggingData"));
 
   const router = createBrowserRouter([
     {

@@ -6,9 +6,8 @@ import {
   Layout,
   Menu,
   Space,
-  Typography,
 } from "antd";
-import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import {
   FileDoneOutlined,
   UserOutlined,
@@ -24,9 +23,7 @@ import { FormatUserName} from "../Config/index"
 const { Header, Sider, Content } = Layout;
 const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const { Text } = Typography;
   const location = useLocation(); 
-  const navigation = useNavigate()
 
   // Breadcrumb items based on the path
   const breadcrumbItems = location.pathname

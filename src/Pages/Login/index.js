@@ -1,5 +1,5 @@
 import { Col, Row, Typography, Form, Input, Button, message } from "antd";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import GraficImage from "../../Images/grafica-principale.svg";
@@ -11,27 +11,18 @@ export const LogIn = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
   const navigate = useNavigate();
-  const [getregisterData,setGetRegisterData] = useState();
-  const { setLoginData, loginData } = useContext(ContextsApi);
-
-  useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem("userData"));
-    if (storedData) {
-      setGetRegisterData(storedData);
-    }
-  }, []);
  
-  
+  const { getregisterData } = useContext(ContextsApi);
+
 
   const onFinish = (values) => {
     const { email, password } = values;
     const loggingUser = getregisterData.find(
       (user) => user.email === email && user.password === password
     );
-    console.log("there are find logging data are :" ,loggingUser)
 
     if (loggingUser) {
-      setLoginData([ loggingUser])
+      localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser))
       form.resetFields();
       navigate("/manageUser" , { replace: true });
     } else {
