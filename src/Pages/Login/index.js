@@ -11,24 +11,29 @@ export const LogIn = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
   const navigate = useNavigate();
-  const { registerData, setLoginData, loginData } = useContext(ContextsApi);
+  const [getregisterData,setGetRegisterData] = useState();
+  const { setLoginData, loginData } = useContext(ContextsApi);
 
   useEffect(() => {
-    localStorage.setItem("isLoggedIn", "false");
+    const storedData = JSON.parse(localStorage.getItem("userData"));
+    if (storedData) {
+      setGetRegisterData(storedData);
+    }
   }, []);
+ 
+  
 
   const onFinish = (values) => {
     const { email, password } = values;
-    const registeredUser = registerData.find(
+    const loggingUser = getregisterData.find(
       (user) => user.email === email && user.password === password
     );
+    console.log("there are find logging data are :" ,loggingUser)
 
-    if (registeredUser) {
-      setLoginData([...loginData, registeredUser]);
-      localStorage.setItem("isLoggedIn", "true");
-     
-      navigate("/deshboard");
+    if (loggingUser) {
+      setLoginData([ loggingUser])
       form.resetFields();
+      navigate("/manageUser" , { replace: true });
     } else {
       message.error("Email or Password is incorrect, or you need to register first.");
     }

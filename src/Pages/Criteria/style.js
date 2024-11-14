@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     min-height: 54px;
     align-items: center;
-    padding: 15px 30px 3px 30px;
+     padding: 15px 30px 3px 30px;
   }
 
   .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
@@ -40,7 +40,7 @@ export const Wrapper = styled.div`
     border-radius: 8px;
   }
 
-  .ant-table-wrapper{
+   .ant-table-wrapper{
   padding: 0 30px;
   }
 
@@ -48,13 +48,15 @@ export const Wrapper = styled.div`
   margin: 10px 0 24px 0;
   }
 
+
   .action-btn{
   display: flex;
   justify-content: space-evenly;
   }
-  .anticon {
+
+.anticon {
+
   font-size: 20px;
   font-weight: bold;
 }
-
 `;

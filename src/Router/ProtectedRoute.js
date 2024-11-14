@@ -1,9 +1,19 @@
-import React from "react";
-import { Navigate } from "react-router-dom";
+import React, { useContext, useEffect } from "react";
+import { Navigate, useLocation } from "react-router-dom";
+import { ContextsApi } from "../ContextApi/Index";
 
 const ProtectedRoute = ({ children }) => {
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  return isLoggedIn ? children : <Navigate to="/login" replace />;
+ 
+  const { loginData } = useContext(ContextsApi);
+  const location = useLocation();
+
+
+  if (!loginData || loginData.length === 0) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
+
+  return children;
+ 
 };
 
 export default ProtectedRoute;

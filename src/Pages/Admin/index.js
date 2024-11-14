@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EditOutlined, PlusOutlined,DeleteOutlined ,LoginOutlined} from "@ant-design/icons";
+import { EditOutlined, PlusOutlined,DeleteOutlined } from "@ant-design/icons";
 import {
   Button,
   Col,
@@ -19,7 +19,7 @@ import TextArea from "antd/es/input/TextArea";
 import { Wrapper } from "./style";
 
 
-export const User = () => {
+export const Admin = () => {
   const { Search } = Input;
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
@@ -36,11 +36,6 @@ export const User = () => {
       name: "John Doe",
       email: "john.doe@example.com",
       mobile: "+1 (555) 123-4567",
-      accounttype: "Seller",
-      channel: "Web",
-      pandingreports: 3,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -48,11 +43,6 @@ export const User = () => {
       name: "Jane Smith",
       email: "jane.smith@example.com",
       mobile: "+1 (555) 234-5678",
-      accounttype: "-",
-      channel: "Mobile",
-      pandingreports: 5,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -60,11 +50,6 @@ export const User = () => {
       name: "Michael Johnson",
       email: "michael.johnson@example.com",
       mobile: "+1 (555) 345-6789",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -72,11 +57,6 @@ export const User = () => {
       name: "Sarah Lee",
       email: "sarah.lee@example.com",
       mobile: "+1 (555) 456-7890",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 2,
-      status: "Reviewed",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -84,11 +64,6 @@ export const User = () => {
       name: "David Brown",
       email: "david.brown@example.com",
       mobile: "+1 (555) 567-8901",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 7,
-      status: "Reviewed",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -96,11 +71,6 @@ export const User = () => {
       name: "Emily Wilson",
       email: "emily.wilson@example.com",
       mobile: "+1 (555) 678-9012",
-      accounttype: "Vendor",
-      channel: "API",
-      pandingreports: 1,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -108,11 +78,6 @@ export const User = () => {
       name: "Robert Taylor",
       email: "robert.taylor@example.com",
       mobile: "+1 (555) 789-0123",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 4,
-      status: "Reviewed",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -120,11 +85,6 @@ export const User = () => {
       name: "Laura Martinez",
       email: "laura.martinez@example.com",
       mobile: "+1 (555) 890-1234",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 6,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -132,11 +92,6 @@ export const User = () => {
       name: "James Anderson",
       email: "james.anderson@example.com",
       mobile: "+1 (555) 901-2345",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 8,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
     {
@@ -144,11 +99,6 @@ export const User = () => {
       name: "Mary Harris",
       email: "mary.harris@example.com",
       mobile: "+1 (555) 012-3456",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
       action: "Action",
     },
   ];
@@ -188,61 +138,7 @@ export const User = () => {
       dataIndex: "mobile",
       key: "mobile",
     },
-    {
-      title: "Account Type",
-      dataIndex: "accounttype",
-      key: "accounttype",
-      render: (accounttype) => (
-        <span
-          style={{
-            fontWeight: "700",
-            fontSize:"14px",
-            color:
-              accounttype === "Seller"
-                ? "rgb(255, 155, 1)"
-                : accounttype === "Vendor"
-                ? "rgb(0, 113, 220)"
-                : "black",
-          }}
-        >
-          {accounttype}
-        </span>
-      ),
-    },
-    {
-      title: "Channel",
-      dataIndex: "channel",
-      key: "channel",
-    },
-    {
-      title: "panding Reports",
-      dataIndex: "pandingreports",
-      key: "pandingreports",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <Tag style={{
-          fontSize:"14px"
-        }}
-          color={status === "Under Review" ? "blue" : status === "Reviewed" ? "green" : "default"}
-        >
-          {status}
-        </Tag>
-      ),
-    },
-    {
-      title: "Switch User",
-      dataIndex: "switchuser",
-      key: "switchuser",
-      render: (switchuser) => (
-        <Button type="link" size="small" icon={<LoginOutlined />}>
-          {switchuser}
-        </Button>
-      ),
-    },
+    
     {
       title: "Action",
       dataIndex: "action",
@@ -288,29 +184,6 @@ export const User = () => {
        
             
           <div className="User-Section">
-            <Flex gap={10}>
-            <Search style={{ width: "100%" }} placeholder="Search..."  />
-            <Select
-              placeholder="Active"
-              style={{
-                  width: "100%",
-                }}
-                options={[
-                    {
-                        value: "all",
-                        label: "All",
-                    },
-                    {
-                        value: "active",
-                        label: "Active",
-                    },
-                    {
-                        value: "inactive",
-                        label: "Inactive",
-                    },
-                ]}
-                />
-                </Flex>
             <div>
               <Button
                 type="primary"
@@ -330,23 +203,25 @@ export const User = () => {
             onOk={form.submit}
             open={visible}
             onCancel={() => setVisible(false)}
-            bodyStyle={{
-              maxHeight: "calc(-320px + 100vh)", 
-              overflowY: "auto", 
-              scrollbarWidth: "thin",
-              scrollbarColor:"#eff2f5 transparent",
-              paddingRight:"15px",
-              marginBottom:"15px"
-            }}
           >
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
-              <Form.Item
-                label="Name"
-                name="name"
+                <Row gutter={[16,16]}>
+                    <Col lg={12}> <Form.Item
+                label="User Name"
+                name="uname"
                 rules={[{ required: true, message: "Please input the name!" }]}
               >
                 <Input  />
-              </Form.Item>
+              </Form.Item></Col>
+                    <Col lg={12}>
+              <Form.Item
+                label="User / Client"
+                name="user/client"
+                rules={[{ required: true, message: "Please input the name!" }]}
+              >
+                <Input  />
+              </Form.Item></Col>
+                </Row> 
 
               <Form.Item
                 label="Email"
@@ -391,22 +266,6 @@ export const User = () => {
                 <Input.Password  />
               </Form.Item>
 
-              <Form.Item
-                label="Buy Box Data Update Frequency"
-                name="updateFrequency"
-              >
-                <Select>
-                  <Select.Option value="12hrs">
-                    Once every 12 Hours
-                  </Select.Option>
-                  <Select.Option value="24hrs">
-                    Once every 24 Hours
-                  </Select.Option>
-                  <Select.Option value="48hrs">
-                    Once every 48 Hours
-                  </Select.Option>
-                </Select>
-              </Form.Item>
 
               <Form.Item
                 label="Contact Number"
@@ -421,63 +280,7 @@ export const User = () => {
                 <Input  />
               </Form.Item>
 
-              <Form.Item
-                label="Address"
-                name="address"
-                rules={[
-                  { required: true, message: "Please input the address!" },
-                ]}
-              >
-                <TextArea  rows={2} />
-              </Form.Item>
-
-              <Form.Item
-                label="Reference Contact Name"
-                name="referenceName"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the reference name!",
-                  },
-                ]}
-              >
-                <Input  />
-              </Form.Item>
-
-              <Form.Item
-                label="Reference Email"
-                name="referenceEmail"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the reference email!",
-                  },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input  />
-              </Form.Item>
-
-              <Form.Item
-                label="Amazon Seller Name"
-                name="sellerName"
-                rules={[
-                  { required: true, message: "Please input the seller name!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-
-              <Form.Item
-                label="Amazon Seller Email"
-                name="sellerEmail"
-                rules={[
-                  { required: true, message: "Please input the seller email!" },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input  />
-              </Form.Item>
+             
             </Form>
           </Modal>
         
@@ -485,4 +288,3 @@ export const User = () => {
     </>
   );
 };
-

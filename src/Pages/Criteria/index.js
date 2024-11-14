@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { EditOutlined, PlusOutlined,DeleteOutlined ,LoginOutlined} from "@ant-design/icons";
+import { EditOutlined, PlusOutlined,DeleteOutlined ,EyeOutlined,UserSwitchOutlined} from "@ant-design/icons";
 import {
   Button,
   Col,
@@ -19,7 +19,7 @@ import TextArea from "antd/es/input/TextArea";
 import { Wrapper } from "./style";
 
 
-export const User = () => {
+export const Criteria = () => {
   const { Search } = Input;
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
@@ -156,93 +156,28 @@ export const User = () => {
   
 
   const columns = [
+   
     {
-      title: "#",
-      dataIndex: "key",
-      key: "key",
+      title: "Criteria Name",
+      dataIndex: "criterianame",
+      key: "criterianame",
     },
     {
-      title: "Name",
-      dataIndex: "name",
-      key: "name",
-      render: (text) => (
-        <Row align="middle">
-          <Col>
-            <img
-              src="/path/to/logo.png"
-              alt="Logo"
-              style={{ width: 20, height: 20, marginRight: 10 }}
-            />
-          </Col>
-          <Col>{text}</Col>
-        </Row>
-      ),
+      title: "Criteria Type",
+      dataIndex: "criteriatype",
+      key: "criteriatype",
     },
     {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
+      title: "Type",
+      dataIndex: "type",
+      key: "type",
     },
     {
-      title: "Mobile",
-      dataIndex: "mobile",
-      key: "mobile",
+      title: "Weight",
+      dataIndex: "weight",
+      key: "weight",
     },
-    {
-      title: "Account Type",
-      dataIndex: "accounttype",
-      key: "accounttype",
-      render: (accounttype) => (
-        <span
-          style={{
-            fontWeight: "700",
-            fontSize:"14px",
-            color:
-              accounttype === "Seller"
-                ? "rgb(255, 155, 1)"
-                : accounttype === "Vendor"
-                ? "rgb(0, 113, 220)"
-                : "black",
-          }}
-        >
-          {accounttype}
-        </span>
-      ),
-    },
-    {
-      title: "Channel",
-      dataIndex: "channel",
-      key: "channel",
-    },
-    {
-      title: "panding Reports",
-      dataIndex: "pandingreports",
-      key: "pandingreports",
-    },
-    {
-      title: "Status",
-      dataIndex: "status",
-      key: "status",
-      render: (status) => (
-        <Tag style={{
-          fontSize:"14px"
-        }}
-          color={status === "Under Review" ? "blue" : status === "Reviewed" ? "green" : "default"}
-        >
-          {status}
-        </Tag>
-      ),
-    },
-    {
-      title: "Switch User",
-      dataIndex: "switchuser",
-      key: "switchuser",
-      render: (switchuser) => (
-        <Button type="link" size="small" icon={<LoginOutlined />}>
-          {switchuser}
-        </Button>
-      ),
-    },
+    
     {
       title: "Action",
       dataIndex: "action",
@@ -251,26 +186,44 @@ export const User = () => {
         <div className="action-btn">
           <Button
             type="link"
-            icon={<EditOutlined />}
+            icon={<EyeOutlined />}
+            onClick={() => handleSee(record)}
             style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
-            onClick={() => handleEdit(record)}
           >
-           
+          </Button>
+          <Button
+            type="link"
+            icon={<EditOutlined />}
+            onClick={() => handleEdit(record)}
+            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+          >
           </Button>
           <Button
             type="link"
             danger
             icon={<DeleteOutlined />}
-            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
             onClick={() => handleDelete(record.key)}
+            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
           >
-           
+          </Button>
+          <Button
+            type="link"
+            danger
+            icon={<UserSwitchOutlined />}
+            onClick={() => handleSwitch(record)}
+            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+          >
           </Button>
         </div>
       ),
     },
   ]
 
+  const handleSee = (record) => {
+    console.log("see record:", record);
+    // setModalVisible(true);
+    // setFormData(record);
+  };
 
   const handleDelete = (key) => {
     console.log("delete key:", key);
@@ -278,6 +231,12 @@ export const User = () => {
 
   const handleEdit = (record) => {
     console.log("edit record:", record);
+    // setModalVisible(true);
+    // setFormData(record);
+  };
+
+  const handleSwitch = (record) => {
+    console.log("switch record:", record);
     // setModalVisible(true);
     // setFormData(record);
   };

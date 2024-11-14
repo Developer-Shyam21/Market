@@ -10,7 +10,7 @@ export const Register = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
   const nevigation = useNavigate()
-const { registerData ,setRegisterData } = useContext(ContextsApi);
+const {  setRegisterData } = useContext(ContextsApi);
 
 const onFinish = (values) => {
   const newUser = { ...values };

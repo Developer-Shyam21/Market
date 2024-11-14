@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import {
   Breadcrumb,
   Button,
@@ -10,7 +10,7 @@ import {
 } from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
-  UploadOutlined,
+  FileDoneOutlined,
   UserOutlined,
   VideoCameraOutlined,
   HomeOutlined,
@@ -18,12 +18,14 @@ import {
 } from "@ant-design/icons";
 import Market from "../Images/logo-main.png";
 import "../Css/Deshboard.css";
+import { ContextsApi } from "../ContextApi/Index";
+import { FormatUserName} from "../Config/index"
 
 const { Header, Sider, Content } = Layout;
 const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const { Text } = Typography;
-  const location = useLocation(); // Get the current URL path
+  const location = useLocation(); 
   const navigation = useNavigate()
 
   // Breadcrumb items based on the path
@@ -31,13 +33,12 @@ const DeshBoard = () => {
     .split("/")
     .filter(Boolean)
     .map((crumb) => ({
-      title: crumb.charAt(0).toUpperCase() + crumb.slice(2),
+      title: crumb.charAt(0).toUpperCase() + crumb.slice(1),
     }));
 
-
-    const handleLogout = () => {
-      
-      navigation("/login")
+    const { setLoginData } = useContext(ContextsApi);
+    const handleLogout = () => { 
+      setLoginData([])
     }
   return (
     <Layout>
@@ -48,44 +49,51 @@ const DeshBoard = () => {
         <Divider />
         <Menu
           mode="inline"
-          defaultSelectedKeys={["1"]}
+          defaultSelectedKeys={["manageUser"]}
           style={{ backgroundColor: "white" }}
           items={[
             {
-              key: "1",
+              key: "manageUser",
               icon: <UserOutlined />,
-              label: <Link to="manageUser">Manage User/Client</Link>,
+              label: <Link to="/manageUser">Manage User/Client</Link>,
             },
             {
-              key: "2",
+              key: "manageAdmin",
               icon: <VideoCameraOutlined />,
-              label: "nav 2",
+              label:<Link to="/manageAdmin">Manage Admin</Link>,
             },
             {
-              key: "3",
-              icon: <UploadOutlined />,
-              label: "nav 3",
+              key: "Criteria",
+              icon: <FileDoneOutlined />,
+              label:<Link to="/criteria">Criteria</Link>, 
             },
           ]}
         />
       </Sider>
       <Layout>
         <Header >
-          <Space direction="horizontal" align="center">
+          <Space direction="vertical" align="center">
             <Breadcrumb
               items={[{ title: <HomeOutlined /> }, ...breadcrumbItems]}
-              style={{ margin: "16px 0" }}
+              separator={">"}
+              style={{fontSize:"14px"}}
             />
+            <Breadcrumb
+            style={{fontSize:"22px"}}
+            separator={"/"}
+            items={[
+              ...location?.pathname
+                ?.split("/")
+                ?.filter((d) => d)
+                ?.map((d) => ({
+                  title: FormatUserName(d),
+                })),
+            ]}
+          />
           </Space>
           <Button type="primary" icon={<LogoutOutlined />} onClick={handleLogout}>LogOut</Button>
         </Header>
         <Content
-          style={{
-            margin: "24px 16px",
-            padding: 24,
-            minHeight: 280,
-            background: "#fff",
-          }}
         >
           <Outlet />
         </Content>

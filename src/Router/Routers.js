@@ -1,32 +1,31 @@
-import React, { Suspense, useState, useEffect } from "react";
-import ReactDOM from "react-dom";
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from "react-router-dom";
-
+import React, { Suspense, useContext } from "react";
+import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import DeshBoard from "../Pages/DeshBoard";
 import { Register } from "../Pages/Register";
 import { LogIn } from "../Pages/Login";
-import { User } from "../Pages/User";
 import ProtectedRoute from "./ProtectedRoute";
-
+import { Users } from "./user";
+import { ContextsApi } from "../ContextApi/Index";
 
 const Routers = () => {
-
-  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-
-  useEffect(() => {
-    localStorage.setItem("isLoggedIn", "false")
-
-   
-  }, []);
+  const { loginData } = useContext(ContextsApi);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element:isLoggedIn ? <Navigate to="/Deshboard" /> : <Navigate to="/login" />
+      element: loginData ? (
+        <ProtectedRoute>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DeshBoard />
+          </Suspense>
+        </ProtectedRoute>
+      ) : (
+        <Navigate to="/login" replace />
+      ),
+      children: Users.map((d) => ({
+        path: d.path,
+        element: d.element,
+      })),
     },
     {
       path: "/login",
@@ -37,32 +36,12 @@ const Routers = () => {
       element: <Register />,
     },
     {
-      path: "/Deshboard",
-      element: (
-        <ProtectedRoute>
-          <Suspense  >
-            <DeshBoard />
-          </Suspense>
-        </ProtectedRoute>
-      ),
-      children: [
-        {
-          path: "manageUser",
-          element: <User />,
-        },
-      ],
-    },
-    {
       path: "*",
-      element: <Navigate to="/" />,
+      element: <Navigate to="/" replace />,
     },
   ]);
 
-
-  return (
-    <RouterProvider router={router} />
-  );
+  return <RouterProvider router={router} />;
 };
 
-ReactDOM.createRoot(document.getElementById("root")).render(<Routers />);
 export default Routers;
