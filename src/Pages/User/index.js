@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { EditOutlined, PlusOutlined,DeleteOutlined ,LoginOutlined} from "@ant-design/icons";
+import {
+  EditOutlined,
+  PlusOutlined,
+  DeleteOutlined,
+  LoginOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Col,
@@ -15,8 +20,7 @@ import {
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
-import { Wrapper } from "./style";
-
+import { UserSection, Wrapper } from "./style";
 
 export const User = () => {
   const { Search } = Input;
@@ -27,7 +31,6 @@ export const User = () => {
     console.log("Received values of form: ", value);
     setVisible(false);
   };
-
 
   const UserData = [
     {
@@ -152,8 +155,6 @@ export const User = () => {
     },
   ];
 
-  
-
   const columns = [
     {
       title: "#",
@@ -195,7 +196,7 @@ export const User = () => {
         <span
           style={{
             fontWeight: "700",
-            fontSize:"14px",
+            fontSize: "14px",
             color:
               accounttype === "Seller"
                 ? "rgb(255, 155, 1)"
@@ -223,10 +224,17 @@ export const User = () => {
       dataIndex: "status",
       key: "status",
       render: (status) => (
-        <Tag style={{
-          fontSize:"14px"
-        }}
-          color={status === "Under Review" ? "blue" : status === "Reviewed" ? "green" : "default"}
+        <Tag
+          style={{
+            fontSize: "14px",
+          }}
+          color={
+            status === "Under Review"
+              ? "blue"
+              : status === "Reviewed"
+              ? "green"
+              : "default"
+          }
         >
           {status}
         </Tag>
@@ -251,25 +259,28 @@ export const User = () => {
           <Button
             type="link"
             icon={<EditOutlined />}
-            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+            style={{
+              backgroundColor: "#f5f8fa",
+              color: "#a2a5b8",
+              padding: "16px",
+            }}
             onClick={() => handleEdit(record)}
-          >
-           
-          </Button>
+          ></Button>
           <Button
             type="link"
             danger
             icon={<DeleteOutlined />}
-            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+            style={{
+              backgroundColor: "#f5f8fa",
+              color: "#a2a5b8",
+              padding: "16px",
+            }}
             onClick={() => handleDelete(record.key)}
-          >
-           
-          </Button>
+          ></Button>
         </div>
       ),
     },
-  ]
-
+  ];
 
   const handleDelete = (key) => {
     console.log("delete key:", key);
@@ -284,67 +295,66 @@ export const User = () => {
   return (
     <>
       <Wrapper>
-       
-            
-          <div className="User-Section">
-            <Flex gap={10}>
-            <Search style={{ width: "100%" }} placeholder="Search..."  />
+        <div className="User-Section">
+          <Flex gap={10}>
+            <Search style={{ width: "100%" }} placeholder="Search..." />
             <Select
               placeholder="Active"
               style={{
-                  width: "100%",
-                }}
-                options={[
-                    {
-                        value: "all",
-                        label: "All",
-                    },
-                    {
-                        value: "active",
-                        label: "Active",
-                    },
-                    {
-                        value: "inactive",
-                        label: "Inactive",
-                    },
-                ]}
-                />
-                </Flex>
-            <div>
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={() => setVisible(true)}
-              >
-                Add
-              </Button>
-            </div>
+                width: "100%",
+              }}
+              options={[
+                {
+                  value: "all",
+                  label: "All",
+                },
+                {
+                  value: "active",
+                  label: "Active",
+                },
+                {
+                  value: "inactive",
+                  label: "Inactive",
+                },
+              ]}
+            />
+          </Flex>
+          <div>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => setVisible(true)}
+            >
+              Add
+            </Button>
           </div>
-          <Divider />
+        </div>
+        <Divider />
 
-          <Table columns={columns} dataSource={UserData} />
-          <Modal
-            title="Add User"
-            okText="Submit"
-            onOk={form.submit}
-            open={visible}
-            onCancel={() => setVisible(false)}
-            bodyStyle={{
-              maxHeight: "calc(-320px + 100vh)", 
-              overflowY: "auto", 
-              scrollbarWidth: "thin",
-              scrollbarColor:"#eff2f5 transparent",
-              paddingRight:"15px",
-              marginBottom:"15px"
-            }}
-          >
+        <Table columns={columns} dataSource={UserData} />
+        <Modal
+          title="Add User"
+          okText="Submit"
+          onOk={form.submit}
+          open={visible}
+          onCancel={() => setVisible(false)}
+          bodyStyle={{
+            maxHeight: "calc(-320px + 100vh)",
+            overflowY: "auto",
+            scrollbarWidth: "thin",
+            scrollbarColor: "#eff2f5 transparent",
+            paddingRight: "15px",
+            marginBottom: "15px",
+          }}
+        >
+          <UserSection>
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
               <Form.Item
                 label="Name"
                 name="name"
                 rules={[{ required: true, message: "Please input the name!" }]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -355,7 +365,7 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -366,7 +376,7 @@ export const User = () => {
                   { min: 6, message: "Password must be at least 6 characters" },
                 ]}
               >
-                <Input.Password  />
+                <Input.Password />
               </Form.Item>
 
               <Form.Item
@@ -387,7 +397,7 @@ export const User = () => {
                   }),
                 ]}
               >
-                <Input.Password  />
+                <Input.Password />
               </Form.Item>
 
               <Form.Item
@@ -417,7 +427,7 @@ export const User = () => {
                   },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -427,7 +437,7 @@ export const User = () => {
                   { required: true, message: "Please input the address!" },
                 ]}
               >
-                <TextArea  rows={2} />
+                <TextArea rows={2} />
               </Form.Item>
 
               <Form.Item
@@ -440,7 +450,7 @@ export const User = () => {
                   },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -454,7 +464,7 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
 
               <Form.Item
@@ -475,13 +485,12 @@ export const User = () => {
                   { type: "email", message: "Please enter a valid email!" },
                 ]}
               >
-                <Input  />
+                <Input />
               </Form.Item>
             </Form>
-          </Modal>
-        
+          </UserSection>
+        </Modal>
       </Wrapper>
     </>
   );
 };
-

@@ -8,21 +8,25 @@ import {
 } from "@ant-design/icons";
 import {
   Button,
+  Col,
   Divider,
   Flex,
   Form,
   Input,
   Modal,
+  Row,
   Select,
   Table,
+  Tag,
+  Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import TextArea from "antd/es/input/TextArea";
-import { Wrapper } from "./style";
+import { Wrapper ,ModalView} from "./style";
 
 export const Criteria = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
+  const { Text } = Typography;
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -31,123 +35,80 @@ export const Criteria = () => {
 
   const UserData = [
     {
-      key: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      mobile: "+1 (555) 123-4567",
-      accounttype: "Seller",
-      channel: "Web",
-      pandingreports: 3,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Title length check",
+      criteriatype: "LQS",
+      type: "product title length",
+      weight: 22,
+
       action: "Action",
     },
     {
-      key: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      mobile: "+1 (555) 234-5678",
-      accounttype: "-",
-      channel: "Mobile",
-      pandingreports: 5,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Bullet Point 1 length check",
+      criteriatype: "LQS",
+      type: "bullet point 1 length",
+      weight: 5,
+
       action: "Action",
     },
     {
-      key: 3,
-      name: "Michael Johnson",
-      email: "michael.johnson@example.com",
-      mobile: "+1 (555) 345-6789",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Bullet Point 2 length check",
+      criteriatype: "LQS",
+      type: "	bullet point 2 length",
+      weight: 5,
+
       action: "Action",
     },
     {
-      key: 4,
-      name: "Sarah Lee",
-      email: "sarah.lee@example.com",
-      mobile: "+1 (555) 456-7890",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 2,
-      status: "Reviewed",
-      switchuser: "Switch User",
+      criterianame: "Bullet Point 3 length check",
+      criteriatype: "LQS",
+      type: "bullet point 3 length",
+      weight: 5,
+
       action: "Action",
     },
     {
-      key: 5,
-      name: "David Brown",
-      email: "david.brown@example.com",
-      mobile: "+1 (555) 567-8901",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 7,
-      status: "Reviewed",
-      switchuser: "Switch User",
+      criterianame: "Bullet Point 4 length check",
+      criteriatype: "LQS",
+      type: "bullet point 4 length",
+      weight: 5,
+
       action: "Action",
     },
     {
-      key: 6,
-      name: "Emily Wilson",
-      email: "emily.wilson@example.com",
-      mobile: "+1 (555) 678-9012",
-      accounttype: "Vendor",
-      channel: "API",
-      pandingreports: 1,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Bullet Point 5 length check",
+      criteriatype: "LQS",
+      type: "bullet point 5 length",
+      weight: 5,
+
       action: "Action",
     },
     {
-      key: 7,
-      name: "Robert Taylor",
-      email: "robert.taylor@example.com",
-      mobile: "+1 (555) 789-0123",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 4,
-      status: "Reviewed",
-      switchuser: "Switch User",
+      criterianame: "Description length check",
+      criteriatype: "LQS",
+      type: "product description length",
+      weight: 6,
       action: "Action",
     },
     {
-      key: 8,
-      name: "Laura Martinez",
-      email: "laura.martinez@example.com",
-      mobile: "+1 (555) 890-1234",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 6,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Image count check",
+      criteriatype: "LQS",
+      type: "image count",
+      weight: 7,
       action: "Action",
     },
     {
-      key: 9,
-      name: "James Anderson",
-      email: "james.anderson@example.com",
-      mobile: "+1 (555) 901-2345",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 8,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "Review Score Check",
+
+      criteriatype: "retail_readiness",
+      type: "review score",
+      weight: 4,
       action: "Action",
     },
     {
-      key: 10,
-      name: "Mary Harris",
-      email: "mary.harris@example.com",
-      mobile: "+1 (555) 012-3456",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
+      criterianame: "A+ Check",
+      criteriatype: "BQS",
+      type: "a+",
+      weight: 33,
       action: "Action",
     },
   ];
@@ -155,28 +116,43 @@ export const Criteria = () => {
   const columns = [
     {
       title: "Criteria Name",
+      width: 400,
       dataIndex: "criterianame",
       key: "criterianame",
     },
     {
       title: "Criteria Type",
+      width: 100,
       dataIndex: "criteriatype",
       key: "criteriatype",
+      render: (criteriatype) => (
+        <Tag style={{ color: "#389e0d", backgroundColor: "#f6ffed" }}>
+          {criteriatype}
+        </Tag>
+      ),
     },
     {
       title: "Type",
+      width: 300,
       dataIndex: "type",
       key: "type",
     },
     {
       title: "Weight",
       dataIndex: "weight",
+      width: 100,
       key: "weight",
+      render: (weight) => (
+        <Tag style={{ color: "#08979c", backgroundColor: "#e6fffb" }}>
+          {weight}
+        </Tag>
+      ),
     },
 
     {
       title: "Action",
       dataIndex: "action",
+      width: 300,
       key: "action",
       render: (_, record) => (
         <div className="action-btn">
@@ -184,7 +160,11 @@ export const Criteria = () => {
             type="link"
             icon={<EyeOutlined />}
             onClick={() => handleSee(record)}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" }}
+            style={{
+              backgroundColor: "#f5f8fa",
+              color: "#a2a5b8",
+              padding: "16px",
+            }}
           ></Button>
           <Button
             type="link"
@@ -237,25 +217,30 @@ export const Criteria = () => {
     <>
       <Wrapper>
         <div className="User-Section">
-          <div>Criteria</div>
-          <Flex gap={10} align="middle"> 
+          <Text strong>Criteria</Text>
+          <Flex gap={10} align="center">
             <Select
-              placeholder="Active"
-              style={{
-                width: "100%",
-              }}
+              placeholder="Amazon.it"
               options={[
                 {
-                  value: "all",
-                  label: "All",
+                  value: "amazon.it",
+                  label: "Amazon.it",
                 },
                 {
-                  value: "active",
-                  label: "Active",
+                  value: "amazon.ca",
+                  label: "Amazon.ca",
                 },
                 {
-                  value: "inactive",
-                  label: "Inactive",
+                  value: "amazon.com",
+                  label: "Amazon.com",
+                },
+                {
+                  value: "amazon.ae",
+                  label: "Amazon.ae",
+                },
+                {
+                  value: "amazon.in",
+                  label: "Amazon.in",
                 },
               ]}
             />
@@ -271,154 +256,137 @@ export const Criteria = () => {
         <Divider />
 
         <Table columns={columns} dataSource={UserData} />
-        <Modal
-          title="Add User"
-          okText="Submit"
-          onOk={form.submit}
-          open={visible}
-          onCancel={() => setVisible(false)}
-          bodyStyle={{
-            maxHeight: "calc(-320px + 100vh)",
-            overflowY: "auto",
-            scrollbarWidth: "thin",
-            scrollbarColor: "#eff2f5 transparent",
-            paddingRight: "15px",
-            marginBottom: "15px",
-          }}
-        >
-          <Form form={form} layout="vertical" onFinish={handleSubmit}>
-            <Form.Item
-              label="Name"
-              name="name"
-              rules={[{ required: true, message: "Please input the name!" }]}
+          <Modal
+            title="Add User"
+            okText="Submit"
+            width={800}
+            oKText="Create"
+            onOk={form.submit}
+            open={visible}
+            onCancel={() => setVisible(false)}
+            bodyStyle={{
+              maxHeight: "calc(-320px + 100vh)",
+              overflowY: "auto",
+              scrollbarWidth: "thin",
+              scrollbarColor: "#eff2f5 transparent",
+              paddingRight: "15px",
+              marginBottom: "15px",
+            }}
             >
-              <Input />
-            </Form.Item>
+            <ModalView>
+            <Form form={form} layout="vertical" onFinish={handleSubmit}>
+              <Row gutter={[14, 14]}>
+                <Col lg={6}>
+                  <Form.Item
+                    label="Criteria Name"
+                    name="criterianame"
+                    hasFeedback
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the criteria name!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Enter Criteria Name"/>
+                  </Form.Item>
+                </Col>
+                <Col lg={6}>
+                  <Form.Item
+                    label="Criteria Type"
+                    name="criteriatype"
+                    hasFeedback
+                  >
+                    <Select placeholder="Criteia Type">
+                      <Select.Option value="lqs">LQS</Select.Option>
+                      <Select.Option value="bqs">BQS</Select.Option>
+                      <Select.Option value="retail_readiness">
+                        Retail Readiness
+                      </Select.Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col lg={6}>
+                  <Form.Item label="Metrics" name="metrics" hasFeedback>
+                    <Select placeholder="Metrics">
+                      <Select.Option value="reviewsnumber">
+                        Reviews Number
+                      </Select.Option>
+                      <Select.Option value="reviewsnumber">
+                        Review Scrore
+                      </Select.Option>
+                      <Select.Option value="buybox">Buy Box</Select.Option>
+                      <Select.Option value="quantity">Quantity</Select.Option>
+                    </Select>
+                  </Form.Item>
+                </Col>
+                <Col lg={6}>
+                  <Form.Item
+                    label="Weight"
+                    name="weight"
+                    hasFeedback
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the weight number!",
+                      },
+                    ]}
+                  >
+                    <Input placeholder="Weight"/>
+                  </Form.Item>
+                </Col>
+              </Row>
 
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: "Please input the email!" },
-                { type: "email", message: "Please enter a valid email!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-                { min: 6, message: "Password must be at least 6 characters" },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={["password"]}
-              rules={[
-                { required: true, message: "Please confirm your password!" },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error("The passwords do not match!")
-                    );
-                  },
-                }),
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-              label="Buy Box Data Update Frequency"
-              name="updateFrequency"
-            >
-              <Select>
-                <Select.Option value="12hrs">Once every 12 Hours</Select.Option>
-                <Select.Option value="24hrs">Once every 24 Hours</Select.Option>
-                <Select.Option value="48hrs">Once every 48 Hours</Select.Option>
-              </Select>
-            </Form.Item>
-
-            <Form.Item
-              label="Contact Number"
-              name="contactNumber"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the contact number!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Address"
-              name="address"
-              rules={[{ required: true, message: "Please input the address!" }]}
-            >
-              <TextArea rows={2} />
-            </Form.Item>
-
-            <Form.Item
-              label="Reference Contact Name"
-              name="referenceName"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the reference name!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Reference Email"
-              name="referenceEmail"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the reference email!",
-                },
-                { type: "email", message: "Please enter a valid email!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Amazon Seller Name"
-              name="sellerName"
-              rules={[
-                { required: true, message: "Please input the seller name!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-
-            <Form.Item
-              label="Amazon Seller Email"
-              name="sellerEmail"
-              rules={[
-                { required: true, message: "Please input the seller email!" },
-                { type: "email", message: "Please enter a valid email!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Form>
-        </Modal>
+              <div className="criteria-form">
+                <Row gutter={[14, 14]} align="middle">
+                  <Col lg={5}>If</Col>
+                  <Col lg={6}>
+                    <Form.Item name="opretar" hasFeedback>
+                      <Select placeholder="Operator">
+                        <Select.Option value="lqs">LQS</Select.Option>
+                        <Select.Option value="bqs">BQS</Select.Option>
+                        <Select.Option value="retail_readiness">
+                          Retail Readiness
+                        </Select.Option>
+                      </Select>
+                    </Form.Item>
+                  </Col>
+                  <Col lg={5}>
+                    <Form.Item
+                      name="weight"
+                      hasFeedback
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the weight number!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Value" />
+                    </Form.Item>
+                  </Col>
+                  <Col lg={5}>
+                    <Form.Item
+                      name="weight"
+                      hasFeedback
+                      rules={[
+                        {
+                          required: true,
+                          message: "Please input the weight number!",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Score" />
+                    </Form.Item>
+                  </Col>
+                  <Col lg={2} offset={1}>
+                    <Button type="primary" icon={<PlusOutlined />}></Button>
+                  </Col>
+                </Row>
+              </div>
+            </Form>
+        </ModalView>
+          </Modal>
       </Wrapper>
     </>
   );

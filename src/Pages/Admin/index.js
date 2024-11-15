@@ -1,18 +1,8 @@
 import React, { useState } from "react";
-import { EditOutlined, PlusOutlined,DeleteOutlined } from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  Divider,
-  Form,
-  Input,
-  Modal,
-  Row,
-  Table,
-} from "antd";
+import { EditOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
+import { Button, Col, Divider, Form, Input, Modal, Row, Table } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Wrapper } from "./style";
-
+import { ModalAdmin, Wrapper } from "./style";
 
 export const Admin = () => {
   const [form] = useForm();
@@ -22,7 +12,6 @@ export const Admin = () => {
     console.log("Received values of form: ", value);
     setVisible(false);
   };
-
 
   const UserData = [
     {
@@ -97,8 +86,6 @@ export const Admin = () => {
     },
   ];
 
-  
-
   const columns = [
     {
       title: "#",
@@ -125,42 +112,40 @@ export const Admin = () => {
     {
       title: "Email",
       dataIndex: "email",
+      width:350,
       key: "email",
     },
     {
       title: "Mobile",
+      width:300,
       dataIndex: "mobile",
       key: "mobile",
     },
-    
+
     {
       title: "Action",
       dataIndex: "action",
+      width:250,
       key: "action",
       render: (_, record) => (
         <div className="action-btn">
           <Button
             type="link"
             icon={<EditOutlined />}
-            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8",padding: "16px"}}
             onClick={() => handleEdit(record)}
-          >
-           
-          </Button>
+          ></Button>
           <Button
             type="link"
             danger
             icon={<DeleteOutlined />}
-            style={{backgroundColor: "#f5f8fa",color:"#a2a5b8"}}
+            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" ,padding: "16px"}}
             onClick={() => handleDelete(record.key)}
-          >
-           
-          </Button>
+          ></Button>
         </div>
       ),
     },
-  ]
-
+  ];
 
   const handleDelete = (key) => {
     console.log("delete key:", key);
@@ -175,109 +160,124 @@ export const Admin = () => {
   return (
     <>
       <Wrapper>
-       
-            
-          <div className="User-Section">
-            <div>
-              <Button
-                type="primary"
-                icon={<PlusOutlined />}
-                onClick={() => setVisible(true)}
-              >
-                Add
-              </Button>
-            </div>
+        <div className="User-Section">
+          <div>
+            <Button
+              type="primary"
+              icon={<PlusOutlined />}
+              onClick={() => setVisible(true)}
+            >
+              Add
+            </Button>
           </div>
-          <Divider />
+        </div>
+        <Divider />
 
-          <Table columns={columns} dataSource={UserData} />
-          <Modal
-            title="Add User"
-            okText="Submit"
-            onOk={form.submit}
-            open={visible}
-            onCancel={() => setVisible(false)}
-          >
-            <Form form={form} layout="vertical" onFinish={handleSubmit}>
-                <Row gutter={[16,16]}>
-                    <Col lg={12}> <Form.Item
-                label="User Name"
-                name="uname"
-                rules={[{ required: true, message: "Please input the name!" }]}
-              >
-                <Input  />
-              </Form.Item></Col>
-                    <Col lg={12}>
-              <Form.Item
-                label="User / Client"
-                name="user/client"
-                rules={[{ required: true, message: "Please input the name!" }]}
-              >
-                <Input  />
-              </Form.Item></Col>
-                </Row> 
+        <Table
+          columns={columns}
+          dataSource={UserData}
+         
+          pagination={{
+            pageSize: 10,
+            showSizeChanger: true,
+            pageSizeOptions: ["5", "10", "15"],
+          }}
+        />
 
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Please input the email!" },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input  />
-              </Form.Item>
+        <Modal
+          title="Add User"
+          okText="Submit"
+          onOk={form.submit}
+          open={visible}
+          onCancel={() => setVisible(false)}
+        >
+          <ModalAdmin>
 
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your password!" },
-                  { min: 6, message: "Password must be at least 6 characters" },
-                ]}
-              >
-                <Input.Password  />
-              </Form.Item>
+          <Form form={form} layout="vertical" onFinish={handleSubmit}>
+            <Row gutter={[16, 16]}>
+              <Col lg={12}>
+                {" "}
+                <Form.Item
+                  label="User Name"
+                  name="uname"
+                  rules={[
+                    { required: true, message: "Please input the name!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+              <Col lg={12}>
+                <Form.Item
+                  label="User / Client"
+                  name="user/client"
+                  rules={[
+                    { required: true, message: "Please input the name!" },
+                  ]}
+                >
+                  <Input />
+                </Form.Item>
+              </Col>
+            </Row>
 
-              <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={["password"]}
-                rules={[
-                  { required: true, message: "Please confirm your password!" },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("The passwords do not match!")
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password  />
-              </Form.Item>
+            <Form.Item
+              label="Email"
+              name="email"
+              rules={[
+                { required: true, message: "Please input the email!" },
+                { type: "email", message: "Please enter a valid email!" },
+              ]}
+            >
+              <Input />
+            </Form.Item>
 
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password!" },
+                { min: 6, message: "Password must be at least 6 characters" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
 
-              <Form.Item
-                label="Contact Number"
-                name="contactNumber"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the contact number!",
+            <Form.Item
+              name="confirm"
+              label="Confirm Password"
+              dependencies={["password"]}
+              rules={[
+                { required: true, message: "Please confirm your password!" },
+                ({ getFieldValue }) => ({
+                  validator(_, value) {
+                    if (!value || getFieldValue("password") === value) {
+                      return Promise.resolve();
+                    }
+                    return Promise.reject(
+                      new Error("The passwords do not match!")
+                    );
                   },
-                ]}
-              >
-                <Input  />
-              </Form.Item>
+                }),
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
 
-             
-            </Form>
-          </Modal>
-        
+            <Form.Item
+              label="Contact Number"
+              name="contactNumber"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input the contact number!",
+                },
+              ]}
+            >
+              <Input />
+            </Form.Item>
+          </Form>
+                  </ModalAdmin>
+        </Modal>
       </Wrapper>
     </>
   );

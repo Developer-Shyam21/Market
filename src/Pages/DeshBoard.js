@@ -1,4 +1,4 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Breadcrumb,
   Button,
@@ -7,23 +7,30 @@ import {
   Menu,
   Space,
 } from "antd";
-import { Link, Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, replace, useLocation, useNavigate } from "react-router-dom";
 import {
+  CodeOutlined,
   FileDoneOutlined,
   UserOutlined,
   VideoCameraOutlined,
   HomeOutlined,
-  LogoutOutlined
+  LogoutOutlined,
+  SettingOutlined
 } from "@ant-design/icons";
 import Market from "../Images/logo-main.png";
 import "../Css/Deshboard.css";
-import { ContextsApi } from "../ContextApi/Index";
 import { FormatUserName} from "../Config/index"
 
 const { Header, Sider, Content } = Layout;
 const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation(); 
+  const nevigate = useNavigate();
+  const [current, setCurrent] = useState(location.pathname.replace("/", ""));
+
+  useEffect(() => {
+    setCurrent(location.pathname.replace("/", ""));
+  }, [location]);
 
   // Breadcrumb items based on the path
   const breadcrumbItems = location.pathname
@@ -33,13 +40,25 @@ const DeshBoard = () => {
       title: crumb.charAt(0).toUpperCase() + crumb.slice(1),
     }));
 
-    const { setLoginData } = useContext(ContextsApi);
+  
+    
     const handleLogout = () => { 
-      setLoginData([])
+      localStorage.removeItem("UserLoggingData")
+      nevigate("/login", { replace: true } )
     }
+    const siderStyle = {
+      overflow: 'auto',
+      height: '100vh',
+      position: 'fixed',
+      insetInlineStart: 0,
+      top: 0,
+      bottom: 0,
+      scrollbarWidth: 'thin',
+      scrollbarGutter: 'stable',
+    };
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed} >
+      <Sider style={siderStyle} trigger={null} collapsible collapsed={collapsed} >
         <div className="demo-logo-vertical">
           <img src={Market} alt="logo" width={247} height={50} />
         </div>
@@ -48,6 +67,10 @@ const DeshBoard = () => {
           mode="inline"
           defaultSelectedKeys={["manageUser"]}
           style={{ backgroundColor: "white" }}
+          selectedKeys={[current]}
+          onClick={(e) => {
+            setCurrent(e.key);
+          }}
           items={[
             {
               key: "manageUser",
@@ -60,14 +83,27 @@ const DeshBoard = () => {
               label:<Link to="/manageAdmin">Manage Admin</Link>,
             },
             {
-              key: "Criteria",
+              key: "criteria",
               icon: <FileDoneOutlined />,
               label:<Link to="/criteria">Criteria</Link>, 
             },
+            {
+              key: "embedcodes",
+              icon:<CodeOutlined />,
+              label:<Link to="/embedcodes">Embed Codes</Link>, 
+            },
+            {
+              key:"setting",
+              icon:<SettingOutlined />,
+              label:<Link to="/setting">Setting</Link>,
+            }
           ]}
         />
       </Sider>
-      <Layout>
+      <Layout 
+      style={{
+        marginInlineStart: 290,
+      }}>
         <Header >
           <Space direction="vertical" align="center">
             <Breadcrumb
@@ -91,6 +127,10 @@ const DeshBoard = () => {
           <Button type="primary" icon={<LogoutOutlined />} onClick={handleLogout}>LogOut</Button>
         </Header>
         <Content
+        style={{
+          margin: '24px 16px 0',
+          overflow: 'initial',
+        }}
         >
           <Outlet />
         </Content>

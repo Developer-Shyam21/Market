@@ -6,13 +6,22 @@ export const Wrapper = styled.div`
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    height:90vh;
+    height: 90vh;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      height: auto;
+    }
   }
 
   .login-section {
     width: 100%;
     max-width: 500px;
     padding: 10px;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+    }
   }
 
   .login-header {
@@ -26,14 +35,25 @@ export const Wrapper = styled.div`
       font-weight: 100;
       font-size: 22px;
       letter-spacing: 0.7px;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+        text-align: center;
+      }
     }
 
     .create-link {
       color: #b5b5c3;
       font-size: 18px;
       font-weight: 500;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+        text-align: center;
+      }
     }
   }
+
   .ant-form {
     width: 100%;
   }
@@ -41,40 +61,66 @@ export const Wrapper = styled.div`
   .ant-form-item .ant-form-item-label > label {
     font-weight: 500;
     font-size: 16px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
-
-    .ant-input,
+  .ant-input,
   .ant-input-password {
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
     border-radius: 8px;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+      padding: 6px 10px;
+    }
   }
-  .ant-input-outlined {
-   border-color: rgb(95, 26, 70);
-    background-color: rgb(253, 243, 241);
-    padding: 7px 11px;
-  }
+
   .forgot-link {
     text-align: right;
     font-size: 16px;
     font-weight: 500;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
   .ant-btn {
     padding: 20px;
     font-size: 20px;
     border-radius: 10px;
+
+    @media (max-width: 768px) {
+      padding: 15px;
+      font-size: 18px;
+    }
   }
 
   .links {
-     display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     padding-top: 20px;
 
+    a {
+      font-size: 16px;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      flex-wrap: wrap;
+      gap: 10px;
+      padding-bottom: 40px;
+    }
   }
 
   .login-right {
@@ -84,6 +130,10 @@ export const Wrapper = styled.div`
     align-items: center;
     text-align: center;
     padding: 40px;
+
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
   }
 
   .main-logo {
@@ -93,8 +143,17 @@ export const Wrapper = styled.div`
     flex-direction: column;
     gap: 165px;
 
+    @media (max-width: 768px) {
+      gap: 30px;
+    }
+
     img {
       margin: 30px 0 10px 0;
+
+      @media (max-width: 768px) {
+        max-width: 100%;
+        height: auto;
+      }
     }
   }
 
@@ -104,6 +163,10 @@ export const Wrapper = styled.div`
 
     h1 {
       color: white;
+
+      @media (max-width: 768px) {
+        font-size: 22px;
+      }
     }
   }
 
@@ -112,20 +175,29 @@ export const Wrapper = styled.div`
     font-weight: 100 !important;
     letter-spacing: 1px;
     padding: 20px 0 0 0;
+
+    @media (max-width: 768px) {
+      font-size: 14px;
+    }
   }
 
-  @media (max-width: 768px) {
-    .login-section,
+ 
+
+    @media (max-width: 768px) {
+      margin-top: 20px;
+       .grafic-img {
+    width: 100%;
+    height: auto; 
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .login-right {
+      padding: 30px;
+    }
+
     .main-logo {
-      width: 100%;
-      padding: 20px;
+      gap: 80px;
     }
-    .grafic-img {
-      width: 100%;
-      height: 100%;
-    }
-      .links {
-      padding-bottom:40px;
-      }
   }
 `;

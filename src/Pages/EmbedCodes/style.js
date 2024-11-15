@@ -29,18 +29,14 @@ export const Wrapper = styled.div`
     color: black !important;
   }
 
-  .action-btn {
-    display: flex;
-    gap: 20px;
-  }
-    .ant-table-wrapper {
+
+
+      .ant-table-wrapper {
     padding: 0 30px;
   }
-
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
-     
   }
 
   .ant-table-thead > tr > th {
@@ -74,7 +70,7 @@ export const ModalView = styled("div")`
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
    border-color: rgb(95, 26, 70);
     background-color: rgb(253, 243, 241);
-     padding: 19px 12px;
+     padding: 14px 12px;
     font-size: 16px;
     line-height: 1.5;
     border-radius: 8px;
@@ -91,7 +87,7 @@ export const ModalView = styled("div")`
   }
 
   .ant-select-arrow{
-  height:22px
+  height:14px
   }
 
 }

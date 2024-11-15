@@ -52,9 +52,59 @@ export const Wrapper = styled.div`
   display: flex;
   justify-content: space-evenly;
   }
-  .anticon {
-  font-size: 20px;
-  font-weight: bold;
+   .anticon-down{
+  font-size: 14px;
+  }
+
+  .ant-select-arrow{
+  height:22px
+  }
+
+  .ant-btn{
+padding:18px 14px;
 }
 
+ .ant-table {
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .ant-table-thead > tr > th {
+    font-weight: 700;
+    padding: 16px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 16px;
+    font-size: 15px;
+    font-weight:500;
+    letter-spacing:0.3px;
+  }
+
 `;
+
+export const UserSection = styled("div")`
+
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border-color: rgb(95, 26, 70);
+  background-color: rgb(253, 243, 241);
+  padding: 19px 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 8px;
+  color: black;
+}
+ .ant-input,
+  .ant-input-password {
+   
+    font-size: 16px;
+    line-height: 1.5;
+    border-radius: 8px;
+  }
+  .ant-input-outlined {
+   border-color: rgb(95, 26, 70);
+    background-color: rgb(253, 243, 241);
+   
+  }
+`;
+ 

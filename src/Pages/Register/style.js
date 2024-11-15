@@ -9,6 +9,11 @@ export const Wrapper = styled.div`
     align-items: center;
     text-align: center;
     padding: 40px;
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      padding: 20px;
+    }
   }
 
   .main-register-logo {
@@ -20,6 +25,8 @@ export const Wrapper = styled.div`
 
     img {
       margin: 30px 0 10px 0;
+      max-width: 100%; /* Ensures images scale on smaller screens */
+      height: auto;
     }
   }
 
@@ -45,17 +52,24 @@ export const Wrapper = styled.div`
       width: 100%;
       padding: 20px;
     }
+
     .grafic-img {
       width: 100%;
-      height: 100%;
+      height: auto; /* Maintain aspect ratio */
     }
   }
 
+  /* General flex-section adjustments for centering */
   .flex-section {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
+    padding: 20px;
+
+    @media (max-width: 768px) {
+      padding: 10px;
+    }
   }
 
   .register-section {
@@ -75,14 +89,24 @@ export const Wrapper = styled.div`
       font-weight: 100;
       font-size: 22px;
       letter-spacing: 0.7px;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
     }
 
     .sign-link {
       color: #b5b5c3;
       font-size: 18px;
       font-weight: 500;
+
+      @media (max-width: 768px) {
+        font-size: 16px;
+      }
     }
   }
+
+  /* Form input adjustments */
   .ant-form {
     width: 100%;
   }
@@ -94,18 +118,16 @@ export const Wrapper = styled.div`
     line-height: 1.5;
     border-radius: 8px;
   }
+
   .ant-input-outlined {
     background-color: rgb(232, 240, 254);
     border-color: rgb(217, 217, 217);
     padding: 7px 11px;
   }
 
-  .ant-checkbox-input {
-    background-color: rgb(232, 240, 254) !important;
-    border-color: rgb(217, 217, 217) !important;
-  }
-
   .ant-checkbox-wrapper {
+    display: flex;
+    align-items: center;
     gap: 10px;
 
     span {
@@ -113,22 +135,57 @@ export const Wrapper = styled.div`
       color: #5e6278;
       font-weight: 500;
     }
+
+    @media (max-width: 768px) {
+      span {
+        font-size: 14px;
+      }
+    }
   }
 
+  /* Buttons */
   .ant-btn {
-    padding: 20px;
-    font-size: 20px;
+    padding: 15px 20px;
+    font-size: 18px;
     border-radius: 10px;
     text-align: center;
     background-color: ${SecondaryColor};
+    width: 100%; /* Full-width for better responsiveness */
   }
 
+  /* Footer links */
   .links {
-     display: flex;
-      justify-content: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
     gap: 15px;
     padding-top: 20px;
 
+    a {
+      font-size: 16px;
+      color: #5e6278;
+      font-weight: 500;
+
+      @media (max-width: 768px) {
+        font-size: 14px;
+      }
+    }
+  }
+
+  /* Additional adjustments for extra-small screens */
+  @media (max-width: 576px) {
+    .register-header h1 {
+      font-size: 18px;
+    }
+
+    .links {
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .ant-btn {
+      font-size: 16px;
+      padding: 12px 16px;
+    }
   }
 `;
