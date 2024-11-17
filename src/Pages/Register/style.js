@@ -36,13 +36,13 @@ export const Wrapper = styled.div`
 
     h1 {
       color: white;
+      font-size: 32px;
     }
   }
 
   .ant-typography {
     color: black !important;
-    font-weight: 100 !important;
-    letter-spacing: 1px;
+    font-weight: 400 !important;
     padding: 20px 0 0 0;
   }
 
@@ -86,9 +86,9 @@ export const Wrapper = styled.div`
     align-items: center;
 
     h1 {
-      font-weight: 100;
-      font-size: 22px;
-      letter-spacing: 0.7px;
+      font-weight: 400;
+      font-size: 24px;
+     margin:10px 0;
 
       @media (max-width: 768px) {
         font-size: 20px;
@@ -97,8 +97,8 @@ export const Wrapper = styled.div`
 
     .sign-link {
       color: #b5b5c3;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 17px;
+      font-weight: 600;
 
       @media (max-width: 768px) {
         font-size: 16px;
@@ -145,8 +145,9 @@ export const Wrapper = styled.div`
 
   /* Buttons */
   .ant-btn {
-    padding: 15px 20px;
-    font-size: 18px;
+    padding: 16px 20px;
+    font-size: 14px;
+    font-weight: 600;
     border-radius: 10px;
     text-align: center;
     background-color: ${SecondaryColor};

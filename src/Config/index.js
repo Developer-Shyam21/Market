@@ -1,8 +1,10 @@
 
 
-export const PrimaryColor = "#a17791";
+export const PrimaryColor = "#621c47";
 export const SecondaryColor = "#a17791";
 export const thiredColor = "rgb(202, 105, 90)";
+export const TextColor = "rgb(73, 89, 140)";
+export const MenuItemsColor = "rgb(175, 88, 71)";
 export const FormatUserName = (userName) => {
     // Replace hyphens with spaces
     let formattedName = userName?.replace(/-/g, " ");

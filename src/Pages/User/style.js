@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { SecondaryColor } from "../../Config";
 
 export const Wrapper = styled.div`
   .User-Section {
@@ -30,6 +29,8 @@ export const Wrapper = styled.div`
     border-radius: 8px;
     color:black;
   }
+
+ 
 
   .ant-input{
   border-color: rgb(95, 26, 70) !important;
@@ -80,6 +81,7 @@ padding:18px 14px;
     font-weight:500;
     letter-spacing:0.3px;
   }
+
 
 `;
 

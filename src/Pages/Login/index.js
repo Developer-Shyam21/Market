@@ -32,7 +32,7 @@ export const LogIn = () => {
 
   return (
     <Wrapper>
-      <Row justify="center" align="middle">
+          <Row  justify="center" align="middle">
         <Col lg={12} xs={24}>
           <div className="flex-section">
             <div className="login-section">
@@ -40,9 +40,11 @@ export const LogIn = () => {
                 <h1>
                   Sign In to <b>MARKET FORCE</b>
                 </h1>
-                <div className="create-link">
+                <Typography> 
+                  <div className="create-link">
                   New Here? <a href="/register">Create an Account</a>
                 </div>
+                  </Typography>
               </div>
               <Form
                 name="login"
@@ -92,7 +94,7 @@ export const LogIn = () => {
                 </Form.Item>
                 <Form.Item>
                   <Button block type="primary" htmlType="submit">
-                    Log in
+                    Login
                   </Button>
                 </Form.Item>
               </Form>

@@ -1,30 +1,26 @@
 import React, { Suspense } from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
-import DeshBoard from "../Pages/DeshBoard";
 import { Register } from "../Pages/Register";
 import { LogIn } from "../Pages/Login";
 import ProtectedRoute from "./ProtectedRoute";
-import { Users } from "./user";
+import { Admin } from "./Admin";
+import DeshBoard from "../Pages/DeshBoard";
 
 
 const Routers = () => {
-  const loginData = JSON.parse(localStorage.getItem("UserLoggingData"));
-
+  
   const router = createBrowserRouter([
     {
       path: "/",
-      element: loginData ? (
-        <ProtectedRoute>
-          <Suspense fallback={<div>Loading...</div>}>
-            <DeshBoard />
-          </Suspense>
-        </ProtectedRoute>
-      ) : (
-        <Navigate to="/login" replace />
-      ),
-      children: Users.map((d) => ({
-        path: d.path,
-        element: d.element,
+      element: <ProtectedRoute>
+        <Suspense fallback={<div>Loading...</div>}>
+          <DeshBoard />
+        </Suspense>
+      </ProtectedRoute>
+      ,
+      children: Admin.map((route) => ({
+        path: route.path,
+        element: <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>,
       })),
     },
     {

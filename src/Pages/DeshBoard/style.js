@@ -1,5 +1,8 @@
 
- 
+import styled from "styled-components";
+import { MenuItemsColor, SecondaryColor } from "../../Config";
+
+export const Wrapper = styled.div`
 .ant-layout-sider {
     background-color: white;
     min-width: 289px !important;
@@ -54,9 +57,16 @@
 
 
   .ant-menu-item {
-    transition: background-color 0.3s, transform 0.3s;
+    transition:  0.3s ease-in-out;
     font-weight: 600;
     font-size: 16px;
+  }
+
+  .ant-menu-light .ant-menu-item-selected{
+  border-right: 3px solid ${MenuItemsColor};
+  color: ${MenuItemsColor} ;
+  background-color: transparent ;
+  border-radius:0;
   }
   
 
@@ -66,4 +76,4 @@
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  
+  `;

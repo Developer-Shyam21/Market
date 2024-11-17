@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { EditOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Button, Col, Divider, Form, Input, Modal, Row, Table } from "antd";
+import { Avatar, Button, Col, Divider, Form, Input, Modal, Row, Table } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { ModalAdmin, Wrapper } from "./style";
 
-export const Admin = () => {
+export const AdminPage = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
 
@@ -97,13 +97,11 @@ export const Admin = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Row align="middle">
+        <Row gutter={[14,14]} align="middle">
           <Col>
-            <img
-              src="/path/to/logo.png"
-              alt="Logo"
-              style={{ width: 20, height: 20, marginRight: 10 }}
-            />
+          <Avatar style={{color:"#f1416c",backgroundColor:"#fff5f8"}} >
+              {text.charAt(0)} 
+            </Avatar>
           </Col>
           <Col>{text}</Col>
         </Row>

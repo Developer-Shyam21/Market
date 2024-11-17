@@ -6,6 +6,7 @@ import {
   LoginOutlined,
 } from "@ant-design/icons";
 import {
+  Avatar,
   Button,
   Col,
   Divider,
@@ -14,6 +15,7 @@ import {
   Input,
   Modal,
   Row,
+  Space,
   Select,
   Table,
   Tag,
@@ -21,11 +23,34 @@ import {
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
 import { UserSection, Wrapper } from "./style";
+import { createStyles } from "antd-style";
 
-export const User = () => {
+
+
+
+const useStyle = createStyles(({ css, token }) => {
+  const { antCls } = token;
+  return {
+    customTable: css`
+      ${antCls}-table {
+        ${antCls}-table-container {
+          ${antCls}-table-body,
+          ${antCls}-table-content {
+            scrollbar-width: thin;
+            scrollbar-color: #eaeaea transparent;
+            scrollbar-gutter: stable;
+          }
+        }
+      }
+    `,
+  };
+});
+export const UserList = () => {
   const { Search } = Input;
-  const [form] = useForm();
-  const [visible, setVisible] = useState(false);
+  const [ form ] = useForm();
+  const [ visible, setVisible ] = useState(false);
+  const { styles } = useStyle();
+
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -166,15 +191,15 @@ export const User = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Row align="middle">
+        <Row gutter={[ 12, 14 ]} align="middle">
           <Col>
-            <img
-              src="/path/to/logo.png"
-              alt="Logo"
-              style={{ width: 20, height: 20, marginRight: 10 }}
-            />
+            <Avatar style={{ color: "#f1416c", backgroundColor: "#fff5f8" }} >
+              {text.charAt(0)}
+            </Avatar>
           </Col>
-          <Col>{text}</Col>
+          <Col>
+            {text}
+          </Col>
         </Row>
       ),
     },
@@ -201,8 +226,8 @@ export const User = () => {
               accounttype === "Seller"
                 ? "rgb(255, 155, 1)"
                 : accounttype === "Vendor"
-                ? "rgb(0, 113, 220)"
-                : "black",
+                  ? "rgb(0, 113, 220)"
+                  : "black",
           }}
         >
           {accounttype}
@@ -232,8 +257,8 @@ export const User = () => {
             status === "Under Review"
               ? "blue"
               : status === "Reviewed"
-              ? "green"
-              : "default"
+                ? "green"
+                : "default"
           }
         >
           {status}
@@ -331,7 +356,10 @@ export const User = () => {
         </div>
         <Divider />
 
-        <Table columns={columns} dataSource={UserData} />
+        <Table columns={columns} dataSource={UserData} className={styles.customTable}
+          scroll={{
+            x: "max-content",
+          }} />
         <Modal
           title="Add User"
           okText="Submit"
@@ -352,7 +380,7 @@ export const User = () => {
               <Form.Item
                 label="Name"
                 name="name"
-                rules={[{ required: true, message: "Please input the name!" }]}
+                rules={[ { required: true, message: "Please input the name!" } ]}
               >
                 <Input />
               </Form.Item>
@@ -382,7 +410,7 @@ export const User = () => {
               <Form.Item
                 name="confirm"
                 label="Confirm Password"
-                dependencies={["password"]}
+                dependencies={[ "password" ]}
                 rules={[
                   { required: true, message: "Please confirm your password!" },
                   ({ getFieldValue }) => ({

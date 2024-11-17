@@ -1,18 +1,21 @@
 import styled from "styled-components";
-
+import { PrimaryColor, SecondaryColor } from "../../Config";
 export const Wrapper = styled.div`
+
   .flex-section {
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 0 auto;
-    height: 90vh;
+       width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
 
     @media (max-width: 768px) {
       flex-direction: column;
       height: auto;
     }
-  }
+  }   
 
   .login-section {
     width: 100%;
@@ -32,9 +35,9 @@ export const Wrapper = styled.div`
     align-items: center;
 
     h1 {
-      font-weight: 100;
-      font-size: 22px;
-      letter-spacing: 0.7px;
+      font-weight: 500;
+      font-size: 24px;
+      margin: 10px 0;
 
       @media (max-width: 768px) {
         font-size: 20px;
@@ -42,10 +45,11 @@ export const Wrapper = styled.div`
       }
     }
 
+
     .create-link {
       color: #b5b5c3;
-      font-size: 18px;
-      font-weight: 500;
+      font-size: 16px;
+      font-weight: 600;
 
       @media (max-width: 768px) {
         font-size: 16px;
@@ -57,10 +61,13 @@ export const Wrapper = styled.div`
   .ant-form {
     width: 100%;
   }
+     .ant-form-item{
+  margin-bottom: 14px ;
+  }
 
   .ant-form-item .ant-form-item-label > label {
-    font-weight: 500;
-    font-size: 16px;
+    font-weight: 600;
+    font-size: 14px;
 
     @media (max-width: 768px) {
       font-size: 14px;
@@ -69,6 +76,8 @@ export const Wrapper = styled.div`
 
   .ant-input,
   .ant-input-password {
+   border-color: rgb(95, 26, 70) !important;
+    background-color: rgb(253, 243, 241)  !important;
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -82,8 +91,8 @@ export const Wrapper = styled.div`
 
   .forgot-link {
     text-align: right;
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 600;
 
     @media (max-width: 768px) {
       font-size: 14px;
@@ -92,8 +101,10 @@ export const Wrapper = styled.div`
 
   .ant-btn {
     padding: 20px;
-    font-size: 20px;
+    font-size: 16px;
+    font-weight: 600;
     border-radius: 10px;
+     background-color: ${SecondaryColor};
 
     @media (max-width: 768px) {
       padding: 15px;
@@ -121,6 +132,10 @@ export const Wrapper = styled.div`
       gap: 10px;
       padding-bottom: 40px;
     }
+
+     @media (max-width: 480px) {
+        font-size: 12px;
+      }
   }
 
   .login-right {
@@ -130,9 +145,13 @@ export const Wrapper = styled.div`
     align-items: center;
     text-align: center;
     padding: 40px;
+    max-width: 100%;
 
     @media (max-width: 768px) {
       padding: 20px;
+    }
+       @media (max-width: 480px) {
+      padding: 10px;
     }
   }
 
@@ -149,9 +168,11 @@ export const Wrapper = styled.div`
 
     img {
       margin: 30px 0 10px 0;
+      max-width: 100%;
+      height: auto;
 
       @media (max-width: 768px) {
-        max-width: 100%;
+        max-width: 80%;
         height: auto;
       }
     }
@@ -163,31 +184,102 @@ export const Wrapper = styled.div`
 
     h1 {
       color: white;
+      font-size: 26px;
 
       @media (max-width: 768px) {
         font-size: 22px;
       }
+
+      @media (max-width: 480px) {
+        font-size: 20px;
+      }
     }
   }
 
-  .ant-typography {
+   .ant-typography {
     color: white !important;
-    font-weight: 100 !important;
+    font-weight: 400;
     letter-spacing: 1px;
-    padding: 20px 0 0 0;
 
     @media (max-width: 768px) {
+      font-size: 16px;
+    }
+
+    @media (max-width: 480px) {
       font-size: 14px;
     }
+}
+
+ @media (max-width: 768px) {
+    .login-section {
+      padding: 20px;
+      max-width: 100%;
+    }
+
+    .login-header h1 {
+      font-size: 20px;
+    }
+
+    .create-link {
+      font-size: 14px;
+    }
+
+    .ant-btn {
+      font-size: 16px;
+    }
+
+    .links {
+      gap: 10px;
+    }
+
+    .login-right {
+      padding: 20px;
+    }
+
+    .main-logo {
+      gap: 20px;
+    }
+
+    .grafic-img {
+      width: 100%;
+      height: auto;
+    }
   }
 
- 
+   @media (max-width: 480px) {
+    .login-section {
+      padding: 15px;
+    }
 
-    @media (max-width: 768px) {
-      margin-top: 20px;
-       .grafic-img {
-    width: 100%;
-    height: auto; 
+    .login-header h1 {
+      font-size: 18px;
+    }
+
+    .create-link {
+      font-size: 12px;
+    }
+
+    .ant-btn {
+      font-size: 14px;
+    }
+
+    .links {
+      gap: 10px;
+      padding-bottom: 20px;
+    }
+
+    .login-right {
+      padding: 10px;
+    }
+
+    .main-logo-body {
+      h1 {
+        font-size: 20px;
+      }
+    }
+
+    .ant-typography {
+      font-size: 14px;
     }
   }
 
