@@ -8,7 +8,6 @@ export const Wrapper = styled.div`
     align-items: center;
     margin: 0 auto;
        width: 100%;
-    height: 100vh;
     box-sizing: border-box;
 
     @media (max-width: 768px) {
@@ -118,6 +117,9 @@ export const Wrapper = styled.div`
     align-items: center;
     gap: 15px;
     padding-top: 20px;
+        position: relative;
+    bottom: -208px;
+}
 
     a {
       font-size: 16px;
@@ -160,7 +162,7 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 165px;
+    gap: 158px;
 
     @media (max-width: 768px) {
       gap: 30px;

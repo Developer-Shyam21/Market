@@ -105,7 +105,7 @@ const DeshBoard = () => {
                 </Sider>
                 <Layout
                     style={{
-                        marginInlineStart: 290,
+                        marginInlineStart: 281,
                     }}>
                     <Header >
                         <Space direction="vertical" align="center">

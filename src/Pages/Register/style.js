@@ -87,7 +87,7 @@ export const Wrapper = styled.div`
 
     h1 {
       font-weight: 400;
-      font-size: 24px;
+      font-size: 2.25rem ;
      margin:10px 0;
 
       @media (max-width: 768px) {
@@ -161,10 +161,12 @@ export const Wrapper = styled.div`
     align-items: center;
     gap: 15px;
     padding-top: 20px;
+    position: relative;
+    bottom: -238px;
+}
 
     a {
       font-size: 16px;
-      color: #5e6278;
       font-weight: 500;
 
       @media (max-width: 768px) {

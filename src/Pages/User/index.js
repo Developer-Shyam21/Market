@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   EditOutlined,
   PlusOutlined,
@@ -24,6 +24,8 @@ import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
 import { UserSection, Wrapper } from "./style";
 import { createStyles } from "antd-style";
+import { ContextsApi } from "../../ContextApi/Index";
+import { useNavigate } from "react-router-dom";
 
 
 
@@ -50,6 +52,8 @@ export const UserList = () => {
   const [ form ] = useForm();
   const [ visible, setVisible ] = useState(false);
   const { styles } = useStyle();
+  const { setUserShow } = useContext(ContextsApi);
+  const navigate = useNavigate();
 
 
   const handleSubmit = (value) => {
@@ -270,13 +274,14 @@ export const UserList = () => {
       dataIndex: "switchuser",
       key: "switchuser",
       render: (switchuser) => (
-        <Button type="link" size="small" icon={<LoginOutlined />}>
+        <Button type="link" size="small" icon={<LoginOutlined />} onClick={handelUserData}>
           {switchuser}
         </Button>
       ),
     },
     {
       title: "Action",
+      width: 150,
       dataIndex: "action",
       key: "action",
       render: (_, record) => (
@@ -315,6 +320,11 @@ export const UserList = () => {
     console.log("edit record:", record);
     // setModalVisible(true);
     // setFormData(record);
+  };
+
+  const handelUserData = () => {
+    setUserShow(true);
+    navigate("/Analytics/Overview" , { replace: true });
   };
 
   return (

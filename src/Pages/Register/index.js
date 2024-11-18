@@ -35,7 +35,7 @@ const onFinish = (values) => {
               <div className="main-register-body">
                 <img src={Market} alt="logo" width={346} height={70} />
                 <Title>
-                  Welcome to MARKET <b>FORCE</b>
+                  Welcome to <b>Market Force</b>
                 </Title>
                 <Text style={{ fontSize: "17px" }}>
                   An Intelligent tool for Amazon Sellers

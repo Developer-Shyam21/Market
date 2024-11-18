@@ -14,6 +14,9 @@ export const Wrapper = styled.div`
    padding: 0 1.25rem;
    
 }
+    .ant-layout{
+  background-color: #e0e4e9 ;
+  }
 
 .ant-layout-header{
     font-family: Poppins, "sans-serif";
@@ -57,9 +60,9 @@ export const Wrapper = styled.div`
 
 
   .ant-menu-item {
-    transition:  0.3s ease-in-out;
     font-weight: 600;
     font-size: 16px;
+    border-radius:0;
   }
 
   .ant-menu-light .ant-menu-item-selected{

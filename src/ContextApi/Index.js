@@ -8,6 +8,7 @@ const  ContextProvider = ({children}) => {
     const [registerData,setRegisterData] = useState([])
     const [loginData,setLoginData] = useState([])
     const [getregisterData,setGetRegisterData] = useState();
+    const [userShow,setUserShow] = useState();
 
     useEffect(() => {
       const storedData = JSON.parse(localStorage.getItem("userData"));
@@ -22,7 +23,10 @@ const  ContextProvider = ({children}) => {
     setRegisterData,
     loginData,
     setLoginData,  
-    getregisterData
+    getregisterData,
+    userShow,
+    setUserShow
+
   }}>{children}</ContextsApi.Provider>
 );
 }

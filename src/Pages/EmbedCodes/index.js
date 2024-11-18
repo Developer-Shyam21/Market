@@ -158,7 +158,7 @@ export const EmbedCodes = () => {
     {
       title: "Action",
       dataIndex: "action",
-      width: 100,
+      width: 50,
       key: "action",
       render: (_, record) => (
         <Button

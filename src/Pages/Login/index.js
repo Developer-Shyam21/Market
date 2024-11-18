@@ -122,8 +122,8 @@ export const LogIn = () => {
               <img
                 src={GraficImage}
                 alt="images"
-                width={929}
-                height={381}
+                width={550}
+                height={250}
                 style={{ margin: "0" }}
                 className="grafic-img"
               />
