@@ -338,7 +338,7 @@ export const Criteria = () => {
               </Row>
 
               <div className="criteria-form">
-                <Row gutter={[14, 14]} align="middle">
+                <Row gutter={[14, 14]} style={{alignItems:"baseline"}} >
                   <Col lg={5}>If</Col>
                   <Col lg={6}>
                     <Form.Item name="opretar" hasFeedback>
@@ -379,8 +379,8 @@ export const Criteria = () => {
                       <Input placeholder="Score" />
                     </Form.Item>
                   </Col>
-                  <Col lg={2} offset={1}>
-                    <Button type="primary" icon={<PlusOutlined />}></Button>
+                  <Col lg={2} offset={1} style={{position: "relative",bottom: "-4px"}}>
+                    <Button type="primary" className="add-btn" icon={<PlusOutlined />}></Button>
                   </Col>
                 </Row>
               </div>

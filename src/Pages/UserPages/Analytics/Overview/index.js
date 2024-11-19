@@ -152,7 +152,7 @@ export const Overview = () => {
                   <Typography.Title level={4} className="card-title">
                     Sell Out
                   </Typography.Title>
-                  <Typography.Text className="card-value">0$</Typography.Text>
+                  <Typography.Text className="card-value">$0</Typography.Text>
                   <Typography.Text type="secondary" className="card-info">
                     <b>0.00%</b> Previous Period
                   </Typography.Text>
@@ -163,7 +163,7 @@ export const Overview = () => {
                   <Typography.Text className="card-percentage">
                     0.0%
                   </Typography.Text>
-                  <div>Previous yeaar</div>
+                  <div>Previous year</div>
                 </Tooltip>
               </div>
             </div>
@@ -189,7 +189,7 @@ export const Overview = () => {
                   <Typography.Text className="card-percentage">
                     0.0%
                   </Typography.Text>
-                  <div>Previous yeaar</div>
+                  <div>Previous year</div>
                 </Tooltip>
               </div>
             </div>

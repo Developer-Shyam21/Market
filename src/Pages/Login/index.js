@@ -12,7 +12,7 @@ export const LogIn = () => {
   const [form] = useForm();
   const navigate = useNavigate();
  
-  const { getregisterData } = useContext(ContextsApi);
+  const { getregisterData,setUserShow } = useContext(ContextsApi);
 
 
   const onFinish = (values) => {
@@ -24,7 +24,8 @@ export const LogIn = () => {
     if (loggingUser) {
       localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser))
       form.resetFields();
-      navigate("/manageUser" , { replace: true });
+      setUserShow(false);
+      navigate("/Manage-User/Client" , { replace: true });
     } else {
       message.error("Email or Password is incorrect, or you need to register first.");
     }
@@ -32,7 +33,7 @@ export const LogIn = () => {
 
   return (
     <Wrapper>
-          <Row  justify="center" align="middle">
+          <Row  justify="center" align="middle" style={{backgroundColor:"white"}}>
         <Col lg={12} xs={24}>
           <div className="flex-section">
             <div className="login-section">

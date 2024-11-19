@@ -29,6 +29,10 @@ export const Wrapper = styled.div`
     color: black !important;
   }
 
+  .ant-select-single{
+  width: 150px !important;
+  }
+
   .action-btn {
     display: flex;
     gap: 20px;
@@ -92,6 +96,11 @@ export const ModalView = styled("div")`
 
   .ant-select-arrow{
   height:22px
+  }
+
+
+  .ant-row-middle{
+  align-items: baseline;
   }
 
 }

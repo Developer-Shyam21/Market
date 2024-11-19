@@ -17,11 +17,11 @@ export const UserRouter = [
     element: <Performance />,
   },
   {
-    path: "/Analytics/VendorPerformance",
+    path: "/Analytics/Vendor-Performance",
     element: <VendorPerformance />,
   },
   {
-    path: "/Analytics/vendorOrder",
+    path: "/Analytics/vendor-Order",
     element: <VendorOrder />,
   },
   

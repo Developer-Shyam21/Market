@@ -56,7 +56,11 @@ export const Wrapper = styled.div`
 
   .ant-menu-item {
     font-weight: 600;
-    font-size: 16px;
+    border-radius: 0;
+  }
+
+  .ant-menu-inline.ant-menu-root .ant-menu-submenu-title >.ant-menu-title-content{
+      font-weight: 600;
     border-radius: 0;
   }
 
@@ -113,6 +117,10 @@ export const Wrapper = styled.div`
     }
   }
 
+  
+  .ant-menu-light.ant-menu-root.ant-menu-inline{
+  border-inline-end:0 !important;
+  }
   @keyframes fadeInDown {
     from {
       opacity: 0;

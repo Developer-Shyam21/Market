@@ -11,13 +11,20 @@ export const Wrapper = styled.div`
 
   .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
     display: none;
+    
   }
   .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
     border-radius: 0;
+    
   }
 
   .ant-input-group >.ant-input:first-child,{
   border-radius: 8px;
+  
+  }
+  
+  .ant-select-selector{
+  width:150px !important;
   }
 
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
@@ -39,6 +46,7 @@ export const Wrapper = styled.div`
     font-size: 16px;
     line-height: 1.5;
     border-radius: 8px;
+    width:140px !important;
   }
 
   .ant-table-wrapper{

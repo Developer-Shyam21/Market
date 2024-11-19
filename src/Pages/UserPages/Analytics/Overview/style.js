@@ -25,7 +25,7 @@ export const Wrapper = styled.div`
     border-radius: 12px;
     background: linear-gradient(145deg, #ffffff, #f2f2f2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin-top:25px;
+    margin:25px 0;
     display:flex;
   justify-content: space-between;
     padding:15px 25px;

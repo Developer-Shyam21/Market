@@ -29,7 +29,7 @@ const onFinish = (values) => {
   return ( 
     <>
       <Wrapper>
-        <Row justify="center" align="middle" style={{ minHeight: "100vh" }}>
+        <Row justify="center" align="middle" style={{ minHeight: "100vh" ,backgroundColor:"white" }}>
           <Col xs={24} sm={18} lg={12} className="register-left">
             <div className="main-register-logo">
               <div className="main-register-body">

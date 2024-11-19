@@ -33,7 +33,9 @@ export const Wrapper = styled.div`
     top: 0px !important;
 }
 
-  
+  .ant-space-align-center{
+  align-items: baseline;
+  }
 .ant-breadcrumb{
     color: black;
     font-size: 16px;
@@ -61,7 +63,6 @@ export const Wrapper = styled.div`
 
   .ant-menu-item {
     font-weight: 600;
-    font-size: 16px;
     border-radius:0;
   }
 
@@ -73,7 +74,9 @@ export const Wrapper = styled.div`
   }
   
 
-  
+  .ant-menu-light.ant-menu-root.ant-menu-vertical{
+  border-inline-end:0 !important;
+  }
   
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-10px); }

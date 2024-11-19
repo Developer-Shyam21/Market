@@ -38,12 +38,12 @@ const menuItems = [
                 label: <Link to="/Analytics/Performance">Performance</Link>,
             },
             {
-                key: "Analytics/VendorPerformance",
-                label: <Link to="/Analytics/VendorPerformance">Vendor Performance</Link>,
+                key: "Analytics/Vendor-Performance",
+                label: <Link to="/Analytics/Vendor-Performance">Vendor Performance</Link>,
             },
             {
-                key: "Analytics/VendorOrder",
-                label: <Link to="/Analytics/VendorOrder">Vendor Order</Link>,
+                key: "Analytics/Vendor-Order",
+                label: <Link to="/Analytics/Vendor-Order">Vendor Order</Link>,
             },
         ],
     },
@@ -68,12 +68,14 @@ const UserDeshBoard = () => {
 
     // Breadcrumb items based on the path
     const breadcrumbItems = location.pathname
-    .split("/")
-    .filter(Boolean) // Remove empty segments
-    .map((pathSegment, index, array) => ({
-        title: pathSegment.charAt(0).toUpperCase() + pathSegment.slice(1), // Capitalize
-        path: `/${array.slice(0, index + 1).join(">")}`, // Build the URL for each breadcrumb
-    }));
+  .split("/")
+  .filter(Boolean)
+  .map((crumb) => ({
+    title: crumb
+      .split("-") // Split hyphenated words
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
+      .join(" "), // Join them with spaces
+  }));
 
     const handleLogout = () => {
         localStorage.removeItem("UserLoggingData");
@@ -90,10 +92,11 @@ const UserDeshBoard = () => {
         scrollbarWidth: 'thin',
         scrollbarGutter: 'stable',
     };
+  
 
     const HandelAdmin = () => {
         setUserShow(false)
-        navigate("/manageUser", { replace: true });
+        navigate("/Manage-User/Client", { replace: true });
     };
 
     return (
@@ -127,7 +130,7 @@ const UserDeshBoard = () => {
                 </Sider>
                 <Layout
                 style={{
-                        marginInlineStart: 281,
+                        marginInlineStart: 289,
                     }}
                 >
                     <Header>
@@ -137,8 +140,9 @@ const UserDeshBoard = () => {
                                 items={[
                                     { title: <HomeOutlined />},
                                     ...breadcrumbItems.map((item) => ({
-                                        title: <Link to={item.path}>{item.title}</Link>,
+                                        title: <div> {item.title}</div>,
                                     })),
+                                   
                                 ]}
                                 separator=">"
                                 style={{ fontSize: "14px" }}

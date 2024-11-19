@@ -7,23 +7,27 @@ import { UserList } from "../Pages/User/index.js";
 
 export const Admin = [
   {
-    path: "/manageUser",
+    path: "/",
     element: <UserList />,
   },
   {
-    path: "/manageAdmin",
+    path: "/Manage-User/Client",
+    element: <UserList />,
+  },
+  {
+    path: "/Manage-Admin",
     element: <AdminPage />,
   },
   {
-    path: "/criteria",
+    path: "/Criteria",
     element: <Criteria />,
   },
   {
-    path: "/embedcodes",
+    path: "/Embed-Codes",
     element: <EmbedCodes />,
   },
   {
-    path: "/setting",
+    path: "/Setting",
     element: <Setting />,
   },
   

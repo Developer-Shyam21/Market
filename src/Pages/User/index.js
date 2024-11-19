@@ -47,8 +47,9 @@ const useStyle = createStyles(({ css, token }) => {
     `,
   };
 });
+const { Search } = Input;
+
 export const UserList = () => {
-  const { Search } = Input;
   const [ form ] = useForm();
   const [ visible, setVisible ] = useState(false);
   const { styles } = useStyle();
@@ -244,7 +245,7 @@ export const UserList = () => {
       key: "channel",
     },
     {
-      title: "panding Reports",
+      title: "Panding Reports",
       dataIndex: "pandingreports",
       key: "pandingreports",
     },
@@ -332,7 +333,7 @@ export const UserList = () => {
       <Wrapper>
         <div className="User-Section">
           <Flex gap={10}>
-            <Search style={{ width: "100%" }} placeholder="Search..." />
+            <Search  placeholder="Search..." />
             <Select
               placeholder="Active"
               style={{
