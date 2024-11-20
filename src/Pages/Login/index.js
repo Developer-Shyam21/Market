@@ -12,7 +12,7 @@ export const LogIn = () => {
   const [form] = useForm();
   const navigate = useNavigate();
  
-  const { getregisterData,setUserShow } = useContext(ContextsApi);
+  const { getregisterData } = useContext(ContextsApi);
 
 
   const onFinish = (values) => {
@@ -24,7 +24,7 @@ export const LogIn = () => {
     if (loggingUser) {
       localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser))
       form.resetFields();
-      setUserShow(false);
+     
       navigate("/Manage-User/Client" , { replace: true });
     } else {
       message.error("Email or Password is incorrect, or you need to register first.");

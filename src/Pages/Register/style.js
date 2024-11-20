@@ -162,7 +162,7 @@ export const Wrapper = styled.div`
     gap: 15px;
     padding-top: 20px;
     position: relative;
-    bottom: -238px;
+    bottom: -210px;
 }
 
     a {

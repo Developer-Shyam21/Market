@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   EditOutlined,
   PlusOutlined,
@@ -53,8 +53,8 @@ export const UserList = () => {
   const [ form ] = useForm();
   const [ visible, setVisible ] = useState(false);
   const { styles } = useStyle();
-  const { setUserShow } = useContext(ContextsApi);
   const navigate = useNavigate();
+  const { setUserShow ,userShow ,setIsAdmin} = useContext(ContextsApi);
 
 
   const handleSubmit = (value) => {
@@ -323,10 +323,14 @@ export const UserList = () => {
     // setFormData(record);
   };
 
+
+
   const handelUserData = () => {
-    setUserShow(true);
-    navigate("/Analytics/Overview" , { replace: true });
+     setUserShow(true);
+    
+      navigate("/Analytics/Overview", { replace: true }); 
   };
+  
 
   return (
     <>

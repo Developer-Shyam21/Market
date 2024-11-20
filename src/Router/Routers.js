@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useState } from "react";
+import React, { Suspense, useContext } from "react";
 import { createBrowserRouter, RouterProvider, Navigate } from "react-router-dom";
 import { Register } from "../Pages/Register";
 import { LogIn } from "../Pages/Login";
@@ -8,12 +8,12 @@ import DeshBoard from "../Pages/DeshBoard";
 import { ContextsApi } from "../ContextApi/Index";
 import UserDeshBoard from "../Pages/UserDeshboard";
 import { UserRouter } from "./UserRoter";
-// import LanguageSelector  from "../Component/LanguageSelector";
+
 const Routers = () => {
     const { userShow } = useContext(ContextsApi);
-    const [selectedLang, setSelectedLang] = useState("en");
-    
+    console.log(userShow)
 
+    
     const router = createBrowserRouter([
         {
             path: "/",
@@ -44,9 +44,7 @@ const Routers = () => {
         },
         {
             path: "/login",
-            element:  <ProtectedRoute>
-            <LogIn />
-        </ProtectedRoute>
+            element: <LogIn />,
         },
         {
             path: "/register",
@@ -58,10 +56,7 @@ const Routers = () => {
         },
     ]);
 
-    return <>
-
-    <RouterProvider router={router} />;
-    </>
+    return <RouterProvider router={router} />;
 };
 
 export default Routers;

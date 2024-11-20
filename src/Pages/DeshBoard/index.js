@@ -21,7 +21,7 @@ import { FormatUserName } from "../../Config/index";
 import { Wrapper } from "./style";
 
 const { Header, Sider, Content } = Layout;
-const DeshBoard = () => {
+const  DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const nevigate = useNavigate();
@@ -31,15 +31,15 @@ const DeshBoard = () => {
     setCurrent(location.pathname.replace("/", ""));
   }, [location]);
 
-  // Breadcrumb items based on the path
+ 
   const breadcrumbItems = location.pathname
   .split("/")
   .filter(Boolean)
   .map((crumb) => ({
     title: crumb
-      .split("-") // Split hyphenated words
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) // Capitalize each word
-      .join(" "), // Join them with spaces
+      .split("-") 
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) 
+      .join(" "), 
   }));
 
   const handleLogout = () => {

@@ -22,11 +22,36 @@ import {
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { Wrapper ,ModalView} from "./style";
+import { createStyles } from "antd-style";
+
+
+
+
+
+
+const useStyle = createStyles(({ css, token }) => {
+  const { antCls } = token;
+  return {
+    customTable: css`
+      ${antCls}-table {
+        ${antCls}-table-container {
+          ${antCls}-table-body,
+          ${antCls}-table-content {
+            scrollbar-width: thin;
+            scrollbar-color: #eaeaea transparent;
+            scrollbar-gutter: stable;
+          }
+        }
+      }
+    `,
+  };
+});
 
 export const Criteria = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
   const { Text } = Typography;
+  const { styles } = useStyle();
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -255,7 +280,10 @@ export const Criteria = () => {
         </div>
         <Divider />
 
-        <Table columns={columns} dataSource={UserData} />
+        <Table columns={columns} dataSource={UserData}  className={styles.customTable}
+          scroll={{
+            x: "max-content",
+          }}/>
           <Modal
             title="Add User"
             okText="Submit"

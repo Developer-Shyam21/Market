@@ -3,10 +3,34 @@ import { EditOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
 import { Avatar, Button, Col, Divider, Form, Input, Modal, Row, Table } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { ModalAdmin, Wrapper } from "./style";
+import { createStyles } from "antd-style";
 
+
+
+
+
+
+const useStyle = createStyles(({ css, token }) => {
+  const { antCls } = token;
+  return {
+    customTable: css`
+      ${antCls}-table {
+        ${antCls}-table-container {
+          ${antCls}-table-body,
+          ${antCls}-table-content {
+            scrollbar-width: thin;
+            scrollbar-color: #eaeaea transparent;
+            scrollbar-gutter: stable;
+          }
+        }
+      }
+    `,
+  };
+});
 export const AdminPage = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
+  const { styles } = useStyle();
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -174,7 +198,10 @@ export const AdminPage = () => {
         <Table
           columns={columns}
           dataSource={UserData}
-         
+          className={styles.customTable}
+          scroll={{
+            x: "max-content",
+          }}
           pagination={{
             pageSize: 10,
             showSizeChanger: true,
@@ -188,6 +215,14 @@ export const AdminPage = () => {
           onOk={form.submit}
           open={visible}
           onCancel={() => setVisible(false)}
+          bodyStyle={{
+            maxHeight: "calc(-320px + 100vh)",
+            overflowY: "auto",
+            scrollbarWidth: "thin",
+            scrollbarColor: "#eff2f5 transparent",
+            paddingRight: "15px",
+            marginBottom: "15px",
+          }}
         >
           <ModalAdmin>
 
