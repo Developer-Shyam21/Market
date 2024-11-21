@@ -54,7 +54,7 @@ const UserDeshBoard = () => {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(location.pathname.replace("/", ""));
   const [openKeys, setOpenKeys] = useState(["Analytics"]); // Open default parent menu
-  const { setUserShow ,setIsAdmin } = useContext(ContextsApi);
+  const { LoginData } = useContext(ContextsApi);
 
   useEffect(() => {
     setCurrent(location.pathname.replace("/", ""));
@@ -90,8 +90,18 @@ const UserDeshBoard = () => {
 
   const HandelAdmin = () => {
    
-    setUserShow(false)
+
+    const updatedType = LoginData.type === 2 ? 1 : 2;
+
+    const updatedLoginData = { ...LoginData, type: updatedType}
+    localStorage.setItem("Type", updatedLoginData.type);
+
+    localStorage.setItem("UserLoggingData", JSON.stringify(updatedLoginData));
+    if (updatedType === 1 && LoginData.email === "admin@gmail.com") {
       navigate("/Manage-User/Client", { replace: true });
+    } else {
+      navigate("/Analytics/Overview", { replace: true });
+    }
  
   };
 

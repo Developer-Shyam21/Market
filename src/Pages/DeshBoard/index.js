@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Breadcrumb, Button, Divider, Layout, Menu, Space } from "antd";
 import {
   Link,
+  Navigate,
   Outlet,
   replace,
   useLocation,
@@ -19,28 +20,32 @@ import {
 import Market from "../../Images/logo-main.png";
 import { FormatUserName } from "../../Config/index";
 import { Wrapper } from "./style";
+import { ContextsApi } from "../../ContextApi/Index";
 
 const { Header, Sider, Content } = Layout;
-const  DeshBoard = () => {
+const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
   const nevigate = useNavigate();
   const [current, setCurrent] = useState(location.pathname.replace("/", ""));
+  const { LoginData } = useContext(ContextsApi);
 
   useEffect(() => {
     setCurrent(location.pathname.replace("/", ""));
-  }, [location]);
+   
+  }, [location,]);
 
- 
+  
+
   const breadcrumbItems = location.pathname
-  .split("/")
-  .filter(Boolean)
-  .map((crumb) => ({
-    title: crumb
-      .split("-") 
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1)) 
-      .join(" "), 
-  }));
+    .split("/")
+    .filter(Boolean)
+    .map((crumb) => ({
+      title: crumb
+        .split("-")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" "),
+    }));
 
   const handleLogout = () => {
     localStorage.removeItem("UserLoggingData");

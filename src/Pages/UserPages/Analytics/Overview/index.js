@@ -142,7 +142,7 @@ export const Overview = () => {
           />
         </Flex>
         <Row gutter={[16, 16]}>
-          <Col lg={8} md={24} xs={24} sm={24} >
+          <Col xl={8} lg={24} md={24} xs={24} sm={24} >
             <div className="card">
               <div className="card-body">
                 <Avatar size={64} style={{ backgroundColor: "#673ab7" }}>
@@ -168,7 +168,7 @@ export const Overview = () => {
               </div>
             </div>
           </Col>
-          <Col lg={8} md={24}   xs={24} sm={24}>
+          <Col  xl={8} lg={24} md={24}   xs={24} sm={24}>
             <div className="card">
               <div className="card-body">
                 <Avatar size={64} style={{ backgroundColor: "#2196f3" }}>

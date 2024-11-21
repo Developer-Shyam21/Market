@@ -10,38 +10,62 @@ import UserDeshBoard from "../Pages/UserDeshboard";
 import { UserRouter } from "./UserRoter";
 
 const Routers = () => {
-    const { userShow } = useContext(ContextsApi);
-    console.log(userShow)
+    const { LoginData } = useContext(ContextsApi);
 
-    
+ 
+
+    const adminRoutes = Admin.map((route) => ({
+        path: route.path,
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                {route.element}
+            </Suspense>
+        ),
+    }));
+
+    const userRoutes = UserRouter.map((route) => ({
+        path: route.path,
+        element: (
+            <Suspense fallback={<div>Loading...</div>}>
+                {route.element}
+            </Suspense>
+        ),
+    }));
+
     const router = createBrowserRouter([
         {
             path: "/",
             element: (
-                <ProtectedRoute>
-                    <Suspense fallback={<div>Loading...</div>}>
-                        {userShow ? <UserDeshBoard /> : <DeshBoard />}
-                    </Suspense>
-                </ProtectedRoute>
+                LoginData ? (
+                    LoginData.type === 1 ? (
+                        <Navigate to="/Manage-User/Client" replace />
+                    ) : (
+                        <Navigate to="/Analytics/Overview" replace />
+                    )
+                ) : (
+                    <Navigate to="/login" replace />
+                )
             ),
-            children: userShow
-                ? UserRouter.map((route) => ({
-                  path: route.path,
-                  element: (
-                      <Suspense fallback={<div>Loading...</div>}>
-                          {route.element}
-                      </Suspense>
-                  ),
-              }))
-                : Admin.map((route) => ({
-                      path: route.path,
-                      element: (
-                          <Suspense fallback={<div>Loading...</div>}>
-                              {route.element}
-                          </Suspense>
-                      ),
-                  })),
         },
+
+        ...(LoginData
+            ? [
+                {
+                    path: "/",
+                    element: (
+                        <ProtectedRoute>
+                            <Suspense fallback={<div>Loading...</div>}>
+                                {LoginData.type === 1 ? <DeshBoard /> : <UserDeshBoard />}
+                            </Suspense>
+                        </ProtectedRoute>
+                    ),
+                    children: LoginData.type === 1 ? adminRoutes : userRoutes,
+                },
+            ]
+            : []
+        ),
+
+      
         {
             path: "/login",
             element: <LogIn />,
@@ -50,6 +74,7 @@ const Routers = () => {
             path: "/register",
             element: <Register />,
         },
+
         {
             path: "*",
             element: <Navigate to="/" replace />,

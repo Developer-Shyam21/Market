@@ -12,24 +12,28 @@ export const LogIn = () => {
   const [form] = useForm();
   const navigate = useNavigate();
  
-  const { getregisterData } = useContext(ContextsApi);
+  const { getRegisterData,login ,loginData} = useContext(ContextsApi);
 
 
   const onFinish = (values) => {
     const { email, password } = values;
-    const loggingUser = getregisterData.find(
-      (user) => user.email === email && user.password === password
-    );
 
-    if (loggingUser) {
-      localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser))
+    const response = login(email, password);
+    if (response.success) {
       form.resetFields();
-     
-      navigate("/Manage-User/Client" , { replace: true });
+
+      if (response.user.type === 1) {
+        message.success("Welcome Admin!");
+        navigate("/Manage-User/Client", { replace: true });
+      } else {
+        message.success("Login successful!");
+        navigate("/Analytics/Overview", { replace: true });
+      }
     } else {
-      message.error("Email or Password is incorrect, or you need to register first.");
+      message.error(response.message);
     }
   };
+
 
   return (
     <Wrapper>

@@ -15,10 +15,10 @@ import {
   Input,
   Modal,
   Row,
-  Space,
   Select,
   Table,
   Tag,
+  message,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
 import TextArea from "antd/es/input/TextArea";
@@ -26,9 +26,6 @@ import { UserSection, Wrapper } from "./style";
 import { createStyles } from "antd-style";
 import { ContextsApi } from "../../ContextApi/Index";
 import { useNavigate } from "react-router-dom";
-
-
-
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -50,12 +47,11 @@ const useStyle = createStyles(({ css, token }) => {
 const { Search } = Input;
 
 export const UserList = () => {
-  const [ form ] = useForm();
-  const [ visible, setVisible ] = useState(false);
+  const [form] = useForm();
+  const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
-  const { setUserShow ,userShow ,setIsAdmin} = useContext(ContextsApi);
-
+  const { LoginData } = useContext(ContextsApi);
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -196,15 +192,13 @@ export const UserList = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Row gutter={[ 12, 14 ]} align="middle">
+        <Row gutter={[12, 14]} align="middle">
           <Col>
-            <Avatar style={{ color: "#f1416c", backgroundColor: "#fff5f8" }} >
+            <Avatar style={{ color: "#f1416c", backgroundColor: "#fff5f8" }}>
               {text.charAt(0)}
             </Avatar>
           </Col>
-          <Col>
-            {text}
-          </Col>
+          <Col>{text}</Col>
         </Row>
       ),
     },
@@ -231,8 +225,8 @@ export const UserList = () => {
               accounttype === "Seller"
                 ? "rgb(255, 155, 1)"
                 : accounttype === "Vendor"
-                  ? "rgb(0, 113, 220)"
-                  : "black",
+                ? "rgb(0, 113, 220)"
+                : "black",
           }}
         >
           {accounttype}
@@ -262,8 +256,8 @@ export const UserList = () => {
             status === "Under Review"
               ? "blue"
               : status === "Reviewed"
-                ? "green"
-                : "default"
+              ? "green"
+              : "default"
           }
         >
           {status}
@@ -274,9 +268,14 @@ export const UserList = () => {
       title: "Switch User",
       dataIndex: "switchuser",
       key: "switchuser",
-      render: (switchuser) => (
-        <Button type="link" size="small" icon={<LoginOutlined />} onClick={handelUserData}>
-          {switchuser}
+      render: (_, record) => (
+        <Button
+          type="link"
+          size="small"
+          icon={<LoginOutlined />}
+          onClick={() => handelUserData(record.email)}
+        >
+          switchuser
         </Button>
       ),
     },
@@ -323,21 +322,29 @@ export const UserList = () => {
     // setFormData(record);
   };
 
+  const handelUserData = (email) => {
 
+    const updatedType = LoginData.type === 1 ? 2 : 1;
 
-  const handelUserData = () => {
-     setUserShow(true);
-    
-      navigate("/Analytics/Overview", { replace: true }); 
+    const updatedLoginData = { ...LoginData, type: updatedType };
+
+    localStorage.setItem("Type", updatedLoginData.type);
+
+    localStorage.setItem("UserLoggingData", JSON.stringify(updatedLoginData));
+
+    if (LoginData.type === 2) {
+      navigate("/Analytics/Overview", { replace: true });
+    } else {
+      message.error("You are not an admin, cannot switch user.");
+    }
   };
-  
 
   return (
     <>
       <Wrapper>
         <div className="User-Section">
           <Flex gap={10}>
-            <Search  placeholder="Search..." />
+            <Search placeholder="Search..." />
             <Select
               placeholder="Active"
               style={{
@@ -371,10 +378,14 @@ export const UserList = () => {
         </div>
         <Divider />
 
-        <Table columns={columns} dataSource={UserData} className={styles.customTable}
+        <Table
+          columns={columns}
+          dataSource={UserData}
+          className={styles.customTable}
           scroll={{
             x: "max-content",
-          }} />
+          }}
+        />
         <Modal
           title="Add User"
           okText="Submit"
@@ -395,7 +406,7 @@ export const UserList = () => {
               <Form.Item
                 label="Name"
                 name="name"
-                rules={[ { required: true, message: "Please input the name!" } ]}
+                rules={[{ required: true, message: "Please input the name!" }]}
               >
                 <Input />
               </Form.Item>
@@ -425,7 +436,7 @@ export const UserList = () => {
               <Form.Item
                 name="confirm"
                 label="Confirm Password"
-                dependencies={[ "password" ]}
+                dependencies={["password"]}
                 rules={[
                   { required: true, message: "Please confirm your password!" },
                   ({ getFieldValue }) => ({
