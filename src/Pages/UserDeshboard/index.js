@@ -106,11 +106,9 @@ const UserDeshBoard = () => {
   const HandelAdmin = () => {
     const updateType = currentType.type === 2 ? 1 : 1;
 
-    // Update the type in both state and local storage
-    updateState("type", updateType);
-    // setCurrentType({ type: updateType });
-
     localStorage.removeItem("SwitchUserData");
+    updateState("type", updateType);
+
     navigate("/Manage-User/Client", { replace: true });
   };
 
@@ -203,7 +201,7 @@ const UserDeshBoard = () => {
                 ]}
               />
             </Space>
-            {LoginData.type === 1 ? <div>{SwitchUserData.email}</div> : <div></div>}
+            {/* {LoginData.type === 1 ? <div>{SwitchUserData.email}</div> : <div></div>} */}
             <Button
               type="primary"
               icon={<LogoutOutlined />}

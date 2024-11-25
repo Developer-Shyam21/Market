@@ -217,7 +217,6 @@ export const AdminPage = () => {
           }}
           pagination={{
             pageSize: 10,
-            showSizeChanger: true,
             pageSizeOptions: ["5", "10", "15"],
           }}
         />

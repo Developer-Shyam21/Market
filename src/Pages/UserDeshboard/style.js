@@ -18,7 +18,6 @@ export const Wrapper = styled.div`
   }
 
   .ant-layout-header {
-    font-family: Poppins, "sans-serif";
     min-height: 80px;
     display: flex;
     justify-content: space-between;

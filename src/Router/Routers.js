@@ -1,4 +1,4 @@
-import React, { Suspense, useContext } from "react";
+import React, { Suspense, useContext, useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -22,7 +22,7 @@ const Routers = () => {
     element: (
       <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
     ),
-  }));
+  })); 
 
   const userRoutes = UserRouter.map((route) => ({
     path: route.path,
@@ -31,50 +31,47 @@ const Routers = () => {
     ),
   }));
 
-
-  const pageRoutes = currentType.type == 1? adminRoutes :userRoutes
-
-
+  const pageRoutes = currentType.type === 1 ? adminRoutes : userRoutes;
 
   const router = createBrowserRouter([
-    {
-      path: "/",
-      element:<Navigate to="/Manage-User/Client" replace />
-    },
 
+    // {
+    //   path: "/",
+    //   element:<Navigate to="/Manage-User/Client" replace />
+    // },
+    
     ...(LoginData
       ? [
           {
             path: "/",
-            element: (  
+            element: (
               <ProtectedRoute>
                 <Suspense fallback={<div>Loading...</div>}>
-                  { currentType.type == 1 ? <DeshBoard /> : <UserDeshBoard/>}
+                  <DeshBoard />
                 </Suspense>
               </ProtectedRoute>
             ),
-            children:pageRoutes,
+            children: pageRoutes,
           },
           {
             path: "*",
-            element: <Navigate to="/Manage-User/Client" replace />,
+            element: <Navigate to="/" replace />,
           },
         ]
-      : []),
-
-    {
-      path: "/login",
-      element: <LogIn />,
-    },
-    {
-      path: "/register",
-      element: <Register />,
-    },
-
-    {
-      path: "*",
-      element: <Navigate to="/" replace />,
-    },
+      : [
+          {
+            path: "/login",
+            element: <LogIn />,
+          },
+          {
+            path: "/register",
+            element: <Register />,
+          },
+          {
+            path: "*",
+            element: <Navigate to="/login" replace />,
+          },
+        ]),
   ]);
 
   return <RouterProvider router={router} />;

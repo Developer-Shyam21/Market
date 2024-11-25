@@ -51,8 +51,7 @@ export const UserList = () => {
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
-  const { LoginData, TypeSwitch, updateState } =
-    useContext(ContextsApi);
+  const { LoginData, updateState } = useContext(ContextsApi);
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -324,9 +323,6 @@ export const UserList = () => {
   };
 
   const handelUserData = (email) => {
-    // const updatedType = LoginData.type === 1 ? 2 : 1;
-    // const updateType = TypeSwitch === 1 ? 2 : 2;
-
     // Update the type in both state and local storage
     updateState("type", 2);
 
@@ -336,18 +332,12 @@ export const UserList = () => {
       type: 2,
     };
 
-   
     localStorage.setItem(
       "SwicthUserData",
       JSON.stringify(updatedLoginDataEmail)
     );
-    // localStorage.setItem("Type", JSON.stringify(2));
 
     navigate("/Analytics/Overview", { replace: true });
-
-    
-
-
   };
 
   return (

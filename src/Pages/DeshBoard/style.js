@@ -78,6 +78,52 @@ export const Wrapper = styled.div`
   border-inline-end:0 !important;
   }
   
+  .back-admin-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .backadminbtn {
+    background: rgb(205, 107, 91);
+    color: white;
+    padding: 0.35em 3.3em 0.35em 1.2em;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 0.9em;
+    border: none;
+    letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    box-shadow: rgb(99, 29, 73) 0px 0px 1.6em -0.6em inset;
+    overflow: hidden;
+    position: relative;
+    height: 2.8em;
+    cursor: pointer;
+    overflow: hidden;
+    positions: relative;
+
+    &:hover {
+      .back-btn-icon {
+        width: 100%;
+      }
+    }
+
+    .back-btn-icon {
+      background-color: #9f4545;
+      width: 27px;
+      height: 34px;
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      right: 0;
+      transition: all 0.4s ease-in-out;
+    }
+  }
+  
   @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }

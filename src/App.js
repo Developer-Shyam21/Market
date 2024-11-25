@@ -13,9 +13,7 @@ function App() {
   return <>
     <ConfigProvider
       theme={{
-        token: {
-          fontFamily: "Poppins, sans-serif",
-          // colorPrimary: PrimaryColor,
+        token: {    
           colorPrimary: thiredColor,
           colorPrimaryHover: SecondaryColor,
         },
@@ -41,8 +39,6 @@ function App() {
         }
       }}
     >
-
-
       <Routers />
     </ConfigProvider>
   </>
