@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Breadcrumb, Button, Divider, Layout, Menu, Space } from "antd";
-import {
-  Link,
-  Navigate,
-  Outlet,
-  replace,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   CodeOutlined,
   FileDoneOutlined,
@@ -30,12 +23,10 @@ const DeshBoard = () => {
   const [current, setCurrent] = useState(location.pathname.replace("/", ""));
   const { LoginData } = useContext(ContextsApi);
 
-  useEffect(() => {
-    setCurrent(location.pathname.replace("/", ""));
-   
-  }, [location,]);
+  // useEffect(() => {
+  //   setCurrent(location.pathname.replace("/", ""));
 
-  
+  // }, [location,]);
 
   const breadcrumbItems = location.pathname
     .split("/")
@@ -49,6 +40,8 @@ const DeshBoard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("UserLoggingData");
+    localStorage.removeItem("Type");
+    localStorage.removeItem("SwicthUserData");
 
     nevigate("/login", { replace: true });
   };

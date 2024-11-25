@@ -1,25 +1,6 @@
 import React, { useState } from "react";
-import {
-  EditOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-  EyeOutlined,
-  UserSwitchOutlined,
-} from "@ant-design/icons";
-import {
-  Button,
-  Col,
-  Divider,
-  Flex,
-  Form,
-  Input,
-  Modal,
-  Row,
-  Select,
-  Table,
-  Tag,
-  Typography,
-} from "antd";
+import { EditOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Divider, Form, Modal, Select, Table, Typography } from "antd";
 import { useForm } from "antd/es/form/Form";
 import { Wrapper, ModalView } from "./style";
 import { createStyles } from "antd-style";

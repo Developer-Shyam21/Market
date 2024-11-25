@@ -11,33 +11,45 @@ export const LogIn = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
   const navigate = useNavigate();
- 
-  const { getRegisterData,login ,loginData} = useContext(ContextsApi);
 
+  const { updateState } = useContext(ContextsApi);
 
+  const getRegisterData = [
+    { email: "admin@gmail.com", password: "111111", type: 1 }, // Admin
+    { email: "user@gmail.com", password: "user123", type: 2 }, // Regular User
+  ];
   const onFinish = (values) => {
     const { email, password } = values;
+    const loggingUser = getRegisterData.find(
+      (user) => user.email === email && user.password === password
+    );
 
-    const response = login(email, password);
-    if (response.success) {
-      form.resetFields();
-
-      if (response.user.type === 1) {
+    if (loggingUser) {
+      if (loggingUser.type === 1) {
+        localStorage.setItem("Type", JSON.stringify(loggingUser.type));
+        updateState("type", loggingUser.type);
+        localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser));
+        form.resetFields();
         message.success("Welcome Admin!");
         navigate("/Manage-User/Client", { replace: true });
       } else {
+        localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser));
+        updateState("type", loggingUser.type);
+        localStorage.setItem("Type", JSON.stringify(loggingUser.type));
+        form.resetFields();
         message.success("Login successful!");
         navigate("/Analytics/Overview", { replace: true });
       }
     } else {
-      message.error(response.message);
+      message.error(
+        "Email or Password is incorrect, or you need to register first."
+      );
     }
   };
 
-
   return (
     <Wrapper>
-          <Row  justify="center" align="middle" style={{backgroundColor:"white"}}>
+      <Row justify="center" align="middle" style={{ backgroundColor: "white" }}>
         <Col lg={12} xs={24}>
           <div className="flex-section">
             <div className="login-section">
@@ -45,11 +57,11 @@ export const LogIn = () => {
                 <h1>
                   Sign In to <b>MARKET FORCE</b>
                 </h1>
-                <Typography> 
+                <Typography>
                   <div className="create-link">
-                  New Here? <a href="/register">Create an Account</a>
-                </div>
-                  </Typography>
+                    New Here? <a href="/register">Create an Account</a>
+                  </div>
+                </Typography>
               </div>
               <Form
                 name="login"

@@ -1,41 +1,29 @@
 import React, { useState } from "react";
-import {
-  EditOutlined,
-  PlusOutlined,
-  DeleteOutlined,
-  MessageOutlined,
-  StarOutlined,
-  LikeOutlined,
-  InfoCircleOutlined,
-} from "@ant-design/icons";
+// import {
+//   EditOutlined,
+//   PlusOutlined,
+//   DeleteOutlined,
+//   MessageOutlined,
+//   StarOutlined,
+//   LikeOutlined,
+//   InfoCircleOutlined,
+// } from "@ant-design/icons";
 import {
   Avatar,
-  Button,
   Col,
-  Divider,
   Flex,
-  Form,
-  Input,
-  Modal,
   Row,
   Space,
   Select,
-  Table,
-  Tag,
   DatePicker,
-  List,
-  Card,
   Typography,
   Tooltip,
 } from "antd";
-import type { TimeRangePickerProps } from "antd";
-import { useForm } from "antd/es/form/Form";
+import { TimeRangePickerProps } from "antd";
 import Chart from "react-apexcharts";
 import { Wrapper } from "./style";
 import dayjs from "dayjs";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
-
-
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
@@ -142,7 +130,7 @@ export const Overview = () => {
           />
         </Flex>
         <Row gutter={[16, 16]}>
-          <Col xl={8} lg={24} md={24} xs={24} sm={24} >
+          <Col xl={8} lg={24} md={24} xs={24} sm={24}>
             <div className="card">
               <div className="card-body">
                 <Avatar size={64} style={{ backgroundColor: "#673ab7" }}>
@@ -168,7 +156,7 @@ export const Overview = () => {
               </div>
             </div>
           </Col>
-          <Col  xl={8} lg={24} md={24}   xs={24} sm={24}>
+          <Col xl={8} lg={24} md={24} xs={24} sm={24}>
             <div className="card">
               <div className="card-body">
                 <Avatar size={64} style={{ backgroundColor: "#2196f3" }}>
@@ -211,49 +199,49 @@ export const Overview = () => {
             </div>
           </Col>
           <Col lg={12}>
-          <div>
-      {/* Country Selector */}
-      <select onChange={handleCountryChange}>
-        <option value="">Select a country</option>
-        <option value="United States">United States</option>
-        <option value="India">India</option>
-        <option value="Australia">Australia</option>
-        <option value="Brazil">Brazil</option>
-        <option value="China">China</option>
-      </select>
+            <div>
+              {/* Country Selector */}
+              <select onChange={handleCountryChange}>
+                <option value="">Select a country</option>
+                <option value="United States">United States</option>
+                <option value="India">India</option>
+                <option value="Australia">Australia</option>
+                <option value="Brazil">Brazil</option>
+                <option value="China">China</option>
+              </select>
 
-      {/* Map */}
-      <ComposableMap>
-        <Geographies geography={geoUrl}>
-          {({ geographies }) =>
-            geographies.map((geo) => {
-              const isHighlighted =
-                geo.properties.name === selectedCountry; // Highlight selected country
-              return (
-                <Geography
-                  key={geo.rsmKey}
-                  geography={geo}
-                  style={{
-                    default: {
-                      fill: isHighlighted ? "#FF5733" : "#DDD", // Highlight color
-                      outline: "none",
-                    },
-                    hover: {
-                      fill: "#F53",
-                      outline: "none",
-                    },
-                    pressed: {
-                      fill: "#E42",
-                      outline: "none",
-                    },
-                  }}
-                />
-              );
-            })
-          }
-        </Geographies>
-      </ComposableMap>
-    </div>
+              {/* Map */}
+              <ComposableMap>
+                <Geographies geography={geoUrl}>
+                  {({ geographies }) =>
+                    geographies.map((geo) => {
+                      const isHighlighted =
+                        geo.properties.name === selectedCountry; // Highlight selected country
+                      return (
+                        <Geography
+                          key={geo.rsmKey}
+                          geography={geo}
+                          style={{
+                            default: {
+                              fill: isHighlighted ? "#FF5733" : "#DDD", // Highlight color
+                              outline: "none",
+                            },
+                            hover: {
+                              fill: "#F53",
+                              outline: "none",
+                            },
+                            pressed: {
+                              fill: "#E42",
+                              outline: "none",
+                            },
+                          }}
+                        />
+                      );
+                    })
+                  }
+                </Geographies>
+              </ComposableMap>
+            </div>
           </Col>
         </Row>
       </Wrapper>

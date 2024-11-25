@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import { EditOutlined, PlusOutlined, DeleteOutlined } from "@ant-design/icons";
-import { Avatar, Button, Col, Divider, Form, Input, Modal, Row, Table } from "antd";
+import {
+  Avatar,
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Modal,
+  Row,
+  Table,
+} from "antd";
 import { useForm } from "antd/es/form/Form";
 import { ModalAdmin, Wrapper } from "./style";
 import { createStyles } from "antd-style";
-
-
-
-
-
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -121,10 +126,10 @@ export const AdminPage = () => {
       dataIndex: "name",
       key: "name",
       render: (text) => (
-        <Row gutter={[14,14]} align="middle">
+        <Row gutter={[14, 14]} align="middle">
           <Col>
-          <Avatar style={{color:"#f1416c",backgroundColor:"#fff5f8"}} >
-              {text.charAt(0)} 
+            <Avatar style={{ color: "#f1416c", backgroundColor: "#fff5f8" }}>
+              {text.charAt(0)}
             </Avatar>
           </Col>
           <Col>{text}</Col>
@@ -134,12 +139,12 @@ export const AdminPage = () => {
     {
       title: "Email",
       dataIndex: "email",
-      width:350,
+      width: 350,
       key: "email",
     },
     {
       title: "Mobile",
-      width:300,
+      width: 300,
       dataIndex: "mobile",
       key: "mobile",
     },
@@ -147,21 +152,29 @@ export const AdminPage = () => {
     {
       title: "Action",
       dataIndex: "action",
-      width:250,
+      width: 250,
       key: "action",
       render: (_, record) => (
         <div className="action-btn">
           <Button
             type="link"
             icon={<EditOutlined />}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8",padding: "16px"}}
+            style={{
+              backgroundColor: "#f5f8fa",
+              color: "#a2a5b8",
+              padding: "16px",
+            }}
             onClick={() => handleEdit(record)}
           ></Button>
           <Button
             type="link"
             danger
             icon={<DeleteOutlined />}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" ,padding: "16px"}}
+            style={{
+              backgroundColor: "#f5f8fa",
+              color: "#a2a5b8",
+              padding: "16px",
+            }}
             onClick={() => handleDelete(record.key)}
           ></Button>
         </div>
@@ -225,91 +238,90 @@ export const AdminPage = () => {
           }}
         >
           <ModalAdmin>
+            <Form form={form} layout="vertical" onFinish={handleSubmit}>
+              <Row gutter={[16, 16]}>
+                <Col lg={12}>
+                  {" "}
+                  <Form.Item
+                    label="User Name"
+                    name="uname"
+                    rules={[
+                      { required: true, message: "Please input the name!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+                <Col lg={12}>
+                  <Form.Item
+                    label="User / Client"
+                    name="user/client"
+                    rules={[
+                      { required: true, message: "Please input the name!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </Col>
+              </Row>
 
-          <Form form={form} layout="vertical" onFinish={handleSubmit}>
-            <Row gutter={[16, 16]}>
-              <Col lg={12}>
-                {" "}
-                <Form.Item
-                  label="User Name"
-                  name="uname"
-                  rules={[
-                    { required: true, message: "Please input the name!" },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-              <Col lg={12}>
-                <Form.Item
-                  label="User / Client"
-                  name="user/client"
-                  rules={[
-                    { required: true, message: "Please input the name!" },
-                  ]}
-                >
-                  <Input />
-                </Form.Item>
-              </Col>
-            </Row>
+              <Form.Item
+                label="Email"
+                name="email"
+                rules={[
+                  { required: true, message: "Please input the email!" },
+                  { type: "email", message: "Please enter a valid email!" },
+                ]}
+              >
+                <Input />
+              </Form.Item>
 
-            <Form.Item
-              label="Email"
-              name="email"
-              rules={[
-                { required: true, message: "Please input the email!" },
-                { type: "email", message: "Please enter a valid email!" },
-              ]}
-            >
-              <Input />
-            </Form.Item>
+              <Form.Item
+                label="Password"
+                name="password"
+                rules={[
+                  { required: true, message: "Please input your password!" },
+                  { min: 6, message: "Password must be at least 6 characters" },
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
 
-            <Form.Item
-              label="Password"
-              name="password"
-              rules={[
-                { required: true, message: "Please input your password!" },
-                { min: 6, message: "Password must be at least 6 characters" },
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
+              <Form.Item
+                name="confirm"
+                label="Confirm Password"
+                dependencies={["password"]}
+                rules={[
+                  { required: true, message: "Please confirm your password!" },
+                  ({ getFieldValue }) => ({
+                    validator(_, value) {
+                      if (!value || getFieldValue("password") === value) {
+                        return Promise.resolve();
+                      }
+                      return Promise.reject(
+                        new Error("The passwords do not match!")
+                      );
+                    },
+                  }),
+                ]}
+              >
+                <Input.Password />
+              </Form.Item>
 
-            <Form.Item
-              name="confirm"
-              label="Confirm Password"
-              dependencies={["password"]}
-              rules={[
-                { required: true, message: "Please confirm your password!" },
-                ({ getFieldValue }) => ({
-                  validator(_, value) {
-                    if (!value || getFieldValue("password") === value) {
-                      return Promise.resolve();
-                    }
-                    return Promise.reject(
-                      new Error("The passwords do not match!")
-                    );
+              <Form.Item
+                label="Contact Number"
+                name="contactNumber"
+                rules={[
+                  {
+                    required: true,
+                    message: "Please input the contact number!",
                   },
-                }),
-              ]}
-            >
-              <Input.Password />
-            </Form.Item>
-
-            <Form.Item
-              label="Contact Number"
-              name="contactNumber"
-              rules={[
-                {
-                  required: true,
-                  message: "Please input the contact number!",
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-          </Form>
-                  </ModalAdmin>
+                ]}
+              >
+                <Input />
+              </Form.Item>
+            </Form>
+          </ModalAdmin>
         </Modal>
       </Wrapper>
     </>

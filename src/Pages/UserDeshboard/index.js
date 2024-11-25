@@ -1,5 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Breadcrumb, Button, Divider, Layout, Menu, Space } from "antd";
+import {
+  Breadcrumb,
+  Button,
+  Divider,
+  Layout,
+  Menu,
+  message,
+  Space,
+} from "antd";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
   UserOutlined,
@@ -54,11 +62,17 @@ const UserDeshBoard = () => {
   const navigate = useNavigate();
   const [current, setCurrent] = useState(location.pathname.replace("/", ""));
   const [openKeys, setOpenKeys] = useState(["Analytics"]); // Open default parent menu
-  const { LoginData } = useContext(ContextsApi);
+  const {
+    LoginData,
+    SwitchUserData,
+    updateState,
+    currentType,
+    setCurrentType,
+  } = useContext(ContextsApi);
 
-  useEffect(() => {
-    setCurrent(location.pathname.replace("/", ""));
-  }, [location]);
+  // useEffect(() => {
+  //   setCurrent(location.pathname.replace("/", ""));
+  // }, [location]);
 
   // Breadcrumb items based on the path
   const breadcrumbItems = location.pathname
@@ -73,7 +87,8 @@ const UserDeshBoard = () => {
 
   const handleLogout = () => {
     localStorage.removeItem("UserLoggingData");
-    localStorage.removeItem("isUser");
+    localStorage.removeItem("Type");
+    localStorage.removeItem("SwicthUserData");
     navigate("/login", { replace: true });
   };
 
@@ -89,20 +104,14 @@ const UserDeshBoard = () => {
   };
 
   const HandelAdmin = () => {
-   
+    const updateType = currentType.type === 2 ? 1 : 1;
 
-    const updatedType = LoginData.type === 2 ? 1 : 2;
+    // Update the type in both state and local storage
+    updateState("type", updateType);
+    // setCurrentType({ type: updateType });
 
-    const updatedLoginData = { ...LoginData, type: updatedType}
-    localStorage.setItem("Type", updatedLoginData.type);
-
-    localStorage.setItem("UserLoggingData", JSON.stringify(updatedLoginData));
-    if (updatedType === 1 && LoginData.email === "admin@gmail.com") {
-      navigate("/Manage-User/Client", { replace: true });
-    } else {
-      navigate("/Analytics/Overview", { replace: true });
-    }
- 
+    localStorage.removeItem("SwitchUserData");
+    navigate("/Manage-User/Client", { replace: true });
   };
 
   return (
@@ -118,19 +127,40 @@ const UserDeshBoard = () => {
             <img src={Market} alt="logo" width={247} height={50} />
           </div>
           <Divider />
-          <div className="back-admin-btn">
-            <Button
-              className="backadminbtn"
-              type="primary"
-              onClick={HandelAdmin}
-            >
-              <div className="back-btn-icon">
-                <Icon icon="solar:arrow-right-outline" />
-              </div>{" "}
-              Back To Admin
-            </Button>
-          </div>
-          <Divider />
+          {LoginData.type !== 2 ? (
+            <>
+              <div className="back-admin-btn">
+                <Button
+                  className="backadminbtn"
+                  type="primary"
+                  onClick={HandelAdmin}
+                  disabled={LoginData.type === 2}
+                >
+                  <div className="back-btn-icon">
+                    <Icon icon="solar:arrow-right-outline" />
+                  </div>{" "}
+                  Back To Admin
+                </Button>
+              </div>
+              <Divider />
+            </>
+          ) : (
+            <>
+              <div className="back-admin-btn" style={{ display: "none" }}>
+                <Button
+                  className="backadminbtn"
+                  type="primary"
+                  onClick={HandelAdmin}
+                  disabled={LoginData.type === 2}
+                >
+                  <div className="back-btn-icon">
+                    <Icon icon="solar:arrow-right-outline" />
+                  </div>{" "}
+                  Back To Admin
+                </Button>
+              </div>
+            </>
+          )}
           <Menu
             mode="inline"
             selectedKeys={[current]}
@@ -173,6 +203,7 @@ const UserDeshBoard = () => {
                 ]}
               />
             </Space>
+            {LoginData.type === 1 ? <div>{SwitchUserData.email}</div> : <div></div>}
             <Button
               type="primary"
               icon={<LogoutOutlined />}

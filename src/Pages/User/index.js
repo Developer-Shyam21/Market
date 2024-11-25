@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   EditOutlined,
   PlusOutlined,
@@ -51,7 +51,8 @@ export const UserList = () => {
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
-  const { LoginData } = useContext(ContextsApi);
+  const { LoginData, TypeSwitch, updateState } =
+    useContext(ContextsApi);
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -323,20 +324,30 @@ export const UserList = () => {
   };
 
   const handelUserData = (email) => {
+    // const updatedType = LoginData.type === 1 ? 2 : 1;
+    // const updateType = TypeSwitch === 1 ? 2 : 2;
 
-    const updatedType = LoginData.type === 1 ? 2 : 1;
+    // Update the type in both state and local storage
+    updateState("type", 2);
 
-    const updatedLoginData = { ...LoginData, type: updatedType };
+    const updatedLoginDataEmail = {
+      ...LoginData,
+      email: email,
+      type: 2,
+    };
 
-    localStorage.setItem("Type", updatedLoginData.type);
+   
+    localStorage.setItem(
+      "SwicthUserData",
+      JSON.stringify(updatedLoginDataEmail)
+    );
+    // localStorage.setItem("Type", JSON.stringify(2));
 
-    localStorage.setItem("UserLoggingData", JSON.stringify(updatedLoginData));
+    navigate("/Analytics/Overview", { replace: true });
 
-    if (LoginData.type === 2) {
-      navigate("/Analytics/Overview", { replace: true });
-    } else {
-      message.error("You are not an admin, cannot switch user.");
-    }
+    
+
+
   };
 
   return (

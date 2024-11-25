@@ -1,5 +1,5 @@
 import { Col, Row, Typography, Form, Input, Button, Checkbox } from "antd";
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import { Wrapper } from "./style";
@@ -9,27 +9,30 @@ import { ContextsApi } from "../../ContextApi/Index";
 export const Register = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
-  const nevigation = useNavigate()
-const {  setRegisterData } = useContext(ContextsApi);
+  const nevigation = useNavigate();
+  const { setRegisterData } = useContext(ContextsApi);
 
-const onFinish = (values) => {
-  const newUser = { ...values };
-  
-  setRegisterData((prevData) => {
-    const updatedData = [...prevData, newUser];
-    localStorage.setItem("userData", JSON.stringify(updatedData));
-    return updatedData;
-  });
-  
-  form.resetFields();
-  nevigation("/login");
-};
+  const onFinish = (values) => {
+    const newUser = { ...values };
 
+    setRegisterData((prevData) => {
+      const updatedData = [...prevData, newUser];
+      localStorage.setItem("userData", JSON.stringify(updatedData));
+      return updatedData;
+    });
 
-  return ( 
+    form.resetFields();
+    nevigation("/login");
+  };
+
+  return (
     <>
       <Wrapper>
-        <Row justify="center" align="middle" style={{ minHeight: "100vh" ,backgroundColor:"white" }}>
+        <Row
+          justify="center"
+          align="middle"
+          style={{ minHeight: "100vh", backgroundColor: "white" }}
+        >
           <Col xs={24} sm={18} lg={12} className="register-left">
             <div className="main-register-logo">
               <div className="main-register-body">
@@ -54,7 +57,7 @@ const onFinish = (values) => {
             </div>
           </Col>
 
-        {/* right side */}
+          {/* right side */}
           <Col lg={12} xs={24}>
             <div className="flex-section">
               <div className="register-section">
@@ -201,9 +204,9 @@ const onFinish = (values) => {
                       },
                     ]}
                   >
-                    <Checkbox style={{right:"20px"}}>
-                      I Agree to the Market Force Terms and conditions to use the
-                      services provided by the application.
+                    <Checkbox style={{ right: "20px" }}>
+                      I Agree to the Market Force Terms and conditions to use
+                      the services provided by the application.
                     </Checkbox>
                   </Form.Item>
                   <Form.Item>
@@ -215,10 +218,10 @@ const onFinish = (values) => {
               </div>
             </div>
             <div className="links">
-                <Link to="#">About</Link>
-                <Link to="#">Suport</Link>
-                <Link to="#">Purchase</Link>
-              </div>
+              <Link to="#">About</Link>
+              <Link to="#">Suport</Link>
+              <Link to="#">Purchase</Link>
+            </div>
           </Col>
         </Row>
       </Wrapper>

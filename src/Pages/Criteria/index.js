@@ -21,13 +21,8 @@ import {
   Typography,
 } from "antd";
 import { useForm } from "antd/es/form/Form";
-import { Wrapper ,ModalView} from "./style";
+import { Wrapper, ModalView } from "./style";
 import { createStyles } from "antd-style";
-
-
-
-
-
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -280,28 +275,32 @@ export const Criteria = () => {
         </div>
         <Divider />
 
-        <Table columns={columns} dataSource={UserData}  className={styles.customTable}
+        <Table
+          columns={columns}
+          dataSource={UserData}
+          className={styles.customTable}
           scroll={{
             x: "max-content",
-          }}/>
-          <Modal
-            title="Add User"
-            okText="Submit"
-            width={800}
-            oKText="Create"
-            onOk={form.submit}
-            open={visible}
-            onCancel={() => setVisible(false)}
-            bodyStyle={{
-              maxHeight: "calc(-320px + 100vh)",
-              overflowY: "auto",
-              scrollbarWidth: "thin",
-              scrollbarColor: "#eff2f5 transparent",
-              paddingRight: "15px",
-              marginBottom: "15px",
-            }}
-            >
-            <ModalView>
+          }}
+        />
+        <Modal
+          title="Add User"
+          okText="Submit"
+          width={800}
+          oKText="Create"
+          onOk={form.submit}
+          open={visible}
+          onCancel={() => setVisible(false)}
+          bodyStyle={{
+            maxHeight: "calc(-320px + 100vh)",
+            overflowY: "auto",
+            scrollbarWidth: "thin",
+            scrollbarColor: "#eff2f5 transparent",
+            paddingRight: "15px",
+            marginBottom: "15px",
+          }}
+        >
+          <ModalView>
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
               <Row gutter={[14, 14]}>
                 <Col lg={6}>
@@ -316,7 +315,7 @@ export const Criteria = () => {
                       },
                     ]}
                   >
-                    <Input placeholder="Enter Criteria Name"/>
+                    <Input placeholder="Enter Criteria Name" />
                   </Form.Item>
                 </Col>
                 <Col lg={6}>
@@ -360,13 +359,13 @@ export const Criteria = () => {
                       },
                     ]}
                   >
-                    <Input placeholder="Weight"/>
+                    <Input placeholder="Weight" />
                   </Form.Item>
                 </Col>
               </Row>
 
               <div className="criteria-form">
-                <Row gutter={[14, 14]} style={{alignItems:"baseline"}} >
+                <Row gutter={[14, 14]} style={{ alignItems: "baseline" }}>
                   <Col lg={5}>If</Col>
                   <Col lg={6}>
                     <Form.Item name="opretar" hasFeedback>
@@ -407,14 +406,22 @@ export const Criteria = () => {
                       <Input placeholder="Score" />
                     </Form.Item>
                   </Col>
-                  <Col lg={2} offset={1} style={{position: "relative",bottom: "-4px"}}>
-                    <Button type="primary" className="add-btn" icon={<PlusOutlined />}></Button>
+                  <Col
+                    lg={2}
+                    offset={1}
+                    style={{ position: "relative", bottom: "-4px" }}
+                  >
+                    <Button
+                      type="primary"
+                      className="add-btn"
+                      icon={<PlusOutlined />}
+                    ></Button>
                   </Col>
                 </Row>
               </div>
             </Form>
-        </ModalView>
-          </Modal>
+          </ModalView>
+        </Modal>
       </Wrapper>
     </>
   );
