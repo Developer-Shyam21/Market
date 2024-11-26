@@ -1,4 +1,4 @@
-import React, { Suspense, useContext, useEffect } from "react";
+import React, { Suspense, useContext } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,35 +16,34 @@ import { UserRouter } from "./UserRoter";
 const Routers = () => {
   const { LoginData, currentType } = useContext(ContextsApi);
 
-
+  // Generate admin and user routes
   const adminRoutes = Admin.map((route) => ({
     path: route.path,
-    element: (
+    element: <ProtectedRoute>
+
       <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
-    ),
+    </ProtectedRoute>
   }));
 
   const userRoutes = UserRouter.map((route) => ({
     path: route.path,
-    element: (
+    element:<ProtectedRoute>
+
       <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
-    ),
+    </ProtectedRoute>
+    
   }));
 
+  // Conditionally choose the routes based on user type
   const pageRoutes = currentType.type === 1 ? adminRoutes : userRoutes;
+
 
   const router = createBrowserRouter([
 
     {
       path: "/",
-      element: (
-        <ProtectedRoute>
-          <Suspense fallback={<div>Loading...</div>}>
-            <DeshBoard />
-          </Suspense>
-        </ProtectedRoute>
-      ),
-      children: pageRoutes,
+      element: <Navigate to="/Analytics/Overview" />,
+      
     },
     {
       path: "/login",
@@ -54,10 +53,28 @@ const Routers = () => {
       path: "/register",
       element: <Register />,
     },
-    {
-      path: "*",
-      element: <Navigate to="/login" replace />,
-    },
+    ...(LoginData
+      ? [
+          {
+            path: "/",
+            element: (
+                <Suspense fallback={<div>Loading...</div>}>
+                  <DeshBoard />
+                </Suspense>
+            ),
+            children: pageRoutes, 
+          },
+          {
+            path: "*",
+            element: <Navigate to="/" replace />,
+          },
+        ]
+      : []),
+   
+    // {
+    //   path: "*",
+    //   element: <Navigate to="/login" replace />, 
+    // },
   ]);
 
   return <RouterProvider router={router} />;

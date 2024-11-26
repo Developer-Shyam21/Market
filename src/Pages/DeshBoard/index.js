@@ -112,7 +112,8 @@ const menuItems = [
    const HandelAdmin = () => {
     const updateType = currentType.type === 2 ? 1 : 1;
 
-    localStorage.removeItem("SwitchUserData");
+    localStorage.removeItem("SwicthUserData");
+    
     updateState("type", updateType)
 
     nevigate("/Manage-User/Client", { replace: true });
@@ -141,7 +142,7 @@ const menuItems = [
             <img src={Market} alt="logo" width={247} height={50} />
           </div>
           <Divider/>
-         {currentType.type ===2 ? (
+         {localStorage.getItem("SwicthUserData")? (
             <>
               <div className="back-admin-btn">
                 <Button
@@ -152,7 +153,7 @@ const menuItems = [
                 >
                   <div className="back-btn-icon">
                     <Icon icon="solar:arrow-right-outline" />
-                  </div>{" "}
+                  </div>
                   Back To Admin
                 </Button>
               </div>
@@ -177,7 +178,7 @@ const menuItems = [
           )}
           <Menu
           mode="inline"
-            defaultSelectedKeys={["manageUser"]}
+            defaultSelectedKeys={["Manage-User/Client"]}
             style={{ backgroundColor: "white" }}
             selectedKeys={[current]}
             openKeys={openKeys}

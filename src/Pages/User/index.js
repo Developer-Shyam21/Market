@@ -51,7 +51,7 @@ export const UserList = () => {
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
-  const { LoginData, updateState } = useContext(ContextsApi);
+  const { LoginData, TypeSwitch,updateState ,currentType} = useContext(ContextsApi);
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
@@ -324,7 +324,8 @@ export const UserList = () => {
 
   const handelUserData = (email) => {
     // Update the type in both state and local storage
-    updateState("type", 2);
+    const updattype = TypeSwitch === 1 ? 2: 2;
+    updateState("type", updattype);
 
     const updatedLoginDataEmail = {
       ...LoginData,
@@ -336,9 +337,14 @@ export const UserList = () => {
       "SwicthUserData",
       JSON.stringify(updatedLoginDataEmail)
     );
-
-    navigate("/Analytics/Overview", { replace: true });
+    if(updattype === 2){
+      navigate("/Analytics/Overview", { replace: true })
+    } else{
+      navigate("/Manage-User/Client", { replace: true })
+    }
+  
   };
+  
 
   return (
     <>

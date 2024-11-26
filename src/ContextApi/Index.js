@@ -7,10 +7,12 @@ const  ContextProvider = ({children}) => {
 
 
     const LoginData = JSON.parse(localStorage.getItem("UserLoggingData"));
-    const [currentType , setCurrentType] = useState(
-      JSON.parse(localStorage.getItem("Type"))
+    const [currentType , setCurrentType] = useState({
+
+      type:JSON.parse(localStorage.getItem("Type"))
+    }
     )
-    console.log(currentType.type,"currentttype")
+  
       const updateState = (key, value) => {
         setCurrentType((prev) => ({ ...prev, [key]: value }));
         localStorage.setItem("Type", JSON.stringify({ ...currentType, [key]: value }));
