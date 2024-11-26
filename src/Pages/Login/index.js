@@ -16,7 +16,7 @@ export const LogIn = () => {
 
   const getRegisterData = [
     { email: "admin@gmail.com", password: "111111", type: 1 }, // Admin
-    { email: "user@gmail.com", password: "user123", type: 2 }, // Regular User
+    { email: "user@gmail.com", password: "123456", type: 2 }, // Regular User
   ];
   const onFinish = (values) => {
     const { email, password } = values;

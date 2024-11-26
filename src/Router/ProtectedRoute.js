@@ -4,7 +4,6 @@ import { ContextsApi } from "../ContextApi/Index";
 
 const ProtectedRoute = ({ children }) => {
   const { LoginData } = useContext(ContextsApi);
-
   return LoginData ? children : <Navigate to="/login" replace/>
 
 

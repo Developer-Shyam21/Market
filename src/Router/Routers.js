@@ -22,7 +22,7 @@ const Routers = () => {
     element: (
       <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
     ),
-  })); 
+  }));
 
   const userRoutes = UserRouter.map((route) => ({
     path: route.path,
@@ -35,43 +35,29 @@ const Routers = () => {
 
   const router = createBrowserRouter([
 
-    // {
-    //   path: "/",
-    //   element:<Navigate to="/Manage-User/Client" replace />
-    // },
-    
-    ...(LoginData
-      ? [
-          {
-            path: "/",
-            element: (
-              <ProtectedRoute>
-                <Suspense fallback={<div>Loading...</div>}>
-                  <DeshBoard />
-                </Suspense>
-              </ProtectedRoute>
-            ),
-            children: pageRoutes,
-          },
-          {
-            path: "*",
-            element: <Navigate to="/" replace />,
-          },
-        ]
-      : [
-          {
-            path: "/login",
-            element: <LogIn />,
-          },
-          {
-            path: "/register",
-            element: <Register />,
-          },
-          {
-            path: "*",
-            element: <Navigate to="/login" replace />,
-          },
-        ]),
+    {
+      path: "/",
+      element: (
+        <ProtectedRoute>
+          <Suspense fallback={<div>Loading...</div>}>
+            <DeshBoard />
+          </Suspense>
+        </ProtectedRoute>
+      ),
+      children: pageRoutes,
+    },
+    {
+      path: "/login",
+      element: <LogIn />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "*",
+      element: <Navigate to="/login" replace />,
+    },
   ]);
 
   return <RouterProvider router={router} />;
