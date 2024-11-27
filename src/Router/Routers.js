@@ -38,7 +38,10 @@ const Routers = () => {
  
 
   // Conditionally choose the routes based on user type
+  console.log(currentType.type,"ssssssssssssssssss");
   const pageRoutes = currentType.type === 1 ? adminRoutes : userRoutes;
+  console.log(pageRoutes,"flawef;woefweilfh");
+
 
   const router = createBrowserRouter([
     {

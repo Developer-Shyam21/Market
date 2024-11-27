@@ -326,7 +326,7 @@ export const UserList = () => {
 
   const handelUserData = (email) => {
     // Update the type in both state and local storage
-    const updattype = TypeSwitch === 1 ? 2: 2;
+    const updattype = 2;
     updateState("type", updattype);
 
     const updatedLoginDataEmail = {

@@ -104,7 +104,7 @@ const UserDeshBoard = () => {
   };
 
   const HandelAdmin = () => {
-    const updateType = currentType.type === 2 ? 1 : 1;
+    const updateType = 1;
 
     localStorage.removeItem("SwitchUserData");
     updateState("type", updateType);

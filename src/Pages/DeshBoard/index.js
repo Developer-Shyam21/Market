@@ -19,78 +19,78 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 
 const { Header, Sider, Content } = Layout;
 const DeshBoard = () => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [ collapsed, setCollapsed ] = useState(false);
   const location = useLocation();
   const nevigate = useNavigate();
-  const [current, setCurrent] = useState(location.pathname.replace("/", ""));
-  const [openKeys, setOpenKeys] = useState(["Analytics"]);
-  const { LoginData ,currentType,updateState} = useContext(ContextsApi);
-  
+  const [ current, setCurrent ] = useState(location.pathname.replace("/", ""));
+  const [ openKeys, setOpenKeys ] = useState([ "Analytics" ]);
+  const { LoginData, currentType, updateState } = useContext(ContextsApi);
+
 
   useEffect(() => {
     setCurrent(location.pathname.replace("/", ""));
 
-  }, [location,]);
-const AdminMenu = [
-  {
-    key: "Manage-User/Client",
-    icon: <UserOutlined />,
-    label: <Link to="/Manage-User/Client">Manage User/Client</Link>,
-  },
-  {
-    key: "Manage-Admin",
-    icon: <VideoCameraOutlined />,
-    label: <Link to="/Manage-Admin">Manage Admin</Link>,
-  },
-  {
-    key: "Criteria",
-    icon: <FileDoneOutlined />,
-    label: <Link to="/Criteria">Criteria</Link>,
-  },
-  {
-    key: "Embed-Codes",
-    icon: <CodeOutlined />,
-    label: <Link to="/Embed-Codes">Embed Codes</Link>,
-  },
-  {
-    key: "Setting",
-    icon: <SettingOutlined />,
-    label: <Link to="/Setting">Setting</Link>,
-  },
-]
+  }, [ location, ]);
+  const AdminMenu = [
+    {
+      key: "Manage-User/Client",
+      icon: <UserOutlined />,
+      label: <Link to="/Manage-User/Client">Manage User/Client</Link>,
+    },
+    {
+      key: "Manage-Admin",
+      icon: <VideoCameraOutlined />,
+      label: <Link to="/Manage-Admin">Manage Admin</Link>,
+    },
+    {
+      key: "Criteria",
+      icon: <FileDoneOutlined />,
+      label: <Link to="/Criteria">Criteria</Link>,
+    },
+    {
+      key: "Embed-Codes",
+      icon: <CodeOutlined />,
+      label: <Link to="/Embed-Codes">Embed Codes</Link>,
+    },
+    {
+      key: "Setting",
+      icon: <SettingOutlined />,
+      label: <Link to="/Setting">Setting</Link>,
+    },
+  ]
 
-const menuItems = [
-  {
-    key: "Analytics",
-    icon: <MailOutlined />,
-    label: "Analytics",
-    children: [
-      {
-        key: "Analytics/Overview",
-        label: <Link to="/Analytics/Overview">Overview</Link>,
-      },
-      {
-        key: "Analytics/Performance",
-        label: <Link to="/Analytics/Performance">Performance</Link>,
-      },
-      {
-        key: "Analytics/Vendor-Performance",
-        label: (
-          <Link to="/Analytics/Vendor-Performance">Vendor Performance</Link>
-        ),
-      },
-      {
-        key: "Analytics/Vendor-Order",
-        label: <Link to="/Analytics/Vendor-Order">Vendor Order</Link>,
-      },
-    ],
-  },
-  {
-    key: "AccountStatus",
-    icon: <UserOutlined />,
-    label: "Account Status",
-  },
-];
+  const menuItems = [
+    {
+      key: "Analytics",
+      icon: <MailOutlined />,
+      label: "Analytics",
+      children: [
+        {
+          key: "Analytics/Overview",
+          label: <Link to="/Analytics/Overview">Overview</Link>,
+        },
+        {
+          key: "Analytics/Performance",
+          label: <Link to="/Analytics/Performance">Performance</Link>,
+        },
+        {
+          key: "Analytics/Vendor-Performance",
+          label: (
+            <Link to="/Analytics/Vendor-Performance">Vendor Performance</Link>
+          ),
+        },
+        {
+          key: "Analytics/Vendor-Order",
+          label: <Link to="/Analytics/Vendor-Order">Vendor Order</Link>,
+        },
+      ],
+    },
+    {
+      key: "AccountStatus",
+      icon: <UserOutlined />,
+      label: "Account Status",
+    },
+  ];
   const breadcrumbItems = location.pathname
     .split("/")
     .filter(Boolean)
@@ -109,11 +109,11 @@ const menuItems = [
     nevigate("/login", { replace: true });
   };
 
-   const HandelAdmin = () => {
-    const updateType = currentType.type === 2 ? 1 : 1;
+  const HandelAdmin = () => {
+    const updateType = 1;
 
     localStorage.removeItem("SwicthUserData");
-    
+
     updateState("type", updateType)
 
     nevigate("/Manage-User/Client", { replace: true });
@@ -138,11 +138,11 @@ const menuItems = [
           collapsible
           collapsed={collapsed}
         >
-           <div className="demo-logo-vertical">
+          <div className="demo-logo-vertical">
             <img src={Market} alt="logo" width={247} height={50} />
           </div>
-          <Divider/>
-         {localStorage.getItem("SwicthUserData")? (
+          <Divider />
+          {localStorage.getItem("SwicthUserData") ? (
             <>
               <div className="back-admin-btn">
                 <Button
@@ -177,27 +177,27 @@ const menuItems = [
             </>
           )}
           <Menu
-          mode="inline"
-            defaultSelectedKeys={["/Manage-User/Client"]}
+            mode="inline"
+            defaultSelectedKeys={[ "/Manage-User/Client" ]}
             style={{ backgroundColor: "white" }}
-            selectedKeys={[current]}
+            selectedKeys={[ current ]}
             openKeys={openKeys}
             onOpenChange={(keys) => setOpenKeys(keys)}
             onClick={(e) => {
               setCurrent(e.key);
             }}
-            items={currentType.type == 1 ?AdminMenu:menuItems}
+            items={currentType.type === 1 ? AdminMenu : menuItems}
           />
         </Sider>
         <Layout
           style={{
-            marginInlineStart: 289,
+            marginInlineStart: 300,
           }}
         >
           <Header>
             <Space direction="vertical" align="center">
               <Breadcrumb
-                items={[{ title: <HomeOutlined /> }, ...breadcrumbItems]}
+                items={[ { title: <HomeOutlined /> }, ...breadcrumbItems ]}
                 separator={">"}
                 style={{ fontSize: "14px" }}
               />
@@ -225,7 +225,7 @@ const menuItems = [
           </Header>
           <Content
             style={{
-              margin: "24px 16px 0",
+              margin: "24px 0 0",
               overflow: "initial",
             }}
           >

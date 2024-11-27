@@ -9,7 +9,7 @@ import { ContextsApi } from "../../ContextApi/Index";
 
 export const LogIn = () => {
   const { Text, Title } = Typography;
-  const [form] = useForm();
+  const [ form ] = useForm();
   const navigate = useNavigate();
 
   const { updateState } = useContext(ContextsApi);
@@ -25,8 +25,8 @@ export const LogIn = () => {
         navigate("/Analytics/Overview", { replace: true });
       }
     }
-    
-  },[])
+
+  }, [])
   const getRegisterData = [
     { email: "admin@gmail.com", password: "111111", type: 1 }, // Admin
     { email: "user@gmail.com", password: "123456", type: 2 }, // Regular User
@@ -39,20 +39,16 @@ export const LogIn = () => {
 
     if (loggingUser) {
       if (loggingUser.type === 1) {
-        localStorage.setItem("Type", JSON.stringify(loggingUser.type));
-        updateState("type", loggingUser.type);
-        localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser));
-        form.resetFields();
         message.success("Welcome Admin!");
         navigate("/Manage-User/Client", { replace: true });
       } else {
-        localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser));
-        updateState("type", loggingUser.type);
-        localStorage.setItem("Type", JSON.stringify(loggingUser.type));
-        form.resetFields();
         message.success("Login successful!");
         navigate("/Analytics/Overview", { replace: true });
       }
+      localStorage.setItem("UserLoggingData", JSON.stringify(loggingUser));
+      updateState("type", loggingUser.type);
+      localStorage.setItem("Type", JSON.stringify(loggingUser.type));
+      form.resetFields();
     } else {
       message.error(
         "Email or Password is incorrect, or you need to register first."

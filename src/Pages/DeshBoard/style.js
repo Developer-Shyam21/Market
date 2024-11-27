@@ -25,12 +25,13 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-    background: linear-gradient(45deg, rgb(221, 209, 221), white);
+    background: transparent;
     padding: 0 20px;
     box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
     position: sticky !important;
     top: 0px !important;
+    border-radius:10px;
 }
 
   .ant-space-align-center{
