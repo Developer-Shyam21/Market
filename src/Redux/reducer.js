@@ -1,7 +1,6 @@
 
-
-
-const useReducer = (state = {data} , action) => {
+import { createStore } from 'redux';
+const useReducer = (state = {data : {}} , action) => {
     switch(action.type) {
         case "SET_DATA":
             return {
@@ -12,3 +11,7 @@ const useReducer = (state = {data} , action) => {
             return state;
     }
 }
+
+const store = createStore(useReducer)
+
+export default store

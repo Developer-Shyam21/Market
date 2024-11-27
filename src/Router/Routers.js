@@ -1,8 +1,9 @@
-import React, { Suspense, useContext } from "react";
+import React, { Suspense, useContext, useEffect } from "react";
 import {
   createBrowserRouter,
   RouterProvider,
   Navigate,
+
 } from "react-router-dom";
 import { Register } from "../Pages/Register";
 import { LogIn } from "../Pages/Login";
@@ -14,36 +15,37 @@ import UserDeshBoard from "../Pages/UserDeshboard";
 import { UserRouter } from "./UserRoter";
 
 const Routers = () => {
-  const { LoginData, currentType } = useContext(ContextsApi);
+  const { LoginData, currentType,updateState } = useContext(ContextsApi);
 
   // Generate admin and user routes
   const adminRoutes = Admin.map((route) => ({
     path: route.path,
-    element: <ProtectedRoute>
-
-      <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
-    </ProtectedRoute>
+    element: (
+      <ProtectedRoute>
+        <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
+      </ProtectedRoute>
+    ),
   }));
 
   const userRoutes = UserRouter.map((route) => ({
     path: route.path,
-    element:<ProtectedRoute>
-
-      <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
-    </ProtectedRoute>
-    
+    element: (
+      <ProtectedRoute>
+        <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
+      </ProtectedRoute>
+    ),
   }));
+ 
 
   // Conditionally choose the routes based on user type
   const pageRoutes = currentType.type === 1 ? adminRoutes : userRoutes;
 
-
   const router = createBrowserRouter([
-
     {
       path: "/",
-      element: <Navigate to="/Analytics/Overview" />,
-      
+      element: 
+        <Navigate to= "/Analytics/Overview"/>
+    
     },
     {
       path: "/login",
@@ -58,11 +60,11 @@ const Routers = () => {
           {
             path: "/",
             element: (
-                <Suspense fallback={<div>Loading...</div>}>
-                  <DeshBoard />
-                </Suspense>
+              <Suspense fallback={<div>Loading...</div>}>
+                <DeshBoard />
+              </Suspense>
             ),
-            children: pageRoutes, 
+            children: pageRoutes,
           },
           {
             path: "*",
@@ -70,11 +72,11 @@ const Routers = () => {
           },
         ]
       : []),
-   
-    // {
-    //   path: "*",
-    //   element: <Navigate to="/login" replace />, 
-    // },
+
+    {
+      path: "*",
+      element: <Navigate to="/login" replace />,
+    },
   ]);
 
   return <RouterProvider router={router} />;

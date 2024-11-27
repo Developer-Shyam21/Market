@@ -1,5 +1,5 @@
 import { Col, Row, Typography, Form, Input, Button, Checkbox } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import { Wrapper } from "./style";
@@ -10,8 +10,20 @@ export const Register = () => {
   const { Text, Title } = Typography;
   const [form] = useForm();
   const nevigation = useNavigate();
-  const { setRegisterData } = useContext(ContextsApi);
-
+  const { setRegisterData,updateState } = useContext(ContextsApi);
+  
+  useEffect(() => {
+    if (localStorage.getItem("UserLoggingData")) {
+      const user = JSON.parse(localStorage.getItem("UserLoggingData"));
+      updateState("type", user.type);
+      if (user.type === 1) {
+        nevigation("/Manage-User/Client", { replace: true });
+      } else {
+        nevigation("/Analytics/Overview", { replace: true });
+      }
+    }
+    
+  },[])
   const onFinish = (values) => {
     const newUser = { ...values };
 

@@ -27,10 +27,10 @@ const DeshBoard = () => {
   const { LoginData ,currentType,updateState} = useContext(ContextsApi);
   
 
-  // useEffect(() => {
-  //   setCurrent(location.pathname.replace("/", ""));
+  useEffect(() => {
+    setCurrent(location.pathname.replace("/", ""));
 
-  // }, [location,]);
+  }, [location,]);
 const AdminMenu = [
   {
     key: "Manage-User/Client",
@@ -178,7 +178,7 @@ const menuItems = [
           )}
           <Menu
           mode="inline"
-            defaultSelectedKeys={["Manage-User/Client"]}
+            defaultSelectedKeys={["/Manage-User/Client"]}
             style={{ backgroundColor: "white" }}
             selectedKeys={[current]}
             openKeys={openKeys}

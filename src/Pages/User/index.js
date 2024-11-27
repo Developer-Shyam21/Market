@@ -26,6 +26,7 @@ import { UserSection, Wrapper } from "./style";
 import { createStyles } from "antd-style";
 import { ContextsApi } from "../../ContextApi/Index";
 import { useNavigate } from "react-router-dom";
+import { BTN } from "../../Config";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -53,8 +54,9 @@ export const UserList = () => {
   const navigate = useNavigate();
   const { LoginData, TypeSwitch,updateState ,currentType} = useContext(ContextsApi);
 
+
   const handleSubmit = (value) => {
-    console.log("Received values of form: ", value);
+    console.log("Received values of form: ", LoginData);
     setVisible(false);
   };
 
@@ -551,6 +553,7 @@ export const UserList = () => {
             </Form>
           </UserSection>
         </Modal>
+        
       </Wrapper>
     </>
   );

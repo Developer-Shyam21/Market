@@ -1,5 +1,5 @@
 import { Col, Row, Typography, Form, Input, Button, message } from "antd";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import GraficImage from "../../Images/grafica-principale.svg";
@@ -14,6 +14,19 @@ export const LogIn = () => {
 
   const { updateState } = useContext(ContextsApi);
 
+
+  useEffect(() => {
+    if (localStorage.getItem("UserLoggingData")) {
+      const user = JSON.parse(localStorage.getItem("UserLoggingData"));
+      updateState("type", user.type);
+      if (user.type === 1) {
+        navigate("/Manage-User/Client", { replace: true });
+      } else {
+        navigate("/Analytics/Overview", { replace: true });
+      }
+    }
+    
+  },[])
   const getRegisterData = [
     { email: "admin@gmail.com", password: "111111", type: 1 }, // Admin
     { email: "user@gmail.com", password: "123456", type: 2 }, // Regular User
