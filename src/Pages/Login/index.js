@@ -4,7 +4,7 @@ import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/logo-main.png";
 import GraficImage from "../../Images/grafica-principale.svg";
 import { Wrapper } from "./style";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ContextsApi } from "../../ContextApi/Index";
 
 export const LogIn = () => {
@@ -12,7 +12,7 @@ export const LogIn = () => {
   const [ form ] = useForm();
   const navigate = useNavigate();
 
-  const { updateState } = useContext(ContextsApi);
+  const { updateState  } = useContext(ContextsApi);
 
 
   useEffect(() => {
@@ -37,6 +37,7 @@ export const LogIn = () => {
       (user) => user.email === email && user.password === password
     );
 
+
     if (loggingUser) {
       if (loggingUser.type === 1) {
         message.success("Welcome Admin!");
@@ -49,7 +50,8 @@ export const LogIn = () => {
       updateState("type", loggingUser.type);
       localStorage.setItem("Type", JSON.stringify(loggingUser.type));
       form.resetFields();
-    } else {
+    } 
+    else {
       message.error(
         "Email or Password is incorrect, or you need to register first."
       );
@@ -115,7 +117,7 @@ export const LogIn = () => {
                 </Form.Item>
                 <Form.Item>
                   <div className="forgot-link">
-                    <a href="">Forgot password</a>
+                    <a href="/forgot-password">Forgot password</a>
                   </div>
                 </Form.Item>
                 <Form.Item>
@@ -135,7 +137,7 @@ export const LogIn = () => {
         <Col xs={24} sm={18} lg={12} className="login-right">
           <div className="main-logo">
             <div className="main-logo-body">
-              <img src={Market} alt="logo" width={346} height={70} />
+              <img src={Market} alt="logo" width={346} height={70} className="logo-animation"/>
               <Title level={2}>
                 Welcome to MARKET <b>FORCE</b>
               </Title>
@@ -144,7 +146,7 @@ export const LogIn = () => {
                 your Amazon business for you.
               </Text>
             </div>
-            <div>
+            <div className="login-img"> 
               <img
                 src={GraficImage}
                 alt="images"

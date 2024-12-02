@@ -10,6 +10,8 @@ import {
   LogoutOutlined,
   SettingOutlined,
   MailOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined
 } from "@ant-design/icons";
 import Market from "../../Images/logo-main.png";
 import { FormatUserName } from "../../Config/index";
@@ -139,7 +141,7 @@ const DeshBoard = () => {
           collapsed={collapsed}
         >
           <div className="demo-logo-vertical">
-            <img src={Market} alt="logo" width={247} height={50} />
+            <img src={Market} alt="logo" width={247} height={50} className="logo-animation"/>
           </div>
           <Divider />
           {localStorage.getItem("SwicthUserData") ? (
@@ -191,10 +193,12 @@ const DeshBoard = () => {
         </Sider>
         <Layout
           style={{
-            marginInlineStart: 300,
+            marginInlineStart: 289,
           }}
         >
+          
           <Header>
+          
             <Space direction="vertical" align="center">
               <Breadcrumb
                 items={[ { title: <HomeOutlined /> }, ...breadcrumbItems ]}
@@ -215,22 +219,57 @@ const DeshBoard = () => {
               />
             </Space>
 
-            <Button
+            {/* <Button
               type="primary"
               icon={<LogoutOutlined />}
               onClick={handleLogout}
             >
               LogOut
-            </Button>
+            </Button> */}
+            <div className="logout-btn">
+                <Button
+                  className="logoutbtn"
+                  type="primary"
+                  onClick={handleLogout}
+                >
+                  <div className="logout-btn-icon">
+                    <Icon icon="uiw:logout" />
+                  </div>
+                  LogOut
+                </Button>
+              </div>
           </Header>
-          <Content
+          {
+            currentType.type === 1 ? (
+              <>
+               <Content
             style={{
-              margin: "24px 0 0",
+              background: "#fff",
+              margin: "24px 30px 0",
               overflow: "initial",
+              
             }}
+            
           >
             <Outlet />
           </Content>
+              </>
+            ):
+            (
+              <>
+               <Content
+            style={{
+              margin: "24px 30px 0",
+              overflow: "initial",
+              
+            }}
+            
+          >
+            <Outlet />
+          </Content>
+              </>
+            )
+          }
         </Layout>
       </Layout>
     </Wrapper>

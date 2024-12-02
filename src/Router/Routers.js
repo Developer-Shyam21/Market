@@ -13,6 +13,7 @@ import DeshBoard from "../Pages/DeshBoard";
 import { ContextsApi } from "../ContextApi/Index";
 import UserDeshBoard from "../Pages/UserDeshboard";
 import { UserRouter } from "./UserRoter";
+import { ForgotPassword } from "../Pages/Forgot-Password";
 
 const Routers = () => {
   const { LoginData, currentType,updateState } = useContext(ContextsApi);
@@ -40,13 +41,13 @@ const Routers = () => {
   // Conditionally choose the routes based on user type
   console.log(currentType.type,"ssssssssssssssssss");
   const pageRoutes = currentType.type === 1 ? adminRoutes : userRoutes;
-  console.log(pageRoutes,"flawef;woefweilfh");
+ 
 
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: 
+      element: currentType.type ===1?<Navigate to="/Manage-User/Client"/>:
         <Navigate to= "/Analytics/Overview"/>
     
     },
@@ -57,6 +58,10 @@ const Routers = () => {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/forgot-password",
+      element: <ForgotPassword />,
     },
     ...(LoginData
       ? [

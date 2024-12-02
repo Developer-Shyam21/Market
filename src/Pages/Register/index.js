@@ -48,7 +48,7 @@ export const Register = () => {
           <Col xs={24} sm={18} lg={12} className="register-left">
             <div className="main-register-logo">
               <div className="main-register-body">
-                <img src={Market} alt="logo" width={346} height={70} />
+                <img src={Market} alt="logo" width={346} height={70} className="logo-animation"/>
                 <Title>
                   Welcome to <b>Market Force</b>
                 </Title>
@@ -56,12 +56,12 @@ export const Register = () => {
                   An Intelligent tool for Amazon Sellers
                 </Text>
               </div>
-              <div>
+              <div className="register-img">
                 <img
                   src="https://app.getmarketforce.it/media/login-image.svg"
                   alt="images"
-                  width={836}
-                  height={836}
+                  width={600}
+                  height={600}
                   style={{ margin: "0" }}
                   className="grafic-img"
                 />

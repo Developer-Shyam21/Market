@@ -18,6 +18,7 @@ import {
   DatePicker,
   Typography,
   Tooltip,
+  Card,
 } from "antd";
 import { TimeRangePickerProps } from "antd";
 import Chart from "react-apexcharts";
@@ -51,8 +52,8 @@ export const Overview = () => {
   };
 
   const onRangeChange = (
-    dates: null | (Dayjs | null)[],
-    dateStrings: string[]
+    dates,
+    dateStrings
   ) => {
     if (dates) {
       console.log("From: ", dates[0], ", to: ", dates[1]);
@@ -68,7 +69,7 @@ export const Overview = () => {
     { label: "Last 90 Days", value: [dayjs().add(-90, "d"), dayjs()] },
   ];
 
-  const handleChange = (value: string) => {
+  const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
 
@@ -183,32 +184,31 @@ export const Overview = () => {
             </div>
           </Col>
         </Row>
-        <Row>
+        <Row gutter={[12,15]}>
           <Col lg={12}>
-            <div className="app">
-              <div className="row">
-                <div className="mixed-chart">
+           <Card  title="Sales Overview" >
+           
                   <Chart
                     options={options}
                     series={series}
                     type="line"
-                    width="800"
-                  />
-                </div>
-              </div>
-            </div>
+                    width="700"
+                  
+                    />
+                
+                    </Card>
           </Col>
           <Col lg={12}>
-            <div>
+            <Card>
               {/* Country Selector */}
-              <select onChange={handleCountryChange}>
+              {/* <select onChange={handleCountryChange}>
                 <option value="">Select a country</option>
                 <option value="United States">United States</option>
                 <option value="India">India</option>
                 <option value="Australia">Australia</option>
                 <option value="Brazil">Brazil</option>
                 <option value="China">China</option>
-              </select>
+              </select> */}
 
               {/* Map */}
               <ComposableMap>
@@ -241,7 +241,7 @@ export const Overview = () => {
                   }
                 </Geographies>
               </ComposableMap>
-            </div>
+            </Card>
           </Col>
         </Row>
       </Wrapper>

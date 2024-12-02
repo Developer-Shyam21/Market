@@ -9,20 +9,17 @@ export const Wrapper = styled.div`
     margin: 0 auto;
        width: 100%;
     box-sizing: border-box;
-    animation-name: login;
+     animation-name: login;
         animation-duration: 1s;
     animation-fill-mode: both;
-   
-    
-}
 
     @media (max-width: 768px) {
       flex-direction: column;
       height: auto;
     }
-  
+  } 
     
-  @keyframes login {
+    @keyframes login {
    0%{
     transform: translateY(-25%);
     opacity:0;
@@ -31,7 +28,6 @@ export const Wrapper = styled.div`
    opacity:1;
    }
   }
-
 
   .login-section {
     width: 100%;
@@ -54,6 +50,7 @@ export const Wrapper = styled.div`
       font-weight: 500;
       font-size: 24px;
       margin: 10px 0;
+  
 
       @media (max-width: 768px) {
         font-size: 20px;
@@ -157,14 +154,15 @@ export const Wrapper = styled.div`
       }
   }
 
-  .login-right {
-    background: linear-gradient(45deg, rgb(119, 90, 144), rgb(195, 109, 93));
+  .forgot-right {
+    background: rgb(239, 243, 254);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 40px;
     max-width: 100%;
+    height:100vh;
 
     @media (max-width: 768px) {
       padding: 20px;
@@ -216,7 +214,7 @@ export const Wrapper = styled.div`
   }
 
    .ant-typography {
-    color: white !important;
+    color: black !important;
     font-weight: 400;
     letter-spacing: 1px;
 
@@ -251,7 +249,7 @@ export const Wrapper = styled.div`
       gap: 10px;
     }
 
-    .login-right {
+    .forgot-right {
       padding: 20px;
     }
 
@@ -287,7 +285,7 @@ export const Wrapper = styled.div`
       padding-bottom: 20px;
     }
 
-    .login-right {
+    .forgot-right{
       padding: 10px;
     }
 
@@ -303,7 +301,7 @@ export const Wrapper = styled.div`
   }
 
   @media (max-width: 1024px) {
-    .login-right {
+    .forgot-right {
       padding: 30px;
     }
 
@@ -311,33 +309,4 @@ export const Wrapper = styled.div`
       gap: 80px;
     }
   }
-
-  .login-img{
-    animation-name: login-img;
-        animation-duration: 1s;
-    animation-fill-mode: both;
-   
-  }
-    @keyframes  login-img {
-   0%{
-    transform: translateY(25%);
-    opacity:0;
-   }
-   100%{
-   opacity:1;
-   }
-  }
-
-  .logo-animation{
-      mask: linear-gradient(-60deg, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.333), rgb(0, 0, 0) 70%) right center / 300% 100%;
-    background-repeat: no-repeat;
-    animation: 2.5s ease 0s infinite normal none running shimmer;
-}
-  @keyframes shimmer {
- 100% {
-    mask-position: left center;
-}
-
-
-}
 `;

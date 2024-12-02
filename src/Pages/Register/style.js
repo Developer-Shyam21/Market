@@ -66,10 +66,23 @@ export const Wrapper = styled.div`
     align-items: center;
     margin: 0 auto;
     padding: 20px;
+    animation-name: register;
+        animation-duration: 1s;
+    animation-fill-mode: both;
 
     @media (max-width: 768px) {
       padding: 10px;
     }
+  }
+
+  @keyframes register {
+   0%{
+    transform: translateY(25%);
+    opacity:0;
+   }
+   100%{
+   opacity:1;
+   }
   }
 
   .register-section {
@@ -162,7 +175,7 @@ export const Wrapper = styled.div`
     gap: 15px;
     padding-top: 20px;
     position: relative;
-    bottom: -210px;
+    bottom: -100px;
 }
 
     a {
@@ -191,4 +204,32 @@ export const Wrapper = styled.div`
       padding: 12px 16px;
     }
   }
+
+  .register-img{
+    animation-name: register-img;
+        animation-duration: 1s;
+    animation-fill-mode: both;
+   
+  }
+    @keyframes  register-img {
+   0%{
+    transform: translateY(-25%);
+    opacity:0;
+   }
+   100%{
+   opacity:1;
+   }
+  }
+
+    .logo-animation{
+      mask: linear-gradient(-60deg, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.333), rgb(0, 0, 0) 70%) right center / 300% 100%;
+    background-repeat: no-repeat;
+    animation: 2.5s ease 0s infinite normal none running shimmer;
+}
+  @keyframes shimmer {
+ 100% {
+    mask-position: left center;
+}
+
+
 `;

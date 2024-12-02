@@ -69,4 +69,9 @@ row-gap:3px;
     text-align:end;
     gap: 5px;
   }
+
+
+  .apexcharts-toolbar{
+  display:none !important;
+  }
 `;
