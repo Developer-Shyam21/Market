@@ -27,6 +27,7 @@ import { createStyles } from "antd-style";
 import { ContextsApi } from "../../ContextApi/Index";
 import { useNavigate } from "react-router-dom";
 import { BTN } from "../../Config";
+import { useTranslation } from "react-i18next";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -52,6 +53,7 @@ export const UserList = () => {
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
+  const { t } = useTranslation()
   const { LoginData, TypeSwitch,updateState ,currentType} = useContext(ContextsApi);
 
 
@@ -190,7 +192,7 @@ export const UserList = () => {
       key: "key",
     },
     {
-      title: "Name",
+      title: t("Name"),
       dataIndex: "name",
       key: "name",
       render: (text) => (
@@ -205,17 +207,17 @@ export const UserList = () => {
       ),
     },
     {
-      title: "Email",
+      title: t("Email"),
       dataIndex: "email",
       key: "email",
     },
     {
-      title: "Mobile",
+      title: t("Mobile"),
       dataIndex: "mobile",
       key: "mobile",
     },
     {
-      title: "Account Type",
+      title: t("Account Type"),
       dataIndex: "accounttype",
       key: "accounttype",
       render: (accounttype) => (
@@ -236,18 +238,18 @@ export const UserList = () => {
       ),
     },
     {
-      title: "Channel",
+      title: t("Channel"),
       dataIndex: "channel",
       key: "channel",
     },
     {
-      title: "Panding Reports",
+      title: t("Panding Reports"),
       dataIndex: "pandingreports",
       key: "pandingreports",
       width: 150
     },
     {
-      title: "Status",
+      title: t("Status"),
       dataIndex: "status",
       key: "status",
       render: (status) => (
@@ -268,7 +270,7 @@ export const UserList = () => {
       ),
     },
     {
-      title: "Switch User",
+      title: t("Switch User"),
       dataIndex: "switchuser",
       key: "switchuser",
       render: (_, record) => (
@@ -284,7 +286,7 @@ export const UserList = () => {
       ),
     },
     {
-      title: "Action",
+      title: t("Action"),
       width: 150,
       dataIndex: "action",
       key: "action",
@@ -383,7 +385,7 @@ export const UserList = () => {
               icon={<PlusOutlined />}
               onClick={() => setVisible(true)}
             >
-              Add
+              {t("Add")}
             </Button>
           </div>
         </div>

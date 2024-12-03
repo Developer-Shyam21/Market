@@ -8,5 +8,17 @@
     "Overview":"सिंहावलोकन",
     "Performance":"प्रदर्शन",
     "Vendor Performance":"विक्रेता प्रदर्शन",
-    "Vendor Order":"विक्रेता आदेश"
+    "Vendor Order":"विक्रेता आदेश",
+    "Back To Admin":"व्यवस्थापक पर वापस जाएँ",
+    "LogOut":"लॉग आउट",
+    "Name":"नाम",
+    "Email":"ईमेल",
+    "Mobile":"गतिमान",
+    "Account Type":"खाता प्रकार",
+    "Channel":"चैनल",
+    "Panding Reports":"लंबित रिपोर्ट",
+    "Status":"स्थिति",
+    "Action":"कार्य",
+    "Switch User":"उपयोगकर्ता स्विच करें",
+    "Add":"जोड़ना"
 }

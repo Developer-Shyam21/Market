@@ -172,7 +172,7 @@ const DeshBoard = () => {
                   <div className="back-btn-icon">
                     <Icon icon="solar:arrow-right-outline" />
                   </div>
-                  Back To Admin
+                  {t("Back To Admin")}
                 </Button>
               </div>
               <Divider />
@@ -212,7 +212,7 @@ const DeshBoard = () => {
               <div className="logout-btn-icon">
                 <Icon icon="uiw:logout" />
               </div>
-              LogOut
+              {t("LogOut")}
             </Button>
           </div>
         </Sliders>
