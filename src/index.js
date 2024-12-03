@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ContextProvider from "./ContextApi/Index";
+import "./i18n";
 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { InputColor } from "../../../../Config";
+import { InputColor, thiredColor } from "../../../../Config";
 
 export const Wrapper = styled.div`
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
    border-color: rgb(95, 26, 70);
-    background-color: ${InputColor};
+     background: ${thiredColor};
      padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
   }
 .ant-picker-outlined{
  border-color: rgb(95, 26, 70);
-    background-color:  ${InputColor};
+   background: ${thiredColor};
      padding: 9px 10px;
     font-size: 16px;
     line-height: 1.5;

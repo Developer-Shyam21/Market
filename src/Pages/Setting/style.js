@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { thiredColor } from "../../Config";
 
 
 export const Wrapper = styled.div`
@@ -13,7 +14,7 @@ export const Wrapper = styled.div`
 
   .ant-input {
     border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241) !important;
+     background: ${thiredColor};
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -22,7 +23,7 @@ export const Wrapper = styled.div`
 
   .ant-select-selector {
     border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241) !important;
+     background: ${thiredColor} !important;
     padding: 7px 11px !important;
     font-size: 16px !important;
     line-height: 1.5 !important;

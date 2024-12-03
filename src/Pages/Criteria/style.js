@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Modal } from "antd";
+import { thiredColor } from "../../Config";
 
 export const Wrapper = styled.div`
   .User-Section {
@@ -12,7 +13,7 @@ export const Wrapper = styled.div`
 
   .ant-input {
     border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241) !important;
+      background: ${thiredColor};
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -21,7 +22,7 @@ export const Wrapper = styled.div`
 
   .ant-select-selector {
     border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241) !important;
+      background: ${thiredColor} !important;
     padding: 7px 11px !important;
     font-size: 16px !important;
     line-height: 1.5 !important;
@@ -41,6 +42,9 @@ export const Wrapper = styled.div`
     padding: 0 30px;
   }
 
+  .ant-table-wrapper{
+  padding: 0 !important;
+  }
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
@@ -63,7 +67,7 @@ export const Wrapper = styled.div`
 export const ModalView = styled("div")`
 
   .criteria-form {
-    background: rgb(254, 244, 243);
+      background: ${thiredColor};
     padding: 20px 10px 10px;
     border-radius: 8px;
     border: 1px dashed rgb(96, 25, 71);
@@ -77,7 +81,7 @@ export const ModalView = styled("div")`
 
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector{
    border-color: rgb(95, 26, 70);
-    background-color: rgb(253, 243, 241);
+     background: ${thiredColor};
      padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
@@ -87,7 +91,7 @@ export const ModalView = styled("div")`
 
   .ant-input-outlined{
   border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241)  !important;
+      background: ${thiredColor};
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;

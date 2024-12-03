@@ -1,16 +1,24 @@
 import styled from "styled-components";
-import { MenuItemsColor, SecondaryColor } from "../../Config";
+import {
+  MenuItemsColor,
+  SecondaryColor,
+  PrimaryColor,
+  thiredColor,
+} from "../../Config";
 
 export const Wrapper = styled.div`
   .ant-layout-sider {
-    background-color: white;
-    min-width: 289px !important;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: transparent;
     overflow-y: hidden;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: sider;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    margin: 20px 17px;
+    border-radius: 15px;
+
 }
+
    @keyframes  sider {
    0%{
     transform: translateX(-100%);
@@ -25,7 +33,7 @@ export const Wrapper = styled.div`
     padding: 0 1.25rem;
   }
   .ant-layout {
-    background-color: #e0e4e9;
+    background-color: rgb(248, 249, 250);
   }
 
   .ant-layout-header {
@@ -35,15 +43,19 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     align-items: center;
     z-index: 999;
-    background: linear-gradient(45deg, rgb(221, 209, 221), white);
+    background: transparent;
+    border-radius:12px;
     padding: 0 20px;
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(30px);
     position: sticky !important;
-    top: 0px !important;
+    top: 4px !important;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: header;
+    margin:0  25px 0 29px;
+        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 20px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
    @keyframes  header {
    0%{
@@ -70,12 +82,14 @@ export const Wrapper = styled.div`
   .ant-layout-content {
     min-height: 280px;
    
-    border-radius: 8px;
+    border-radius: 15px;
     margin: 24px;
     transition: transform 0.2s ease;
     animation-name: content; 
     animation-duration: 1s;
     animation-fill-mode: both;
+         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
   @keyframes content {
@@ -96,17 +110,28 @@ export const Wrapper = styled.div`
 
   .ant-menu-item {
     font-weight: 600;
-    border-radius: 0;
+    margin: 13px 0;
+  
   }
 
-  .ant-menu-light .ant-menu-item-selected {
-    border-right: 3px solid ${MenuItemsColor};
-    color: ${MenuItemsColor};
-    border-radius: 0;
+  .ant-menu-light .ant-menu-item-selected{
+          box-shadow: rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem;
+        transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+         margin: 13px 0;
   }
 
-  .ant-menu-light.ant-menu-root.ant-menu-vertical {
-    border-inline-end: 0 !important;
+  .ant-menu .ant-menu-item .ant-menu-item-icon{
+  padding:10px;
+  background: ${PrimaryColor};
+  border-radius: 10px;
+  color:white;
+  }
+  
+  .ant-menu .ant-menu-submenu-title .ant-menu-item-icon{
+  padding:10px;
+  background: ${PrimaryColor};
+  border-radius: 10px;
+  color:white;
   }
 
   .back-admin-btn {
@@ -117,7 +142,7 @@ export const Wrapper = styled.div`
   }
 
   .backadminbtn {
-    background: rgb(205, 107, 91);
+    background: ${PrimaryColor};
     color: white;
     padding: 0.35em 3.3em 0.35em 1.2em;
     font-size: 12px;
@@ -142,7 +167,7 @@ export const Wrapper = styled.div`
     }
 
     .back-btn-icon {
-      background-color: #9f4545;
+      background: ${PrimaryColor};
       width: 27px;
       height: 34px;
       position: absolute;
@@ -154,13 +179,6 @@ export const Wrapper = styled.div`
       transition: all 0.4s ease-in-out;
     }
   }
-
- .ant-menu-light.ant-menu-root.ant-menu-inline{
- border-inline-end: none;
- font-size:16px;
- }
-
-
 
 
     @keyframes
@@ -180,9 +198,14 @@ export const Wrapper = styled.div`
     align-items: center;
     justify-content: center;
     padding: 10px;
+    position: absolute;
+    bottom: 20px;
+    left: 26%;
+
   }
 
   .logoutbtn {
+  background: ${PrimaryColor};
     padding: 0.35em 3.3em 0.35em 1.2em;
     font-size: 14px;
     font-weight: 500;
@@ -206,7 +229,7 @@ export const Wrapper = styled.div`
     }
 
     .logout-btn-icon {
-      background-color: #9f4545;
+      background: ${PrimaryColor};
       width: 32px;
       height: 42px;
       position: absolute;
@@ -223,9 +246,7 @@ export const Wrapper = styled.div`
     row-gap: 0px;
 }
 
-.ant-menu .ant-menu-item .ant-menu-item-icon{
-font-size:16px;
-}
+
 
  .logo-animation{
       mask: linear-gradient(-60deg, rgb(0, 0, 0) 30%, rgba(0, 0, 0, 0.333), rgb(0, 0, 0) 70%) right center / 300% 100%;
@@ -236,9 +257,40 @@ font-size:16px;
  100% {
     mask-position: left center;
 }
-
-.ant-menu-light.ant-menu-inline .ant-menu-sub.ant-menu-inline{
-background: ${SecondaryColor};
 }
+
+.profile{
+display:flex;
+ align-items:center;
+ gap:12px;
+}
+
+.ant-avatar-lg.ant-avatar-icon{
+box-shadow: rgb(33, 82, 255) 0px 0px 10px;
+}
+
+.left-header{
+display: flex;
+justify-content: center;
+align-items: center;
+gap:30px;
+}
+
+  .ant-select-selector {
+    width: 150px !important;
+  }
+     .ant-select-arrow {
+    height: 22px;
+  }
+.ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
+  border-color: rgb(95, 26, 70);
+  background: ${thiredColor};
+  padding: 19px 12px;
+  font-size: 16px;
+  line-height: 1.5;
+  border-radius: 8px;
+  color: black;
+}
+
 
 `;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { PrimaryColor, SecondaryColor } from "../../Config";
+import { PrimaryColor, SecondaryColor, thiredColor } from "../../Config";
 export const Wrapper = styled.div`
 
   .flex-section {
@@ -93,7 +93,7 @@ export const Wrapper = styled.div`
   .ant-input,
   .ant-input-password {
    border-color: rgb(95, 26, 70) !important;
-    background-color: rgb(253, 243, 241)  !important;
+    background: ${thiredColor};
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -158,7 +158,7 @@ export const Wrapper = styled.div`
   }
 
   .login-right {
-    background: linear-gradient(45deg, rgb(119, 90, 144), rgb(195, 109, 93));
+    background: ${PrimaryColor};
     display: flex;
     justify-content: center;
     align-items: center;

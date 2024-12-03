@@ -19,7 +19,7 @@ function App() {
         <ConfigProvider
           theme={{
             token: {
-              colorPrimary: thiredColor,
+              colorPrimary: PrimaryColor,
               colorPrimaryHover: SecondaryColor,
             },
             components: {

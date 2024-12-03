@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { SecondaryColor } from "../../Config";
+import { SecondaryColor, thiredColor } from "../../Config";
 
 export const Wrapper = styled.div`
   .User-Section {
@@ -31,7 +31,7 @@ export const Wrapper = styled.div`
   
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
     border-color: rgb(95, 26, 70);
-    background-color: rgb(253, 243, 241);
+      background: ${thiredColor};
     padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
@@ -71,22 +71,27 @@ export const Wrapper = styled.div`
     padding: 18px 14px;
   }
 
+  .ant-table-wrapper{
+  padding: 0 !important;
+  }
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
+    
   }
 
-  .ant-table-thead > tr > th {
+ .ant-table-wrapper .ant-table-thead >tr>th {
     font-weight: 700;
     padding: 16px;
-  }
-
+}
+ 
   .ant-table-tbody > tr > td {
     padding: 16px;
-    font-size: 16px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
+    font-size: 15px;
+    font-weight:500;
+    letter-spacing:0.3px;
   }
+
 `;
 
 
@@ -94,7 +99,7 @@ export const ModalAdmin = styled("div")`
 
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
   border-color: rgb(95, 26, 70);
-  background-color: rgb(253, 243, 241);
+    background: ${thiredColor};
   padding: 19px 12px;
   font-size: 16px;
   line-height: 1.5;
@@ -110,7 +115,7 @@ export const ModalAdmin = styled("div")`
   }
   .ant-input-outlined {
    border-color: rgb(95, 26, 70);
-    background-color: rgb(253, 243, 241);
+     background: ${thiredColor};
     padding: 7px 11px;
   }
 `;

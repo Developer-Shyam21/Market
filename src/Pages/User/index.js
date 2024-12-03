@@ -244,6 +244,7 @@ export const UserList = () => {
       title: "Panding Reports",
       dataIndex: "pandingreports",
       key: "pandingreports",
+      width: 150
     },
     {
       title: "Status",
@@ -276,8 +277,9 @@ export const UserList = () => {
           size="small"
           icon={<LoginOutlined />}
           onClick={() => handelUserData(record.email)}
+          className="switchuser"
         >
-          switchuser
+          SwitchUser
         </Button>
       ),
     },

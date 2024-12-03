@@ -1,12 +1,12 @@
 import { Col, Row, Typography, Form, Input, Button, message } from "antd";
 import React, { useContext, useEffect } from "react";
 import { useForm } from "antd/es/form/Form";
-import Market from "../../Images/logo-main.png";
+import Market from "../../Images/market.png";
 import GraficImage from "../../Images/grafica-principale.svg";
 import { Wrapper } from "./style";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ContextsApi } from "../../ContextApi/Index";
-
+import Login_bg from "../../Images/login-bg-img.jpg";
 export const LogIn = () => {
   const { Text, Title } = Typography;
   const [ form ] = useForm();
@@ -134,7 +134,7 @@ export const LogIn = () => {
             <Link to="#">Purchase</Link>
           </div>
         </Col>
-        <Col xs={24} sm={18} lg={12} className="login-right">
+        <Col xs={24} sm={18} lg={12} className="login-right" >
           <div className="main-logo">
             <div className="main-logo-body">
               <img src={Market} alt="logo" width={346} height={70} className="logo-animation"/>
