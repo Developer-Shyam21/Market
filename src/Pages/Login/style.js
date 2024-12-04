@@ -92,8 +92,8 @@ export const Wrapper = styled.div`
 
   .ant-input,
   .ant-input-password {
-   border-color: rgb(95, 26, 70) !important;
-    background: ${thiredColor};
+   border-color:  ${thiredColor} !important;
+
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;

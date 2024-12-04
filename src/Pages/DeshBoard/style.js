@@ -48,11 +48,11 @@ export const Wrapper = styled.div`
     padding: 0 20px;
     backdrop-filter: blur(30px);
     position: sticky !important;
-    top: 4px !important;
+    top: 20px !important;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: header;
-    margin:0  25px 0 29px;
+    margin:0  17px 0 17px;
         transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
             line-height: 20px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -277,14 +277,13 @@ gap:30px;
 }
 
   .ant-select-selector {
-    width: 150px !important;
+    width: 100% !important;
   }
      .ant-select-arrow {
     height: 22px;
   }
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-  border-color: rgb(95, 26, 70);
-  background: ${thiredColor};
+  border-color: ${thiredColor};
   padding: 19px 12px;
   font-size: 16px;
   line-height: 1.5;

@@ -125,6 +125,7 @@ export const AdminPage = () => {
       title: "Name",
       dataIndex: "name",
       key: "name",
+      sorter: (a, b) => a.name.localeCompare(b.name),
       render: (text) => (
         <Row gutter={[14, 14]} align="middle">
           <Col>
@@ -141,12 +142,14 @@ export const AdminPage = () => {
       dataIndex: "email",
       width: 350,
       key: "email",
+      sorter: (a, b) => a.email.localeCompare(b.email),
     },
     {
       title: "Mobile",
       width: 300,
       dataIndex: "mobile",
       key: "mobile",
+      sorter: (a, b) => a.mobile.localeCompare(b.mobile),
     },
 
     {

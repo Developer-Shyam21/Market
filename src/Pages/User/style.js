@@ -22,13 +22,13 @@ export const Wrapper = styled.div`
     transiton: 0.4s ease-in-out;
   }
   .ant-btn-variant-link:not(:disabled):not(.ant-btn-disabled):hover {
-    scale: 1.1;
+    
     background-image: ${PrimaryColor};
 
     color: ${SecondaryColor};
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    font-weight: 600;
+    
   }
 
   .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
@@ -47,8 +47,7 @@ export const Wrapper = styled.div`
   }
 
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-    border-color: rgb(95, 26, 70);
-    background: ${thiredColor};
+    border-color:  ${thiredColor};
     padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
@@ -57,8 +56,7 @@ export const Wrapper = styled.div`
   }
 
   .ant-input {
-    border-color: rgb(95, 26, 70) !important;
-    background: ${thiredColor};
+    border-color:  ${thiredColor} !important;
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -89,6 +87,8 @@ export const Wrapper = styled.div`
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
+    padding: 0 20px;
+  
   }
 
   .ant-table-wrapper .ant-table-thead > tr > th {
@@ -106,13 +106,14 @@ export const Wrapper = styled.div`
 
 export const UserSection = styled("div")`
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-    border-color: rgb(95, 26, 70);
-    background: ${thiredColor};
+    border-color: ${thiredColor};
+
     padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
     border-radius: 8px;
     color: black;
+    
   }
   .ant-input,
   .ant-input-password {
@@ -121,7 +122,7 @@ export const UserSection = styled("div")`
     border-radius: 8px;
   }
   .ant-input-outlined {
-    border-color: rgb(95, 26, 70);
-    background: ${thiredColor};
+    border-color:  ${thiredColor};
+
   }
 `;

@@ -4,6 +4,7 @@ import {
   PlusOutlined,
   DeleteOutlined,
   LoginOutlined,
+  QuestionCircleOutlined
 } from "@ant-design/icons";
 import {
   Avatar,
@@ -14,6 +15,7 @@ import {
   Form,
   Input,
   Modal,
+  Popconfirm,
   Row,
   Select,
   Table,
@@ -27,7 +29,8 @@ import { createStyles } from "antd-style";
 import { ContextsApi } from "../../ContextApi/Index";
 import { useNavigate } from "react-router-dom";
 import { BTN } from "../../Config";
-import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { setDeleteData, setUpdateData, setUserData } from "../../Redux/reducer";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -53,137 +56,18 @@ export const UserList = () => {
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
   const navigate = useNavigate();
-  const { t } = useTranslation()
-  const { LoginData, TypeSwitch,updateState ,currentType} = useContext(ContextsApi);
+  const { LoginData, TypeSwitch, updateState, currentType } =
+    useContext(ContextsApi);
+  const dispatch = useDispatch(); // Redux dispatch
+  const users = useSelector((state) => state.reducer.data);
 
-
+//   const SwitchUserData = useSelector((state) => state.userReducer.user)
+// console.log("switch user data is the : ",SwitchUserData)
   const handleSubmit = (value) => {
-    console.log("Received values of form: ", LoginData);
+    const updatedData = { ...value };
+    dispatch(setUpdateData({ key: value.key, updatedData })); // Dispatch update action
     setVisible(false);
   };
-
-  const UserData = [
-    {
-      key: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      mobile: "+1 (555) 123-4567",
-      accounttype: "Seller",
-      channel: "Web",
-      pandingreports: 3,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      mobile: "+1 (555) 234-5678",
-      accounttype: "-",
-      channel: "Mobile",
-      pandingreports: 5,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 3,
-      name: "Michael Johnson",
-      email: "michael.johnson@example.com",
-      mobile: "+1 (555) 345-6789",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 4,
-      name: "Sarah Lee",
-      email: "sarah.lee@example.com",
-      mobile: "+1 (555) 456-7890",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 2,
-      status: "Reviewed",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 5,
-      name: "David Brown",
-      email: "david.brown@example.com",
-      mobile: "+1 (555) 567-8901",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 7,
-      status: "Reviewed",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 6,
-      name: "Emily Wilson",
-      email: "emily.wilson@example.com",
-      mobile: "+1 (555) 678-9012",
-      accounttype: "Vendor",
-      channel: "API",
-      pandingreports: 1,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 7,
-      name: "Robert Taylor",
-      email: "robert.taylor@example.com",
-      mobile: "+1 (555) 789-0123",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 4,
-      status: "Reviewed",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 8,
-      name: "Laura Martinez",
-      email: "laura.martinez@example.com",
-      mobile: "+1 (555) 890-1234",
-      accounttype: "Seller",
-      channel: "Mobile",
-      pandingreports: 6,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 9,
-      name: "James Anderson",
-      email: "james.anderson@example.com",
-      mobile: "+1 (555) 901-2345",
-      accounttype: "Seller",
-      channel: "API",
-      pandingreports: 8,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-    {
-      key: 10,
-      name: "Mary Harris",
-      email: "mary.harris@example.com",
-      mobile: "+1 (555) 012-3456",
-      accounttype: "Vendor",
-      channel: "Web",
-      pandingreports: 0,
-      status: "Under Review",
-      switchuser: "Switch User",
-      action: "Action",
-    },
-  ];
 
   const columns = [
     {
@@ -192,7 +76,7 @@ export const UserList = () => {
       key: "key",
     },
     {
-      title: t("Name"),
+      title: "Name",
       dataIndex: "name",
       key: "name",
       render: (text) => (
@@ -205,21 +89,25 @@ export const UserList = () => {
           <Col>{text}</Col>
         </Row>
       ),
+      sorter: (a, b) => a.name.localeCompare(b.name),
     },
     {
-      title: t("Email"),
+      title: "Email",
       dataIndex: "email",
       key: "email",
+      sorter: (a, b) => a.email.localeCompare(b.email),
     },
     {
-      title: t("Mobile"),
+      title: "Mobile",
       dataIndex: "mobile",
       key: "mobile",
+      sorter: (a, b) => a.mobile.localeCompare(b.mobile),
     },
     {
-      title: t("Account Type"),
+      title: "Account Type",
       dataIndex: "accounttype",
       key: "accounttype",
+      sorter: (a, b) => a.accounttype.localeCompare(b.accounttype),
       render: (accounttype) => (
         <span
           style={{
@@ -238,20 +126,21 @@ export const UserList = () => {
       ),
     },
     {
-      title: t("Channel"),
+      title: "Channel",
       dataIndex: "channel",
       key: "channel",
     },
     {
-      title: t("Panding Reports"),
+      title: "Panding Reports",
       dataIndex: "pandingreports",
       key: "pandingreports",
-      width: 150
+      sorter: (a, b) => a.pandingreports.localeCompare(b.pandingreports),
     },
     {
-      title: t("Status"),
+      title: "Status",
       dataIndex: "status",
       key: "status",
+      sorter: (a, b) => a.status.localeCompare(b.status),
       render: (status) => (
         <Tag
           style={{
@@ -270,7 +159,7 @@ export const UserList = () => {
       ),
     },
     {
-      title: t("Switch User"),
+      title: "Switch User",
       dataIndex: "switchuser",
       key: "switchuser",
       render: (_, record) => (
@@ -278,22 +167,21 @@ export const UserList = () => {
           type="link"
           size="small"
           icon={<LoginOutlined />}
-          onClick={() => handelUserData(record.email)}
-          className="switchuser"
+          onClick={() => handelUserData(record)}
         >
-          SwitchUser
+          switchuser
         </Button>
       ),
     },
     {
-      title: t("Action"),
+      title: "Action",
       width: 150,
       dataIndex: "action",
       key: "action",
       render: (_, record) => (
         <div className="action-btn">
           <Button
-            type="link"
+            type="primary"
             icon={<EditOutlined />}
             style={{
               backgroundColor: "#f5f8fa",
@@ -302,40 +190,55 @@ export const UserList = () => {
             }}
             onClick={() => handleEdit(record)}
           ></Button>
-          <Button
-            type="link"
+          <Popconfirm
+            title="Delete the task"
+            description="Are you sure to delete this task?"
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+            okText="Yes"
+            cancelText="No"
+          >
+           <Button
+            type="primary"
             danger
             icon={<DeleteOutlined />}
             style={{
               backgroundColor: "#f5f8fa",
               color: "#a2a5b8",
-              padding: "16px",
+              
             }}
             onClick={() => handleDelete(record.key)}
           ></Button>
+          </Popconfirm>
+          
         </div>
       ),
     },
   ];
 
   const handleDelete = (key) => {
-    console.log("delete key:", key);
+    dispatch(setDeleteData(key));
   };
 
   const handleEdit = (record) => {
-    console.log("edit record:", record);
-    // setModalVisible(true);
-    // setFormData(record);
+    form.setFieldsValue(record); // Populate form fields with user data
+    setVisible(true);
   };
 
-  const handelUserData = (email) => {
+  const handelUserData = (record) => {
     // Update the type in both state and local storage
     const updattype = 2;
     updateState("type", updattype);
+    dispatch(setUserData(record));
 
     const updatedLoginDataEmail = {
       ...LoginData,
-      email: email,
+      email: record.email,
       type: 2,
     };
 
@@ -343,14 +246,12 @@ export const UserList = () => {
       "SwicthUserData",
       JSON.stringify(updatedLoginDataEmail)
     );
-    if(updattype === 2){
-      navigate("/Analytics/Overview", { replace: true })
-    } else{
-      navigate("/Manage-User/Client", { replace: true })
+    if (updattype === 2) {
+      navigate("/Analytics/Overview", { replace: true });
+    } else {
+      navigate("/Manage-User/Client", { replace: true });
     }
-  
   };
-  
 
   return (
     <>
@@ -385,7 +286,7 @@ export const UserList = () => {
               icon={<PlusOutlined />}
               onClick={() => setVisible(true)}
             >
-              {t("Add")}
+              Add
             </Button>
           </div>
         </div>
@@ -393,7 +294,7 @@ export const UserList = () => {
 
         <Table
           columns={columns}
-          dataSource={UserData}
+          dataSource={users}
           className={styles.customTable}
           scroll={{
             x: "max-content",
@@ -486,7 +387,7 @@ export const UserList = () => {
 
               <Form.Item
                 label="Contact Number"
-                name="contactNumber"
+                name="mobile"
                 rules={[
                   {
                     required: true,
@@ -557,7 +458,6 @@ export const UserList = () => {
             </Form>
           </UserSection>
         </Modal>
-        
       </Wrapper>
     </>
   );

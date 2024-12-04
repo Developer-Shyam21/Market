@@ -139,12 +139,14 @@ export const Criteria = () => {
       width: 400,
       dataIndex: "criterianame",
       key: "criterianame",
+      sorter: (a, b) => a.criterianame.localeCompare(b.criterianame),
     },
     {
       title: "Criteria Type",
       width: 100,
       dataIndex: "criteriatype",
       key: "criteriatype",
+      sorter: (a, b) => a.criteriatype.localeCompare(b.criteriatype),
       render: (criteriatype) => (
         <Tag style={{ color: "#389e0d", backgroundColor: "#f6ffed" }}>
           {criteriatype}
@@ -156,12 +158,14 @@ export const Criteria = () => {
       width: 300,
       dataIndex: "type",
       key: "type",
+      sorter: (a, b) => a.type.localeCompare(b.type),
     },
     {
       title: "Weight",
       dataIndex: "weight",
       width: 100,
       key: "weight",
+      sorter: (a, b) => a.weight.localeCompare(b.weight),
       render: (weight) => (
         <Tag style={{ color: "#08979c", backgroundColor: "#e6fffb" }}>
           {weight}

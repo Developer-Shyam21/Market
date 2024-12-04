@@ -77,7 +77,7 @@ export const Wrapper = styled.div`
   .ant-table {
     border-radius: 10px;
     overflow: hidden;
-    
+    padding: 0 20px;
   }
 
  .ant-table-wrapper .ant-table-thead >tr>th {
@@ -98,8 +98,8 @@ export const Wrapper = styled.div`
 export const ModalAdmin = styled("div")`
 
 .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-  border-color: rgb(95, 26, 70);
-    background: ${thiredColor};
+  border-color:  ${thiredColor};
+   
   padding: 19px 12px;
   font-size: 16px;
   line-height: 1.5;
@@ -114,8 +114,8 @@ export const ModalAdmin = styled("div")`
     border-radius: 8px;
   }
   .ant-input-outlined {
-   border-color: rgb(95, 26, 70);
-     background: ${thiredColor};
+   border-color:  ${thiredColor};
+
     padding: 7px 11px;
   }
 `;
