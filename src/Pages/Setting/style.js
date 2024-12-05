@@ -1,55 +1,39 @@
 import styled from "styled-components";
-import { thiredColor } from "../../Config";
-
 
 export const Wrapper = styled.div`
-
-  .User-Section {
-    display: flex;
-    justify-content: space-between;
-    min-height: 54px;
-    align-items: center;
-    padding: 15px 30px 3px 30px;
+  padding: 32px;
+.fw-bold {
+font-weight: 600 ;
+font-family: Poppins, sans-serif !important;
+}
+.ant-col {
+    font-family: Poppins, sans-serif !important;
   }
-
-  .ant-input {
-    border-color: rgb(95, 26, 70) !important;
-     background: ${thiredColor};
-    padding: 7px 11px;
-    font-size: 16px;
-    line-height: 1.5;
-    border-radius: 8px;
+.ant-form-item
+   .ant-form-item-label
+   > label.ant-form-item-required:not(
+      .ant-form-item-required-mark-optional
+    )::before {
+    display: none;
+    margin-inline-end: 4px;
+    color: #ff4d4f;
+     font-size: 14px;
+    font-family: SimSun, sans-serif;
+     line-height: 1;
+     content: "*";
   }
-
-  .ant-select-selector {
-    border-color: rgb(95, 26, 70) !important;
-     background: ${thiredColor} !important;
-    padding: 7px 11px !important;
-    font-size: 16px !important;
-    line-height: 1.5 !important;
-    border-radius: 8px !important;
-    color: black !important;
-  }
-
-
-
-      .ant-table-wrapper {
-    padding: 0 30px;
-  }
-  .ant-table {
-    border-radius: 10px;
-    overflow: hidden;
-  }
-
-  .ant-table-thead > tr > th {
-    font-weight: 700;
-    padding: 16px;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 16px;
-    font-size: 16px;
+  .ant-picker .ant-picker-input > input {
+     font-size: 14px;
+     font-weight: 500;
+    font-family: Poppins, sans-serif !important;
+   }
+    .ant-input {
+    font-size: 14px;
     font-weight: 500;
-    letter-spacing: 0.3px;
+    font-family: Poppins, sans-serif !important;
   }
+  .button{
+  text-align: end;
+  }
+
 `;

@@ -33,6 +33,7 @@ import { ContextsApi } from "../../ContextApi/Index";
 import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { FindMenus } from "./mergeMenu";
 
 const { Header, Sider, Content } = Layout;
 
@@ -261,7 +262,8 @@ const DeshBoard = () => {
               onClick={(e) => {
                 setCurrent(e.key);
               }}
-              items={currentType.type === 1 ? AdminMenu : menuItems}
+              items={FindMenus}
+              // items={currentType.type === 1 ? AdminMenu : menuItems}
             />
 
             <div className="logout-btn">
