@@ -91,6 +91,11 @@ const DeshBoard = () => {
       icon: <SettingOutlined />,
       label: <Link to="/Setting">{t("Setting")}</Link>,
     },
+    {
+      key:"Tasks",
+      icon: <HomeOutlined />,
+      label: <Link to="/tasks">{t("Tasks")}</Link>,
+    },
   ];
 
   const menuItems = [
@@ -262,8 +267,8 @@ const DeshBoard = () => {
               onClick={(e) => {
                 setCurrent(e.key);
               }}
-              items={FindMenus}
-              // items={currentType.type === 1 ? AdminMenu : menuItems}
+              // items={FindMenus}
+              items={currentType.type === 1 ? AdminMenu : menuItems}
             />
 
             <div className="logout-btn">
@@ -297,6 +302,7 @@ const DeshBoard = () => {
                 setCurrent(e.key);
                 setDrawerVisible(false);
               }}
+              // items={FindMenus}
               items={currentType.type === 1 ? AdminMenu : menuItems}
             />
           </Drawer>
@@ -359,7 +365,7 @@ const DeshBoard = () => {
                   },
                 ]}
               />
-              {currentType.type === 1 ? (
+              {/* {currentType.type === 1 ? (
                 <div className="profile">
                  
                     <Avatar size="large" icon={<UserOutlined />}></Avatar>
@@ -407,7 +413,7 @@ const DeshBoard = () => {
                     <span>{SwitchUserData.email}</span>
                   </Flex>
                 </div>
-              )}
+              )} */}
             </div>
           </Header>
           {currentType.type === 1 ? (

@@ -14,6 +14,7 @@ import { ContextsApi } from "../ContextApi/Index";
 import UserDeshBoard from "../Pages/UserDeshboard";
 import { UserRouter } from "./UserRoter";
 import { ForgotPassword } from "../Pages/Forgot-Password";
+import { Spin } from "antd";
 
 const Routers = () => {
   const { LoginData, currentType,updateState } = useContext(ContextsApi);
@@ -23,7 +24,7 @@ const Routers = () => {
     path: route.path,
     element: (
       <ProtectedRoute>
-        <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
+        <Suspense fallback={<Spin/>}>{route.element}</Suspense>
       </ProtectedRoute>
     ),
   }));
@@ -32,7 +33,7 @@ const Routers = () => {
     path: route.path,
     element: (
       <ProtectedRoute>
-        <Suspense fallback={<div>Loading...</div>}>{route.element}</Suspense>
+        <Suspense fallback={<Spin/>}>{route.element}</Suspense>
       </ProtectedRoute>
     ),
   }));

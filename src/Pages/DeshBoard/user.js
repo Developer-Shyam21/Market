@@ -1,39 +1,50 @@
-export const UserMenu = [
-    {
-      key: "Analytics",
-      icon: <MailOutlined />,
-      label: t("Analytics"),
-      children: [
-        {
-          key: "Analytics/Overview",
-          label: <Link to="/Analytics/Overview">{t("Overview")}</Link>,
-        },
-        {
-          key: "Analytics/Performance",
-          label: <Link to="/Analytics/Performance">{t("Performance")}</Link>,
-        },
-        {
-          key: "Analytics/Vendor-Performance",
-          label: (
-            <Link to="/Analytics/Vendor-Performance">
-              {t("Vendor Performance")}
-            </Link>
-          ),
-        },
-        {
-          key: "Analytics/Vendor-Order",
-          label: <Link to="/Analytics/Vendor-Order">{t("Vendor Order")}</Link>,
-        },
-      ],
-    },
-    {
-      key: "AccountStatus",
-      icon: <UserOutlined />,
-      label: "Account Status",
-    },
-    {
-      key: "Settings",
-      icon: <SettingOutlined />,
-      label: <Link to="/Settings">{t("Settings")}</Link>,
-    },
-  ];
+// import {
+//     CodeOutlined,
+//     FileDoneOutlined,
+//     UserOutlined,
+//     VideoCameraOutlined,
+//     HomeOutlined,
+//     LeftOutlined,
+//     SettingOutlined,
+//     MailOutlined,
+//     RightOutlined,
+//     MenuFoldOutlined,
+//   } from "@ant-design/icons";
+
+
+// export const UserMenu = [
+//     {
+//       key: "/Analytics",
+//       icon: <MailOutlined />,
+//       label: "Analytics",
+//       children: [
+//         {
+//           key: "/Analytics/Overview",
+//           label: "Overview",
+//         },
+//         {
+//           key: "/Analytics/Performance",
+//           label: "Performance",
+//         },
+//         {
+//           key: "/Analytics/Vendor-Performance",
+//           label: "Vendor Performance",
+//         },
+//         {
+//           key: "/Analytics/Vendor-Order",
+//           label: "Vendor Order",
+//         },
+//       ],
+//     },
+//     {
+//       key: "/AccountStatus",
+//       icon: <UserOutlined />,
+//       label: "Account Status",
+//     },
+//     {
+//       key: "/Settings",
+//       icon: <SettingOutlined />,
+//       label: "Settings",
+//     },
+//   ];
+  
