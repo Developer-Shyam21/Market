@@ -197,6 +197,11 @@ export const EmbedCodes = () => {
           scroll={{
             x: "max-content",
           }}
+          pagination = {{
+            showTotal : (total,range) => 
+              `${range[0]} - ${range[1]} of ${total} items`,
+            
+          }}
         />
         <Modal
           title="Add User"

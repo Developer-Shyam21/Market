@@ -10,32 +10,38 @@
 //     RightOutlined,
 //     MenuFoldOutlined,
 //   } from "@ant-design/icons";
+// import { Link } from "react-router-dom";
 
-// export const AdminMenu = [
+// export  const AdminMenu = [
 //     {
-//       key: "/Manage-User/Client",
+//       key: "Manage-User/Client",
 //       icon: <UserOutlined />,
-//       label: "Manage User/Client",
+//       label: <Link to="/Manage-User/Client">{t("Manage User/Client")}</Link>,
 //     },
 //     {
-//       key: "/Manage-Admin",
+//       key: "Manage-Admin",
 //       icon: <VideoCameraOutlined />,
-//       label: "Manage Admin",
+//       label: <Link to="/Manage-Admin">{t("Manage Admin")}</Link>,
 //     },
 //     {
-//       key: "/Criteria",
+//       key: "Criteria",
 //       icon: <FileDoneOutlined />,
-//       label: "Criteria",
+//       label: <Link to="/Criteria">{t("Criteria")}</Link>,
 //     },
 //     {
-//       key: "/Embed-Codes",
+//       key: "Embed-Codes",
 //       icon: <CodeOutlined />,
-//       label: "Embed Codes",
+//       label: <Link to="/Embed-Codes">{t("Embed Codes")}</Link>,
 //     },
 //     {
-//       key: "/Setting",
+//       key: "Setting",
 //       icon: <SettingOutlined />,
-//       label: "Setting",
+//       label: <Link to="/Setting">{t("Setting")}</Link>,
+//     },
+//     {
+//       key:"Tasks",
+//       icon: <HomeOutlined />,
+//       label: <Link to="/tasks">{t("Tasks")}</Link>,
 //     },
 //   ];
   

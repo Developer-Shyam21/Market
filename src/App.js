@@ -11,6 +11,7 @@ import {
 import "./App.css";
 import { Provider } from "react-redux";
 import store from "./Redux/reducer"
+import GlobalStyles from "./style/GlobleStyle";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             token: {
               colorPrimary: PrimaryColor,
               colorPrimaryHover: SecondaryColor,
+              
             },
             components: {
               Menu: {
@@ -44,6 +46,7 @@ function App() {
             },
           }}
         >
+          <GlobalStyles/>
           <Routers />
         </ConfigProvider>
       </Provider>

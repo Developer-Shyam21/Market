@@ -10,41 +10,45 @@
 //     RightOutlined,
 //     MenuFoldOutlined,
 //   } from "@ant-design/icons";
+// import { Link } from "react-router-dom";
 
 
-// export const UserMenu = [
+// export const  menuItems = [
 //     {
-//       key: "/Analytics",
+//       key: "Analytics",
 //       icon: <MailOutlined />,
-//       label: "Analytics",
+//       label: t("Analytics"),
 //       children: [
 //         {
-//           key: "/Analytics/Overview",
-//           label: "Overview",
+//           key: "Analytics/Overview",
+//           label: <Link to="/Analytics/Overview">{t("Overview")}</Link>,
 //         },
 //         {
-//           key: "/Analytics/Performance",
-//           label: "Performance",
+//           key: "Analytics/Performance",
+//           label: <Link to="/Analytics/Performance">{t("Performance")}</Link>,
 //         },
 //         {
-//           key: "/Analytics/Vendor-Performance",
-//           label: "Vendor Performance",
+//           key: "Analytics/Vendor-Performance",
+//           label: (
+//             <Link to="/Analytics/Vendor-Performance">
+//               {t("Vendor Performance")}
+//             </Link>
+//           ),
 //         },
 //         {
-//           key: "/Analytics/Vendor-Order",
-//           label: "Vendor Order",
+//           key: "Analytics/Vendor-Order",
+//           label: <Link to="/Analytics/Vendor-Order">{t("Vendor Order")}</Link>,
 //         },
 //       ],
 //     },
 //     {
-//       key: "/AccountStatus",
+//       key: "AccountStatus",
 //       icon: <UserOutlined />,
 //       label: "Account Status",
 //     },
 //     {
-//       key: "/Settings",
+//       key: "User-Settings",
 //       icon: <SettingOutlined />,
-//       label: "Settings",
+//       label: <Link to="/User-Settings">{t("User Settings")}</Link>,
 //     },
 //   ];
-  

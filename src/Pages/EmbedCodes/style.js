@@ -34,17 +34,20 @@ export const Wrapper = styled.div`
     padding: 0 20px;
   }
 
-  .ant-table-thead > tr > th {
+  .ant-table-wrapper .ant-table-thead > tr > th {
     font-weight: 700;
     padding: 16px;
+    background-color: rgb(202 202 202 / 45%);
   }
 
   .ant-table-tbody > tr > td {
     padding: 16px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.3px;
+    background-color: rgb(202 202 202 / 10%);
   }
+
 `;
 
 export const ModalView = styled("div")`

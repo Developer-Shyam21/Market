@@ -132,9 +132,9 @@ const DeshBoard = () => {
       label: "Account Status",
     },
     {
-      key: "Settings",
+      key: "User-Settings",
       icon: <SettingOutlined />,
-      label: <Link to="/Settings">{t("Settings")}</Link>,
+      label: <Link to="/User-Settings">{t("User Settings")}</Link>,
     },
   ];
   const breadcrumbItems = location.pathname
@@ -151,6 +151,7 @@ const DeshBoard = () => {
     localStorage.removeItem("UserLoggingData");
     localStorage.removeItem("Type");
     localStorage.removeItem("SwicthUserData");
+    localStorage.removeItem("apiData");
 
     nevigate("/login", { replace: true });
   };
@@ -186,9 +187,9 @@ const DeshBoard = () => {
   };
 
   const Sliders = styled(Sider)`
-    width: ${(props) => (props.collapsed ? "80px" : "250px")} !important;
-    max-width: ${(props) => (props.collapsed ? "80px" : "250px")} !important;
-    min-width: ${(props) => (props.collapsed ? "80px" : "250px")} !important;
+    width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
+    max-width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
+    min-width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
   `;
   return (
     <Wrapper collapsed={collapsed}>
@@ -310,7 +311,7 @@ const DeshBoard = () => {
 
         <Layout
           style={{
-            marginInlineStart: isMobile ? 0 : collapsed ? 80 : 277,
+            marginInlineStart: isMobile ? 0 : collapsed ? 80 : 285,
           }}
         >
           <Header collapsed={collapsed}>
@@ -421,7 +422,7 @@ const DeshBoard = () => {
               <Content
                 style={{
                   background: "#fff",
-                  margin: "60px 20px 0",
+                  margin: "40px 15px 40px 0px",
                   overflow: "initial",
                 }}
               >
@@ -432,8 +433,9 @@ const DeshBoard = () => {
             <>
               <Content
                 style={{
-                  margin: "60px 20px 0",
+                  margin: "40px 15px 40px 0px",
                   overflow: "initial",
+                  boxShadow:"none",
                 }}
               >
                 <Outlet />

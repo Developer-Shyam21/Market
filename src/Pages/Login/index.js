@@ -12,7 +12,7 @@ export const LogIn = () => {
   const [ form ] = useForm();
   const navigate = useNavigate();
 
-  const { updateState  } = useContext(ContextsApi);
+  const { updateState ,ApiData } = useContext(ContextsApi);
 
 
   useEffect(() => {
@@ -27,13 +27,22 @@ export const LogIn = () => {
     }
 
   }, [])
+
+  useEffect(() => {
+    if (!localStorage.getItem("apiData")) {
+      localStorage.setItem("apiData", JSON.stringify(getRegisterData));
+    }
+  },[])
   const getRegisterData = [
     { email: "admin@gmail.com", password: "111111", type: 1 }, // Admin
     { email: "user@gmail.com", password: "123456", type: 2 }, // Regular User
   ];
+
+
+  
   const onFinish = (values) => {
     const { email, password } = values;
-    const loggingUser = getRegisterData.find(
+    const loggingUser = ApiData.find(
       (user) => user.email === email && user.password === password
     );
 

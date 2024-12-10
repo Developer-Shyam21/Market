@@ -1,39 +1,38 @@
-// import { useContext } from "react";
-// import { AdminMenu } from "./admin";
-// import { UserMenu } from "./user";
-// import { ContextsApi } from "../../ContextApi/Index";
-// import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AdminMenu } from "./admin";
+import { UserMenu } from "./user";
+import { ContextsApi } from "../../ContextApi/Index";
+import { Link } from "react-router-dom";
 
-// export const FindMenus = () => {
-//   const { currentType } = useContext(ContextsApi);
+export const FindMenus = () => {
+  const { currentType } = useContext(ContextsApi);
 
-//   const menus = currentType.type === 1 ? AdminMenu : UserMenu;
+  const menus = currentType.type === 1 ? AdminMenu : UserMenu;
+console.log("my admin menu page is:", menus)
+  return <>
+  {menus &&
+    menus.map((d, i) => {
+    if (d?.children) {
+      return {
+        ...d,
+        icon: d.icon,
+        label: d.label,
+        children: d?.children?.map((d) => {
+          return {
+            ...d,
+            icon: <></>,
+            label: <Link to={d.key}>{d.label}</Link>,
+          };
+        }),
+      };
+    }
+    return {
+      ...d,
+      icon:d.icon,
+      label: <Link to={d.key}>{d.label}</Link>,
+    }
+  })
+}
 
-//   return <>
-//   {menus &&
-//     menus.map((menuItem) => {
-//         // If the menu item has children, render recursively
-//         if (menuItem.children) {
-//         return (
-//           <div key={menuItem.key}>
-//             <div>{menuItem.icon} {menuItem.label}</div>
-//             <div>
-//               {menuItem.children.map((child) => (
-//                 <div key={child.key}>
-//                   {child.icon} <Link to={child.key}>{child.label}</Link>
-//                 </div>
-//               ))}
-//             </div>
-//           </div>
-//         );
-//       }
-
-//       // If no children, render the menu item directly
-//       return (
-//         <div key={menuItem.key}>
-//           {menuItem.icon} <Link to={menuItem.key}>{menuItem.label}</Link>
-//         </div>
-//       );
-//     })}
-//     </>
-// };
+    </>
+};

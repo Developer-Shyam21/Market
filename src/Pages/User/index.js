@@ -15,6 +15,7 @@ import {
   Form,
   Input,
   Modal,
+  Pagination,
   Popconfirm,
   Row,
   Select,
@@ -54,6 +55,7 @@ const { Search } = Input;
 export const UserList = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useStyle();
   const navigate = useNavigate();
   const { LoginData, TypeSwitch, updateState, currentType } =
@@ -252,6 +254,10 @@ export const UserList = () => {
       navigate("/Manage-User/Client", { replace: true });
     }
   };
+  const handlePageChange = (page, pageSize) => {
+    ; // Update the current page on page change
+  };
+
 
   return (
     <>
@@ -298,6 +304,10 @@ export const UserList = () => {
           className={styles.customTable}
           scroll={{
             x: "max-content",
+          }}
+          pagination={{
+            showTotal: (total, range) =>
+              ` ${range[0]} - ${range[1]} of ${total} items`,
           }}
         />
         <Modal

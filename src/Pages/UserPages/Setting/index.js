@@ -8,7 +8,7 @@ import { Divider, Select, Typography } from "antd";
 
 import { Wrapper } from "./style";
 
-export const Settings = () => {
+export const UserSettings = () => {
   const { Text } = Typography;
 
   return (

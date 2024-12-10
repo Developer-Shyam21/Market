@@ -13,9 +13,8 @@ export const Wrapper = styled.div`
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: sider;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-    margin: 20px 17px;
-    border-radius: 15px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+   padding: 0 10px;
 
 }
 
@@ -44,18 +43,19 @@ export const Wrapper = styled.div`
     align-items: center;
     z-index: 999;
     background: transparent;
-    border-radius:12px;
     padding: 0 20px;
     backdrop-filter: blur(30px);
     position: sticky !important;
-    top: 20px !important;
+    top: 0 !important;
+    margin: 0 15px 0 0;
     animation-duration: 1s;
     animation-fill-mode: both;
     animation-name: header;
-    margin:0  17px 0 17px;
+    border-radius:10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
         transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
             line-height: 20px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+      
 }
    @keyframes  header {
    0%{
@@ -81,7 +81,6 @@ export const Wrapper = styled.div`
 
   .ant-layout-content {
     min-height: 280px;
-   
     border-radius: 15px;
     margin: 24px;
     transition: transform 0.2s ease;

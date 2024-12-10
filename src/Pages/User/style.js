@@ -6,7 +6,9 @@ import {
   thiredColor,
 } from "../../Config";
 
+
 export const Wrapper = styled.div`
+
   .User-Section {
     display: flex;
     justify-content: space-between;
@@ -94,6 +96,7 @@ export const Wrapper = styled.div`
   .ant-table-wrapper .ant-table-thead > tr > th {
     font-weight: 700;
     padding: 16px;
+    background-color: rgb(202 202 202 / 45%);
   }
 
   .ant-table-tbody > tr > td {
@@ -101,7 +104,10 @@ export const Wrapper = styled.div`
     font-size: 15px;
     font-weight: 500;
     letter-spacing: 0.3px;
+    background-color: rgb(202 202 202 / 10%);
   }
+
+    
 `;
 
 export const UserSection = styled("div")`

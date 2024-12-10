@@ -1,39 +1,52 @@
+import React, { useContext, useState } from "react";
 import { Col, Row, Typography, Form, Input, Button, message } from "antd";
-import React, { useState } from "react";
-import { useForm } from "antd/es/form/Form";
-import { Wrapper } from "./style"; // Assuming Wrapper for styling
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import { Wrapper } from "./style";
 import Forgot from "../../Images/forgot-password.png";
 import Market from "../../Images/logo-main.png";
 
 export const ForgotPassword = () => {
   const { Text, Title } = Typography;
-  const [form] = useForm();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form] = Form.useForm();
   const navigate = useNavigate();
+  const [currentUser, setCurrentUser] = useState(null); // To store the user for password reset
+  const [localData, setLocalData] = useState(
+    JSON.parse(localStorage.getItem("apiData")) || []
+  ); // Load data from localStorage
 
-  const onFinish = (values) => {
-    const { email } = values;
-    setIsSubmitting(true);
+  // Handle Email Submission for Verification
+  const handleEmailSubmit = ({ email }) => {
+    const foundUser = localData.find((user) => user.email === email);
 
-   
-    setTimeout(() => {
-      setIsSubmitting(false);
+    if (foundUser) {
+      setCurrentUser(foundUser); // Set the user for password reset
+      message.success("Email verified! Please enter a new password.");
+    } else {
+      message.error("Email not found. Please check and try again.");
+    }
+  };
 
-    
-      const mockRegisteredEmails = ["user1@example.com", "user2@example.com"];
-      if (mockRegisteredEmails.includes(email)) {
-        message.success("Password reset link sent to your email.");
-        navigate("/login"); 
-      } else {
-        message.error("Email not found. Please check and try again.");
-      }
-    }, 1500); // Simulate API delay
+  // Handle Password Reset Submission
+  const handlePasswordSubmit = ({ newpassword, confirm }) => {
+    if (newpassword !== confirm) {
+      message.error("Passwords do not match!");
+      return;
+    }
+
+    // Update the password in localStorage
+    const updatedData = localData.map((user) =>
+      user.email === currentUser.email ? { ...user, password: newpassword } : user
+    );
+    console.log("my updated password", updatedData);
+    localStorage.setItem("apiData", JSON.stringify(updatedData)); // Persist to localStorage
+    setLocalData(updatedData); // Update state with new data
+    message.success("Password reset successfully!");
+    navigate("/login"); // Redirect to login page
   };
 
   return (
     <Wrapper>
-      <Row justify="center" align="middle" style={{ backgroundColor: "white",height:"100vh" }}>
+      <Row justify="center" align="middle" style={{ backgroundColor: "white", height: "100vh" }}>
         <Col lg={12} xs={24}>
           <div className="flex-section">
             <div className="login-section">
@@ -41,47 +54,71 @@ export const ForgotPassword = () => {
                 <h1>Forgot Password?</h1>
                 <Typography>
                   <div className="create-link">
-                    Enter your email to reset your password.
+                    {currentUser
+                      ? "Enter your new password to reset it."
+                      : "Enter your email to reset your password."}
                   </div>
                 </Typography>
               </div>
               <Form
-                name="forgot-password"
-                initialValues={{
-                  remember: true,
-                }}
-                onFinish={onFinish}
-                layout="vertical"
                 form={form}
-                style={{textAlign:"center"}}
+                name="forgot-password"
+                onFinish={currentUser ? handlePasswordSubmit : handleEmailSubmit}
+                layout="vertical"
+                style={{ textAlign: "center" }}
               >
-                <Form.Item
-                  label="Email"
-                  name="email"
-                  rules={[
-                    {
-                      required: true,
-                      message: "Please input your Email!",
-                    },
-                    {
-                      type: "email",
-                      message: "The input is not valid Email!",
-                    },
-                  ]}
-                >
-                  <Input placeholder="Enter Email" />
-                </Form.Item>
-                <Form.Item>
-                  <Button
-                    block
-                    type="primary"
-                    htmlType="submit"
-                    loading={isSubmitting}
+                {!currentUser ? (
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      { required: true, message: "Please input your Email!" },
+                      { type: "email", message: "The input is not a valid Email!" },
+                    ]}
                   >
+                    <Input placeholder="Enter Email" />
+                  </Form.Item>
+                ) : (
+                  <>
+                    <Form.Item
+                      label="New Password"
+                      name="newpassword"
+                      rules={[
+                        { required: true, message: "Please input your New Password!" },
+                        { min: 6, message: "Password must be at least 6 characters" },
+                      ]}
+                    >
+                      <Input.Password placeholder="Enter New Password" />
+                    </Form.Item>
+                    <Form.Item
+                      name="confirm"
+                      label="Confirm Password"
+                      dependencies={["newpassword"]}
+                      rules={[
+                        { required: true, message: "Please confirm your password!" },
+                        ({ getFieldValue }) => ({
+                          validator(_, value) {
+                            if (!value || getFieldValue("newpassword") === value) {
+                              return Promise.resolve();
+                            }
+                            return Promise.reject(new Error("The passwords do not match!"));
+                          },
+                        }),
+                      ]}
+                    >
+                      <Input.Password placeholder="Confirm New Password" />
+                    </Form.Item>
+                  </>
+                )}
+
+                <Form.Item>
+                  <Button block type="primary" htmlType="submit">
                     Submit
                   </Button>
                 </Form.Item>
-                <Link to="/login"  >Login</Link>
+                <div>
+                  Back to Login Page <Link to="/login">Login</Link>
+                </div>
               </Form>
             </div>
           </div>
@@ -91,16 +128,15 @@ export const ForgotPassword = () => {
             <Link to="#">Purchase</Link>
           </div>
         </Col>
-        <Col xs={24} sm={18} lg={12} className="forgot-right ">
+        <Col xs={24} sm={18} lg={12} className="forgot-right">
           <div className="main-logo">
             <div className="main-logo-body">
-            <img src={Market} alt="logo" width={346} height={70} />
+              <img src={Market} alt="logo" width={346} height={70} />
               <Title level={2}>
                 Welcome to MARKET <b>FORCE</b>
               </Title>
               <Text style={{ fontSize: "17px" }}>
-                The first software that constantly verifies the integrity of
-                your Amazon business for you.
+                The first software that constantly verifies the integrity of your Amazon business for you.
               </Text>
             </div>
             <div>
