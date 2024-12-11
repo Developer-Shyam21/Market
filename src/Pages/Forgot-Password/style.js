@@ -155,7 +155,7 @@ export const Wrapper = styled.div`
   }
 
   .forgot-right {
-    background: rgb(239, 243, 254);
+    background: ${SecondaryColor};
     display: flex;
     justify-content: center;
     align-items: center;

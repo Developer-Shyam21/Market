@@ -257,14 +257,16 @@ export const UserList = () => {
   const handlePageChange = (page, pageSize) => {
     ; // Update the current page on page change
   };
-
+const handleSearch = (e) => {
+  console.log("my serach users", e.target.value)
+}
 
   return (
     <>
       <Wrapper>
         <div className="User-Section">
           <Flex gap={10}>
-            <Search placeholder="Search..." />
+            <Search placeholder="Search..." onChange={(e) => handleSearch(e)}/>
             <Select
               placeholder="Active"
               style={{

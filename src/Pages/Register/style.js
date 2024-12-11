@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { SecondaryColor } from "../../Config";
+import { SecondaryColor, thiredColor } from "../../Config";
 
 export const Wrapper = styled.div`
   .register-left {
-    background: rgb(239, 243, 254);
+    background: ${thiredColor};
     display: flex;
     justify-content: center;
     align-items: center;

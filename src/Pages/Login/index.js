@@ -171,3 +171,67 @@ export const LogIn = () => {
     </Wrapper>
   );
 };
+
+
+
+// const title = document.getElementsByClassName("a-size-base-plus a-spacing-none a-color-base a-text-normal");
+
+// console.log('Number of elements found:', title.length);
+// const jsonData = [];
+// for (let i = 0; i < title.length; i++) {
+//   jsonData.push({
+//     Title: title[i].textContent.trim(), 
+//   });
+// }
+
+
+// const jsonString = JSON.stringify(jsonData, null, 2);
+
+// console.log("Extracted JSON Data:", jsonString);
+
+
+
+
+
+
+
+
+
+
+// const price = document.getElementsByClassName("a-price-whole");
+
+// console.log('Number of elements found:', price.length);
+// const jsonData = [];
+// for (let i = 0; i < price.length; i++) {
+//   jsonData.push({
+//     Price: price[i].textContent.trim(), 
+//   });
+// }
+
+
+// const jsonString = JSON.stringify(jsonData, null, 2);
+
+// console.log("Extracted JSON Data:", jsonString);
+
+
+
+
+// const title = document.getElementsByClassName("a-size-base-plus a-spacing-none a-color-base a-text-normal");
+// const price = document.getElementsByClassName("a-price-whole");
+
+// console.log('Number of elements found:', title.length);
+// console.log('Number of elements found:', price.length);
+
+// const jsonData = [];
+
+// // Combine titles and prices into the JSON array
+// for (let i = 0; i < title.length; i++) {
+//   jsonData.push({
+//     Title: title[i]?.textContent.trim(), // Extract title
+//     Price: price[i]?.textContent.trim() || "N/A", // Extract price, fallback to "N/A" if not found
+//   });
+// }
+
+// const jsonString = JSON.stringify(jsonData, null, 2);
+
+// console.log("Extracted JSON Data:", jsonString);
