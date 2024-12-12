@@ -35,6 +35,10 @@ export const UserSettings = () => {
     setCurrentKey(true)
   };
 
+  const ResetPassword = (value) => {
+   
+  }
+
   return (
     <Wrapper>
       <div className="User-Section">
@@ -151,7 +155,7 @@ export const UserSettings = () => {
                 </Flex>
               </div>
               <div style={{ display:currentKey?"block":"none"}}>
-                <Form layout="vertical" align="center">
+                <Form layout="vertical" align="center" onFinish={ResetPassword}>
                   <Row gutter={[16,16]}>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
                       <Form.Item
