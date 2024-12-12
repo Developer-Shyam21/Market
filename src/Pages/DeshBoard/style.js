@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     overflow-y: hidden;
     animation-duration: 1s;
     animation-fill-mode: both;
-    animation-name: sider;
+    // animation-name: sider;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
    padding: 0 10px;
 
@@ -28,8 +28,10 @@ export const Wrapper = styled.div`
    }
   }
   .demo-logo-vertical {
-    margin-top: 50px;
+    margin: 30px 0 50px;
     padding: 0 1.25rem;
+    gap: 15px;
+
   }
   .ant-layout {
     background-color: rgb(248, 249, 250);
@@ -112,12 +114,24 @@ export const Wrapper = styled.div`
     margin: 13px 0;
   
   }
-
+    .ant-menu-title-content{
+    font-size: 14px;
+    font-weight: 500;
+}
+    
   .ant-menu-light .ant-menu-item-selected{
           box-shadow: rgba(0, 0, 0, 0.05) 0rem 1.25rem 1.6875rem 0rem;
         transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
          margin: 13px 0;
+          font-weight: 700;
+    font-size: 14px;
+         background: ${thiredColor};
   }
+  .ant-menu-light .ant-menu-submenu-selected >.ant-menu-submenu-title{
+         font-weight: 700;
+    font-size: 14px;
+    background: ${thiredColor};
+}    
 
   .ant-menu .ant-menu-item .ant-menu-item-icon{
   padding:10px;

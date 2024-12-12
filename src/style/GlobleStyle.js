@@ -29,8 +29,8 @@ const GlobalStyles = createGlobalStyle`
            
               background-color: #ffffff;
                   position: relative;
-    display: flex;
-    flex-direction: column;
+    // display: flex;
+    // flex-direction: column;
         min-width: 0;
             word-wrap: break-word;
                 box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);

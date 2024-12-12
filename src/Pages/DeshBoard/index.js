@@ -35,7 +35,7 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { FindMenus } from "./mergeMenu";
 
-const { Header, Sider, Content } = Layout;
+const { Header, Sider, Content ,Footer } = Layout;
 
 const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -189,9 +189,16 @@ const DeshBoard = () => {
   };
 
   const Sliders = styled(Sider)`
-    width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
-    max-width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
-    min-width: ${(props) => (props.collapsed ? "80px" : "260px")} !important;
+    width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
+    max-width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
+    min-width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
+
+    .demo-logo-vertical{
+    display: ${(props) => (props.collapsed ? "block" : "flex")} !important;
+    align-items: center;
+    justify-content: center;
+     
+    }
   `;
   return (
     <Wrapper collapsed={collapsed}>
@@ -203,7 +210,16 @@ const DeshBoard = () => {
             collapsible
             collapsed={collapsed}
           >
-            <Button
+            
+            <div className="demo-logo-vertical">
+              <img
+                src={Market}
+                alt="logo"
+                width={collapsed ? 55 : 200}
+                height={collapsed ? 20 : 40}
+                className="logo-animation"
+              />
+              <Button
               type="text"
               icon={collapsed ? <RightOutlined /> : <LeftOutlined />}
               onClick={() => setCollapsed(!collapsed)}
@@ -213,17 +229,8 @@ const DeshBoard = () => {
                 width: 40,
                 height: 40,
                 background: PrimaryColor,
-                position: "relative",
               }}
             />
-            <div className="demo-logo-vertical">
-              <img
-                src={Market}
-                alt="logo"
-                width={collapsed ? 55 : 200}
-                height={collapsed ? 20 : 40}
-                className="logo-animation"
-              />
             </div>
             <Divider />
             {localStorage.getItem("SwicthUserData") ? (
@@ -313,7 +320,7 @@ const DeshBoard = () => {
 
         <Layout
           style={{
-            marginInlineStart: isMobile ? 0 : collapsed ? 80 : 285,
+            marginInlineStart: isMobile ? 0 : collapsed ? 130 : 285,
           }}
         >
           <Header collapsed={collapsed}>
@@ -368,7 +375,7 @@ const DeshBoard = () => {
                   },
                 ]}
               />
-              {/* {currentType.type === 1 ? (
+              {currentType.type === 1 ? (
                 <div className="profile">
                  
                     <Avatar size="large" icon={<UserOutlined />}></Avatar>
@@ -416,7 +423,7 @@ const DeshBoard = () => {
                     <span>{SwitchUserData.email}</span>
                   </Flex>
                 </div>
-              )} */}
+              )}
             </div>
           </Header>
           {currentType.type === 1 ? (
@@ -444,6 +451,12 @@ const DeshBoard = () => {
               </Content>
             </>
           )}
+          <Footer>
+            <div>
+              &copy; 2022{" "}
+              <a href="https://www.yourdomain.com">Your Domain</a> All Rights Reserved.
+            </div>
+          </Footer>
         </Layout>
       </Layout>
     </Wrapper>

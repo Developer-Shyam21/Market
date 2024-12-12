@@ -47,11 +47,20 @@ export const Criteria = () => {
   const [visible, setVisible] = useState(false);
   const { Text } = Typography;
   const { styles } = useStyle();
+  const [userDatas,setUserDatas] = useState([])
 
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
     setVisible(false);
   };
+
+  const handleSubmit2 = (e,values) => {
+console.log("light eight value is:",e)
+      const newData = [...userDatas, { key: userDatas.length + 1, ...values }];
+    
+    setUserDatas([newData])
+    console.log("light eight value is:",userDatas)
+  }
 
   const UserData = [
     {
@@ -214,6 +223,43 @@ export const Criteria = () => {
       ),
     },
   ];
+  const columns2 = [
+    {
+      title: "#",
+      dataIndex: "key",
+      key: "key",
+      width: 100,
+      
+    },
+    {
+      title: "Operator",
+      width: 400,
+      dataIndex: "operator",
+      key: "operator",
+      sorter: (a, b) => a.criterianame.localeCompare(b.criterianame),
+    },
+    {
+      title: "Value",
+      width: 100,
+      dataIndex: "value",
+      key: "value",
+      sorter: (a, b) => a.criteriatype.localeCompare(b.criteriatype),
+      render: (criteriatype) => (
+        <Tag style={{ color: "#389e0d", backgroundColor: "#f6ffed" }}>
+          {criteriatype}
+        </Tag>
+      ),
+    },
+    {
+      title: "Score",
+      width: 300,
+      dataIndex: "score",
+      key: "score",
+      sorter: (a, b) => a.type.localeCompare(b.type),
+    },
+    
+  ];
+
 
   const handleSee = (record) => {
     console.log("see record:", record);
@@ -287,9 +333,8 @@ export const Criteria = () => {
             x: "max-content",
           }}
           pagination={{
-            showTotal : (total,range) => 
-              `${range[0]} - ${range[1]} of ${total} items`
-            
+            showTotal: (total, range) =>
+              `${range[0]} - ${range[1]} of ${total} items`,
           }}
         />
         <Modal
@@ -374,6 +419,7 @@ export const Criteria = () => {
               </Row>
 
               <div className="criteria-form">
+              <Form form={form} layout="vertical" onFinish={(e) => handleSubmit2(e)}>
                 <Row gutter={[14, 14]} style={{ alignItems: "baseline" }}>
                   <Col lg={5}>If</Col>
                   <Col lg={6}>
@@ -389,7 +435,7 @@ export const Criteria = () => {
                   </Col>
                   <Col lg={5}>
                     <Form.Item
-                      name="weight"
+                      name="value"
                       hasFeedback
                       rules={[
                         {
@@ -403,7 +449,7 @@ export const Criteria = () => {
                   </Col>
                   <Col lg={5}>
                     <Form.Item
-                      name="weight"
+                      name="score"
                       hasFeedback
                       rules={[
                         {
@@ -422,11 +468,26 @@ export const Criteria = () => {
                   >
                     <Button
                       type="primary"
+                      htmlType="submit"
                       className="add-btn"
                       icon={<PlusOutlined />}
                     ></Button>
                   </Col>
                 </Row>
+                </Form>
+                <Table
+                  columns={columns2}
+                  dataSource={userDatas}
+                  className={styles.customTable}
+                  scroll={{
+                    x: "max-content",
+                  }}
+                  pagination={{
+                    showTotal: (total, range) =>
+                      `${range[0]} - ${range[1]} of ${total} items`,
+                  }}
+                />
+                
               </div>
             </Form>
           </ModalView>

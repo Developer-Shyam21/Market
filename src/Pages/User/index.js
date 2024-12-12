@@ -167,11 +167,11 @@ export const UserList = () => {
       render: (_, record) => (
         <Button
           type="link"
-          size="small"
+          size="middle"
           icon={<LoginOutlined />}
           onClick={() => handelUserData(record)}
         >
-          switchuser
+          Switch User
         </Button>
       ),
     },
@@ -311,6 +311,7 @@ const handleSearch = (e) => {
             showTotal: (total, range) =>
               ` ${range[0]} - ${range[1]} of ${total} items`,
           }}
+        
         />
         <Modal
           title="Add User"

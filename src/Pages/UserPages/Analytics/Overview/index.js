@@ -25,6 +25,8 @@ import Chart from "react-apexcharts";
 import { Wrapper } from "./style";
 import dayjs from "dayjs";
 import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import WorldMap from "react-svg-worldmap";
+import { PrimaryColor } from "../../../../Config";
 
 const geoUrl =
   "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
@@ -51,10 +53,7 @@ export const Overview = () => {
     }
   };
 
-  const onRangeChange = (
-    dates,
-    dateStrings
-  ) => {
+  const onRangeChange = (dates, dateStrings) => {
     if (dates) {
       console.log("From: ", dates[0], ", to: ", dates[1]);
       console.log("From: ", dateStrings[0], ", to: ", dateStrings[1]);
@@ -62,7 +61,7 @@ export const Overview = () => {
       console.log("Clear");
     }
   };
-  const rangePresets= [
+  const rangePresets = [
     { label: "Last 7 Days", value: [dayjs().add(-7, "d"), dayjs()] },
     { label: "Last 14 Days", value: [dayjs().add(-14, "d"), dayjs()] },
     { label: "Last 30 Days", value: [dayjs().add(-30, "d"), dayjs()] },
@@ -87,6 +86,19 @@ export const Overview = () => {
       name: "series-1",
       data: [30, 40, 45, 50, 49, 60, 70, 91],
     },
+  ];
+
+  const data = [
+    { country: "cn", value: 1389618778 }, // china
+    { country: "in", value: 1311559204 }, // india
+    { country: "us", value: 331883986 }, // united states
+    { country: "id", value: 264935824 }, // indonesia
+    { country: "pk", value: 210797836 }, // pakistan
+    { country: "br", value: 210301591 }, // brazil
+    { country: "ng", value: 208679114 }, // nigeria
+    { country: "bd", value: 161062905 }, // bangladesh
+    { country: "ru", value: 141944641 }, // russia
+    { country: "mx", value: 127318112 }, // mexico
   ];
 
   return (
@@ -184,63 +196,21 @@ export const Overview = () => {
             </div>
           </Col>
         </Row>
-        <Row gutter={[12,15]}>
+        <Row gutter={[12, 15]}>
           <Col lg={12}>
-           <Card  title="Sales Overview" >
-           
-                  <Chart
-                    options={options}
-                    series={series}
-                    type="line"
-                    width="700"
-                  
-                    />
-                
-                    </Card>
+            <Card title="Sales Overview">
+              <Chart options={options} series={series} type="bar" width="700" />
+            </Card>
           </Col>
           <Col lg={12}>
             <Card>
-              {/* Country Selector */}
-              {/* <select onChange={handleCountryChange}>
-                <option value="">Select a country</option>
-                <option value="United States">United States</option>
-                <option value="India">India</option>
-                <option value="Australia">Australia</option>
-                <option value="Brazil">Brazil</option>
-                <option value="China">China</option>
-              </select> */}
-
-              {/* Map */}
-              <ComposableMap>
-                <Geographies geography={geoUrl}>
-                  {({ geographies }) =>
-                    geographies.map((geo) => {
-                      const isHighlighted =
-                        geo.properties.name === selectedCountry; // Highlight selected country
-                      return (
-                        <Geography
-                          key={geo.rsmKey}
-                          geography={geo}
-                          style={{
-                            default: {
-                              fill: isHighlighted ? "#FF5733" : "#DDD", // Highlight color
-                              outline: "none",
-                            },
-                            hover: {
-                              fill: "#F53",
-                              outline: "none",
-                            },
-                            pressed: {
-                              fill: "#E42",
-                              outline: "none",
-                            },
-                          }}
-                        />
-                      );
-                    })
-                  }
-                </Geographies>
-              </ComposableMap>
+              <WorldMap
+                color="blue"
+                title="Top 10 Populous Countries"
+                value-suffix="people"
+                size="xl"
+                data={data}
+              />
             </Card>
           </Col>
         </Row>

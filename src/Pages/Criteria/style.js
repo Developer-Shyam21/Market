@@ -13,7 +13,7 @@ export const Wrapper = styled.div`
 
   .ant-input {
     border-color: rgb(95, 26, 70) !important;
-      background: ${thiredColor};
+     
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -69,7 +69,7 @@ export const Wrapper = styled.div`
 export const ModalView = styled("div")`
 
   .criteria-form {
-      background: ${thiredColor};
+      border-color: ${thiredColor};
     padding: 20px 10px 10px;
     border-radius: 8px;
     border: 1px dashed rgb(96, 25, 71);
