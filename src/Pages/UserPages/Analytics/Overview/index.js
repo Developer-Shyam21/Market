@@ -20,29 +20,26 @@ import {
   Tooltip,
   Card,
 } from "antd";
-import { TimeRangePickerProps } from "antd";
 import Chart from "react-apexcharts";
 import { Wrapper } from "./style";
 import dayjs from "dayjs";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
 import WorldMap from "react-svg-worldmap";
 import { PrimaryColor } from "../../../../Config";
-
-const geoUrl =
-  "https://raw.githubusercontent.com/deldersveld/topojson/master/world-countries.json";
-
+import ReactApexChart from "react-apexcharts";
+ 
+ 
 export const Overview = () => {
   const { RangePicker } = DatePicker;
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [isSelectingStart, setIsSelectingStart] = useState(true);
-
+ 
   const [selectedCountry, setSelectedCountry] = useState("");
-
+ 
   const handleCountryChange = (event) => {
     setSelectedCountry(event.target.value);
   };
-
+ 
   const handleCalendarChange = (dates, dateStrings) => {
     if (dates[0]) {
       setStartDate(dates[0]);
@@ -52,7 +49,7 @@ export const Overview = () => {
       setEndDate(dates[1]);
     }
   };
-
+ 
   const onRangeChange = (dates, dateStrings) => {
     if (dates) {
       console.log("From: ", dates[0], ", to: ", dates[1]);
@@ -67,27 +64,33 @@ export const Overview = () => {
     { label: "Last 30 Days", value: [dayjs().add(-30, "d"), dayjs()] },
     { label: "Last 90 Days", value: [dayjs().add(-90, "d"), dayjs()] },
   ];
-
+ 
   const handleChange = (value) => {
     console.log(`selected ${value}`);
   };
-
-  const options = {
-    chart: {
-      id: "basic-bar",
-    },
-    xaxis: {
-      categories: ["January", 1992, 1993, 1994, 1995, 1996, 1997, 1998],
+ 
+  const salesData = {
+    series: [
+      {
+        name: "Sales",
+        data: [450, 650, 800, 600, 450, 1100, 1200],
+      },
+    ],
+    options: {
+      chart: {
+        type: "line",
+        height: 350,
+      },
+      xaxis: {
+        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
+      },
+      title: {
+        text: "Monthly Sales Data",
+        align: "left",
+      },
     },
   };
-
-  const series = [
-    {
-      name: "series-1",
-      data: [30, 40, 45, 50, 49, 60, 70, 91],
-    },
-  ];
-
+ 
   const data = [
     { country: "cn", value: 1389618778 }, // china
     { country: "in", value: 1311559204 }, // india
@@ -100,7 +103,11 @@ export const Overview = () => {
     { country: "ru", value: 141944641 }, // russia
     { country: "mx", value: 127318112 }, // mexico
   ];
-
+ 
+  const getContry = (value) => {
+    console.log("Contry name and thire data are :" , value)
+  }
+ 
   return (
     <>
       <Wrapper>
@@ -199,7 +206,12 @@ export const Overview = () => {
         <Row gutter={[12, 15]}>
           <Col lg={12}>
             <Card title="Sales Overview">
-              <Chart options={options} series={series} type="bar" width="700" />
+            <ReactApexChart
+              options={salesData.options}
+              series={salesData.series}
+              type="line"
+              height={460}
+            />
             </Card>
           </Col>
           <Col lg={12}>
@@ -210,6 +222,7 @@ export const Overview = () => {
                 value-suffix="people"
                 size="xl"
                 data={data}
+                onClickFunction={getContry}
               />
             </Card>
           </Col>

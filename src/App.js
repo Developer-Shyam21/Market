@@ -1,6 +1,5 @@
 import { ConfigProvider, Spin } from "antd";
 import "./App.css";
-import Routers from "./Router/Routers";
 import {
   PrimaryColor,
   SecondaryColor,
@@ -12,7 +11,11 @@ import "./App.css";
 import { Provider } from "react-redux";
 import store from "./Redux/reducer"
 import GlobalStyles from "./style/GlobleStyle";
-
+import { lazy, Suspense } from 'react';
+ 
+const Routers = lazy(() => import( "./Router/Routers"));
+ 
+ 
 function App() {
   return (
     <>
@@ -22,7 +25,6 @@ function App() {
             token: {
               colorPrimary: PrimaryColor,
               colorPrimaryHover: SecondaryColor,
-              
             },
             components: {
               Menu: {
@@ -47,11 +49,13 @@ function App() {
           }}
         >
           <GlobalStyles/>
+          <Suspense fallback={<Spin/>}>
           <Routers />
+          </Suspense>
         </ConfigProvider>
       </Provider>
     </>
   );
 }
-
+ 
 export default App;

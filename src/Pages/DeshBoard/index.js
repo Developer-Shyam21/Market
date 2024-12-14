@@ -34,9 +34,9 @@ import { Icon } from "@iconify/react/dist/iconify.js";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { FindMenus } from "./mergeMenu";
-
+ 
 const { Header, Sider, Content ,Footer } = Layout;
-
+ 
 const DeshBoard = () => {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
@@ -48,13 +48,13 @@ const DeshBoard = () => {
   const { t, i18n } = useTranslation();
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [drawerVisible, setDrawerVisible] = useState(false);
-
+ 
   const SwitchUser = useSelector((state) => state.userReducer.user)
-
+ 
   useEffect(() => {
     setCurrent(location.pathname.replace("/", ""));
   }, [location]);
-
+ 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
@@ -64,7 +64,7 @@ const DeshBoard = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-
+ 
   const AdminMenu = [
     {
       key: "Manage-User/Client",
@@ -97,9 +97,9 @@ const DeshBoard = () => {
       label: <Link to="/tasks">{t("Tasks")}</Link>,
     },
   ];
-
+ 
   const menuItems = [
-    
+   
     {
       key: "Analytics",
       icon: <MailOutlined />,
@@ -148,27 +148,27 @@ const DeshBoard = () => {
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join(" "),
     }));
-
+ 
   const handleLogout = () => {
     localStorage.removeItem("UserLoggingData");
     localStorage.removeItem("Type");
     localStorage.removeItem("SwicthUserData");
     localStorage.removeItem("apiData");
-
+ 
     nevigate("/login", { replace: true });
   };
-
+ 
   const HandelAdmin = () => {
     const updateType = 1;
-
+ 
     localStorage.removeItem("SwicthUserData");
-
+ 
     updateState("type", updateType);
-
+ 
     nevigate("/Manage-User/Client", { replace: true });
   };
-
-
+ 
+ 
   const [open, setOpen] = useState(false);
   const hide = () => {
     setOpen(false);
@@ -176,7 +176,7 @@ const DeshBoard = () => {
   const handleOpenChange = (newOpen) => {
     setOpen(newOpen);
   };
-
+ 
   const siderStyle = {
     overflow: "auto",
     height: "100vh",
@@ -187,12 +187,12 @@ const DeshBoard = () => {
     scrollbarWidth: "thin",
     scrollbarGutter: "stable",
   };
-
+ 
   const Sliders = styled(Sider)`
     width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
     max-width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
     min-width: ${(props) => (props.collapsed ? "120px" : "260px")} !important;
-
+ 
     .demo-logo-vertical{
     display: ${(props) => (props.collapsed ? "block" : "flex")} !important;
     align-items: center;
@@ -210,7 +210,7 @@ const DeshBoard = () => {
             collapsible
             collapsed={collapsed}
           >
-            
+           
             <div className="demo-logo-vertical">
               <img
                 src={Market}
@@ -280,7 +280,7 @@ const DeshBoard = () => {
               // items={FindMenus}
               items={currentType.type === 1 ? AdminMenu : menuItems}
             />
-
+ 
             <div className="logout-btn">
               <Button
                 className="logoutbtn"
@@ -317,10 +317,10 @@ const DeshBoard = () => {
             />
           </Drawer>
         )}
-
+ 
         <Layout
           style={{
-            marginInlineStart: isMobile ? 0 : collapsed ? 130 : 285,
+            marginInlineStart: isMobile ? 0 : collapsed ? 145 : 285,
           }}
         >
           <Header collapsed={collapsed}>
@@ -351,7 +351,7 @@ const DeshBoard = () => {
                 />
               </Space>
             )}
-
+ 
             <div className="left-header">
               <Select
                 placeholder="Select Language"
@@ -379,7 +379,7 @@ const DeshBoard = () => {
                 <div className="profile">
                  
                     <Avatar size="large" icon={<UserOutlined />}></Avatar>
-                  
+                 
                   <Flex vertical>
                     <span style={{ fontWeight: "bold" }}>
                       {currentType.type === 1 ? "Admin" : "User"}
@@ -395,7 +395,7 @@ const DeshBoard = () => {
                       <div>
                         {
                           SwitchUser.map((user) => {
-                            return ( 
+                            return (
                               <>
                               <div>{user.name}</div>
                               <Avatar size="large">{user.name.charAt(0)}</Avatar>
@@ -462,5 +462,5 @@ const DeshBoard = () => {
     </Wrapper>
   );
 };
-
+ 
 export default DeshBoard;

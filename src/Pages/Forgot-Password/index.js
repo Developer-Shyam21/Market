@@ -4,7 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Wrapper } from "./style";
 import Forgot from "../../Images/forgot-password.png";
 import Market from "../../Images/logo-main.png";
-
+ 
 export const ForgotPassword = () => {
   const { Text, Title } = Typography;
   const [form] = Form.useForm();
@@ -13,11 +13,11 @@ export const ForgotPassword = () => {
   const [localData, setLocalData] = useState(
     JSON.parse(localStorage.getItem("apiData")) || []
   ); // Load data from localStorage
-
+ 
   // Handle Email Submission for Verification
   const handleEmailSubmit = ({ email }) => {
     const foundUser = localData.find((user) => user.email === email);
-
+ 
     if (foundUser) {
       setCurrentUser(foundUser); // Set the user for password reset
       message.success("Email verified! Please enter a new password.");
@@ -25,14 +25,14 @@ export const ForgotPassword = () => {
       message.error("Email not found. Please check and try again.");
     }
   };
-
+ 
   // Handle Password Reset Submission
   const handlePasswordSubmit = ({ newpassword, confirm }) => {
     if (newpassword !== confirm) {
       message.error("Passwords do not match!");
       return;
     }
-
+ 
     // Update the password in localStorage
     const updatedData = localData.map((user) =>
       user.email === currentUser.email ? { ...user, password: newpassword } : user
@@ -43,7 +43,7 @@ export const ForgotPassword = () => {
     message.success("Password reset successfully!");
     navigate("/login"); // Redirect to login page
   };
-
+ 
   return (
     <Wrapper>
       <Row justify="center" align="middle" style={{ backgroundColor: "white", height: "100vh" }}>
@@ -110,7 +110,7 @@ export const ForgotPassword = () => {
                     </Form.Item>
                   </>
                 )}
-
+ 
                 <Form.Item>
                   <Button block type="primary" htmlType="submit">
                     Submit
@@ -155,3 +155,4 @@ export const ForgotPassword = () => {
     </Wrapper>
   );
 };
+ 

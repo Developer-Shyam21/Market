@@ -7,38 +7,69 @@ import {
   Flex,
   Form,
   Input,
+  message,
   Row,
   Select,
+  Tag,
   Typography,
 } from "antd";
 import { Wrapper } from "./style"; // Ensure this path is correct
 import { UserOutlined } from "@ant-design/icons";
-
+ 
 import { useSelector } from "react-redux";
-
-
+import Password from "antd/es/input/Password";
+import { PrimaryColor } from "../../../Config";
+ 
 export const UserSettings = () => {
   const [userDataList, setUserDataList] = useState([]);
   const [currentKey, setCurrentKey] = useState(false);
   const Switchusers = useSelector((state) => state.userReducer.user);
+  const [currentUser, setCurrentUser] = useState(null);
   useEffect(() => {
     Switchusers.map((user) => {
       setUserDataList(user);
     });
   }, []);
-
+ 
   const [localData, setLocalData] = useState(
     JSON.parse(localStorage.getItem("apiData")) || []
-  ); 
-
+  );
+ 
   const ChangePassword = () => {
-    setCurrentKey(true)
+    setCurrentKey(true);
   };
-
+ 
   const ResetPassword = (value) => {
-   
-  }
-
+    const { currentpassword } = value;
+ 
+    const CurrentPassword = localData.find(
+      (user) => user.password == currentpassword
+    );
+    if (CurrentPassword) {
+      setCurrentUser(CurrentPassword);
+      message.success("Your Current Password are Right ");
+    } else {
+      message.error("Current Passowrd are Wrong.");
+    }
+    console.log("Resetting password", currentUser);
+ 
+    //  const resetPassword = localData.map((data) =>
+    //   data.password === value.currentpassword ? { ...data, password: value.newpassword }  : data
+    //  )
+  };
+ 
+  const PasswordChange = (value) => {
+    const { newpassword } = value;
+ 
+    const resetPassword = localData.map((data) =>
+      data.password === currentUser.password
+        ? { ...data, password: newpassword }
+        : data
+    );
+    localStorage.setItem("apiData", JSON.stringify(resetPassword));
+    console.log("Resetting password changes", resetPassword);
+  };
+ 
   return (
     <Wrapper>
       <div className="User-Section">
@@ -51,6 +82,17 @@ export const UserSettings = () => {
                     <div className="userName">
                       <Avatar size="large" icon={<UserOutlined />}></Avatar>
                       <p>{user.name}</p>
+                      <Tag
+                        style={{
+                          fontSize: "14px",
+                        }}
+                        color={
+                         
+                          "blue"
+                        }
+                      >
+                        Admin
+                      </Tag>
                     </div>
                     <Divider />
                     <div className="userName1">
@@ -88,7 +130,7 @@ export const UserSettings = () => {
                   <Avatar size="large" icon={<UserOutlined />}></Avatar>
                 </div>
               </Flex>
-
+ 
               <Form
                 layout="horizontal"
                 labelCol={{ lg: 8 }}
@@ -154,14 +196,20 @@ export const UserSettings = () => {
                   </div>
                 </Flex>
               </div>
-              <div style={{ display:currentKey?"block":"none"}}>
-                <Form layout="vertical" align="center" onFinish={ResetPassword}>
-                  <Row gutter={[16,16]}>
+              <div style={{ display: currentKey ? "block" : "none" }}>
+                <Form
+                  layout="vertical"
+                  align="center"
+                  onFinish={currentUser ? PasswordChange : ResetPassword}
+                >
+                  <Row gutter={[16, 16]}>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
-                      <Form.Item
-                        name="currentpassword"
-                      >
-                        <Input variant="filled" placeholder="Current Password" size="large"/>
+                      <Form.Item name="currentpassword">
+                        <Input
+                          variant="filled"
+                          placeholder="Current Password"
+                          size="large"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
@@ -178,7 +226,11 @@ export const UserSettings = () => {
                           },
                         ]}
                       >
-                        <Input.Password placeholder=" New Password" size="large" variant="filled"/>
+                        <Input.Password
+                          placeholder=" New Password"
+                          size="large"
+                          variant="filled"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
@@ -205,11 +257,20 @@ export const UserSettings = () => {
                           }),
                         ]}
                       >
-                        <Input.Password placeholder="Confirm New Password" size="large" variant="filled"/>
+                        <Input.Password
+                          placeholder="Confirm New Password"
+                          size="large"
+                          variant="filled"
+                        />
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
-                      <Button block type="primary" htmlType="submit" size="large">
+                      <Button
+                        block
+                        type="primary"
+                        htmlType="submit"
+                        size="large"
+                      >
                         Reset Password
                       </Button>
                     </Col>
@@ -223,3 +284,4 @@ export const UserSettings = () => {
     </Wrapper>
   );
 };
+ 
