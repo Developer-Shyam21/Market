@@ -1,12 +1,13 @@
 import styled from "styled-components";
-// import { InputColor, thiredColor } from "../../../../Config";
+// import { thiredColor} from "../../../Config"
  
 export const Wrapper = styled.div`
 .Pofile-left{
 background-color:white;
 padding:30px 40px;
 border-radius:8px;
-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+box-shadow: rgb(112 143 174 / 28%) 0px 8px 24px;
+border:1px solid #2152ff21;
 }
  
 .userName{
@@ -23,7 +24,8 @@ align-items:center;
 background-color:white;
 padding:10px 30px 30px 30px;
 border-radius:8px;
-box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+box-shadow: rgb(112 143 174 / 28%) 0px 8px 24px;
+border:1px solid #2152ff21;
  
     h3{
         font-size:16px;
@@ -74,6 +76,7 @@ gap:20px;
  
 .reser-password{
 padding: 20px 0;
+
  
     .password p{
      font-weight:600;

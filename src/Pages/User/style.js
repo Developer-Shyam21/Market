@@ -6,9 +6,7 @@ import {
   thiredColor,
 } from "../../Config";
 
-
 export const Wrapper = styled.div`
-
   .User-Section {
     display: flex;
     justify-content: space-between;
@@ -24,13 +22,11 @@ export const Wrapper = styled.div`
     transiton: 0.4s ease-in-out;
   }
   .ant-btn-variant-link:not(:disabled):not(.ant-btn-disabled):hover {
-    
     background-image: ${PrimaryColor};
 
     color: ${SecondaryColor};
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    
   }
 
   .ant-input-search > .ant-input-group > .ant-input-group-addon:last-child {
@@ -49,7 +45,7 @@ export const Wrapper = styled.div`
   }
 
   .ant-select-outlined:not(.ant-select-customize-input) .ant-select-selector {
-    border-color:  ${thiredColor};
+    border-color: ${thiredColor};
     padding: 19px 12px;
     font-size: 16px;
     line-height: 1.5;
@@ -58,7 +54,7 @@ export const Wrapper = styled.div`
   }
 
   .ant-input {
-    border-color:  ${thiredColor} !important;
+    border-color: ${thiredColor} !important;
     padding: 7px 11px;
     font-size: 16px;
     line-height: 1.5;
@@ -90,13 +86,16 @@ export const Wrapper = styled.div`
     border-radius: 10px;
     overflow: hidden;
     padding: 0 20px;
-  
+  }
+  .ant-table-wrapper .ant-table {
+    scrollbar-color: unset;
   }
 
   .ant-table-wrapper .ant-table-thead > tr > th {
     font-weight: 700;
     padding: 16px;
     background-color: rgb(202 202 202 / 45%);
+    font-size: 15px;
   }
 
   .ant-table-tbody > tr > td {
@@ -106,8 +105,6 @@ export const Wrapper = styled.div`
     letter-spacing: 0.3px;
     background-color: rgb(202 202 202 / 10%);
   }
-
-    
 `;
 
 export const UserSection = styled("div")`
@@ -119,7 +116,6 @@ export const UserSection = styled("div")`
     line-height: 1.5;
     border-radius: 8px;
     color: black;
-    
   }
   .ant-input,
   .ant-input-password {
@@ -128,7 +124,6 @@ export const UserSection = styled("div")`
     border-radius: 8px;
   }
   .ant-input-outlined {
-    border-color:  ${thiredColor};
-
+    border-color: ${thiredColor};
   }
 `;

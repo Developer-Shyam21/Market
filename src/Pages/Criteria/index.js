@@ -47,20 +47,27 @@ export const Criteria = () => {
   const [visible, setVisible] = useState(false);
   const { Text } = Typography;
   const { styles } = useStyle();
-  const [userDatas,setUserDatas] = useState([])
+  const [userDatas, setUserDatas] = useState([]);
 
-  const handleSubmit = (value) => {
-    console.log("Received values of form: ", value);
-    setVisible(false);
+  const handleSubmit2 = (values) => {
+    // Add the new entry to the userDatas array
+    const newEntry = {
+      key: userDatas.length + 1, // Generate a unique key
+      operator: values.opretar,
+      value: values.value,
+      score: values.score,
+    };
+
+    // Append the new entry to the existing data
+    setUserDatas((prev) => [...prev, newEntry]);
+
+    console.log("Updated userDatas:", userDatas);
+    form.setFieldsValue({
+      opretar: undefined,
+      value: undefined,
+      score: undefined,
+    });
   };
-
-  const handleSubmit2 = (e,values) => {
-console.log("light eight value is:",e)
-      const newData = [...userDatas, { key: userDatas.length + 1, ...values }];
-    
-    setUserDatas([newData])
-    console.log("light eight value is:",userDatas)
-  }
 
   const UserData = [
     {
@@ -190,34 +197,41 @@ console.log("light eight value is:",e)
       render: (_, record) => (
         <div className="action-btn">
           <Button
-            type="link"
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
             icon={<EyeOutlined />}
             onClick={() => handleSee(record)}
-            style={{
-              backgroundColor: "#f5f8fa",
-              color: "#a2a5b8",
-              padding: "16px",
-            }}
           ></Button>
           <Button
-            type="link"
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
             icon={<EditOutlined />}
             onClick={() => handleEdit(record)}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" }}
           ></Button>
           <Button
-            type="link"
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
             danger
             icon={<DeleteOutlined />}
             onClick={() => handleDelete(record.key)}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" }}
           ></Button>
           <Button
-            type="link"
-            danger
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
             icon={<UserSwitchOutlined />}
             onClick={() => handleSwitch(record)}
-            style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" }}
           ></Button>
         </div>
       ),
@@ -229,37 +243,27 @@ console.log("light eight value is:",e)
       dataIndex: "key",
       key: "key",
       width: 100,
-      
     },
     {
       title: "Operator",
       width: 400,
       dataIndex: "operator",
       key: "operator",
-      sorter: (a, b) => a.criterianame.localeCompare(b.criterianame),
+      render: (operator) => <span>{operator}</span>,
     },
     {
       title: "Value",
       width: 100,
       dataIndex: "value",
       key: "value",
-      sorter: (a, b) => a.criteriatype.localeCompare(b.criteriatype),
-      render: (criteriatype) => (
-        <Tag style={{ color: "#389e0d", backgroundColor: "#f6ffed" }}>
-          {criteriatype}
-        </Tag>
-      ),
     },
     {
       title: "Score",
       width: 300,
       dataIndex: "score",
       key: "score",
-      sorter: (a, b) => a.type.localeCompare(b.type),
     },
-    
   ];
-
 
   const handleSee = (record) => {
     console.log("see record:", record);
@@ -355,7 +359,7 @@ console.log("light eight value is:",e)
           }}
         >
           <ModalView>
-            <Form form={form} layout="vertical" onFinish={handleSubmit}>
+            <Form form={form} layout="vertical">
               <Row gutter={[14, 14]}>
                 <Col lg={6}>
                   <Form.Item
@@ -419,61 +423,68 @@ console.log("light eight value is:",e)
               </Row>
 
               <div className="criteria-form">
-              <Form form={form} layout="vertical" onFinish={(e) => handleSubmit2(e)}>
-                <Row gutter={[14, 14]} style={{ alignItems: "baseline" }}>
-                  <Col lg={5}>If</Col>
-                  <Col lg={6}>
-                    <Form.Item name="opretar" hasFeedback>
-                      <Select placeholder="Operator">
-                        <Select.Option value="lqs">LQS</Select.Option>
-                        <Select.Option value="bqs">BQS</Select.Option>
-                        <Select.Option value="retail_readiness">
-                          Retail Readiness
-                        </Select.Option>
-                      </Select>
-                    </Form.Item>
-                  </Col>
-                  <Col lg={5}>
-                    <Form.Item
-                      name="value"
-                      hasFeedback
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input the weight number!",
-                        },
-                      ]}
+                <Form layout="vertical" form={form} onFinish={handleSubmit2}>
+                  <Row gutter={[14, 14]} style={{ alignItems: "baseline" }}>
+                    <Col lg={5}>If</Col>
+                    <Col lg={6}>
+                      <Form.Item
+                        name="opretar"
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please select the operator",
+                          },
+                        ]}
+                      >
+                        <Select placeholder="Operator">
+                          <Select.Option value="greater">Greater</Select.Option>
+                          <Select.Option value="less">Less</Select.Option>
+                          <Select.Option value="equal">Equal</Select.Option>
+                        </Select>
+                      </Form.Item>
+                    </Col>
+                    <Col lg={5}>
+                      <Form.Item
+                        name="value"
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the value!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Value" />
+                      </Form.Item>
+                    </Col>
+                    <Col lg={5}>
+                      <Form.Item
+                        name="score"
+                        hasFeedback
+                        rules={[
+                          {
+                            required: true,
+                            message: "Please input the score!",
+                          },
+                        ]}
+                      >
+                        <Input placeholder="Score" />
+                      </Form.Item>
+                    </Col>
+                    <Col
+                      lg={2}
+                      offset={1}
+                      style={{ position: "relative", bottom: "-4px" }}
                     >
-                      <Input placeholder="Value" />
-                    </Form.Item>
-                  </Col>
-                  <Col lg={5}>
-                    <Form.Item
-                      name="score"
-                      hasFeedback
-                      rules={[
-                        {
-                          required: true,
-                          message: "Please input the weight number!",
-                        },
-                      ]}
-                    >
-                      <Input placeholder="Score" />
-                    </Form.Item>
-                  </Col>
-                  <Col
-                    lg={2}
-                    offset={1}
-                    style={{ position: "relative", bottom: "-4px" }}
-                  >
-                    <Button
-                      type="primary"
-                      htmlType="submit"
-                      className="add-btn"
-                      icon={<PlusOutlined />}
-                    ></Button>
-                  </Col>
-                </Row>
+                      <Button
+                        type="primary"
+                        onClick={form.submit}
+                        className="add-btn"
+                        icon={<PlusOutlined />}
+                      ></Button>
+                    </Col>
+                  </Row>
                 </Form>
                 <Table
                   columns={columns2}
@@ -487,7 +498,6 @@ console.log("light eight value is:",e)
                       `${range[0]} - ${range[1]} of ${total} items`,
                   }}
                 />
-                
               </div>
             </Form>
           </ModalView>

@@ -160,24 +160,22 @@ export const AdminPage = () => {
       render: (_, record) => (
         <div className="action-btn">
           <Button
-            type="link"
-            icon={<EditOutlined />}
             style={{
-              backgroundColor: "#f5f8fa",
-              color: "#a2a5b8",
-              padding: "16px",
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
             }}
+            icon={<EditOutlined />}
             onClick={() => handleEdit(record)}
           ></Button>
           <Button
-            type="link"
             danger
-            icon={<DeleteOutlined />}
             style={{
-              backgroundColor: "#f5f8fa",
-              color: "#a2a5b8",
-              padding: "16px",
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
             }}
+            icon={<DeleteOutlined />}
             onClick={() => handleDelete(record.key)}
           ></Button>
         </div>
@@ -219,8 +217,8 @@ export const AdminPage = () => {
             x: "max-content",
           }}
           pagination={{
-           showTotal : (total,range) => 
-            `${range[0]} - ${range[1]} of ${total} items`
+            showTotal: (total, range) =>
+              `${range[0]} - ${range[1]} of ${total} items`,
           }}
         />
 

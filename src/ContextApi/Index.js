@@ -1,3 +1,4 @@
+
 import React, { createContext, useEffect, useState } from "react";
 
 export const ContextsApi = createContext();
@@ -28,6 +29,8 @@ const ContextProvider = ({ children }) => {
 
   const SwitchUserData = JSON.parse(localStorage.getItem("SwicthUserData"));
   const TypeSwitch = JSON.parse(localStorage.getItem("Type"));
+
+
 
   return (
     <ContextsApi.Provider

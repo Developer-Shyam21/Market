@@ -4,7 +4,7 @@ import {
   PlusOutlined,
   DeleteOutlined,
   LoginOutlined,
-  QuestionCircleOutlined
+  QuestionCircleOutlined,
 } from "@ant-design/icons";
 import {
   Avatar,
@@ -55,16 +55,16 @@ const { Search } = Input;
 export const UserList = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
   const { styles } = useStyle();
   const navigate = useNavigate();
+  const [searchQuery, setSearchQuery] = useState("");
   const { LoginData, TypeSwitch, updateState, currentType } =
     useContext(ContextsApi);
   const dispatch = useDispatch(); // Redux dispatch
   const users = useSelector((state) => state.reducer.data);
 
-//   const SwitchUserData = useSelector((state) => state.userReducer.user)
-// console.log("switch user data is the : ",SwitchUserData)
+  //   const SwitchUserData = useSelector((state) => state.userReducer.user)
+  // console.log("switch user data is the : ",SwitchUserData)
   const handleSubmit = (value) => {
     const updatedData = { ...value };
     dispatch(setUpdateData({ key: value.key, updatedData })); // Dispatch update action
@@ -183,14 +183,13 @@ export const UserList = () => {
       render: (_, record) => (
         <div className="action-btn">
           <Button
-            type="primary"
             icon={<EditOutlined />}
-            style={{
-              backgroundColor: "#f5f8fa",
-              color: "#a2a5b8",
-              padding: "16px",
-            }}
             onClick={() => handleEdit(record)}
+            style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
+            }}
           ></Button>
           <Popconfirm
             title="Delete the task"
@@ -205,19 +204,17 @@ export const UserList = () => {
             okText="Yes"
             cancelText="No"
           >
-           <Button
-            type="primary"
+            <Button
             danger
-            icon={<DeleteOutlined />}
-            style={{
-              backgroundColor: "#f5f8fa",
-              color: "#a2a5b8",
-              
+             style={{
+              background: "transparent",
+              border: "none",
+              boxShadow: "none",
             }}
-            onClick={() => handleDelete(record.key)}
-          ></Button>
+              icon={<DeleteOutlined />}
+              onClick={() => handleDelete(record.key)}
+            ></Button>
           </Popconfirm>
-          
         </div>
       ),
     },
@@ -254,19 +251,29 @@ export const UserList = () => {
       navigate("/Manage-User/Client", { replace: true });
     }
   };
-  const handlePageChange = (page, pageSize) => {
-    ; // Update the current page on page change
+  // const handlePageChange = (page, pageSize) => {
+  //   // Update the current page on page change
+  // };
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
   };
-const handleSearch = (e) => {
-  console.log("my serach users", e.target.value)
-}
 
+  const filteredUsers = users.filter(
+    (user) =>
+      user.name.toLowerCase().includes(searchQuery) ||
+      user.email.toLowerCase().includes(searchQuery) ||
+      user.mobile.toLowerCase().includes(searchQuery) ||
+      user.accounttype.toLowerCase().includes(searchQuery) ||
+      user.channel.toLowerCase().includes(searchQuery) ||
+      user.pandingreports.toString().includes(searchQuery) ||
+      user.status.toLowerCase().includes(searchQuery)
+  );
   return (
     <>
       <Wrapper>
         <div className="User-Section">
           <Flex gap={10}>
-            <Search placeholder="Search..." onChange={(e) => handleSearch(e)}/>
+            <Search placeholder="Search..." onChange={(e) => handleSearch(e)} value={searchQuery}/>
             <Select
               placeholder="Active"
               style={{
@@ -302,7 +309,7 @@ const handleSearch = (e) => {
 
         <Table
           columns={columns}
-          dataSource={users}
+          dataSource={filteredUsers}
           className={styles.customTable}
           scroll={{
             x: "max-content",
@@ -311,7 +318,6 @@ const handleSearch = (e) => {
             showTotal: (total, range) =>
               ` ${range[0]} - ${range[1]} of ${total} items`,
           }}
-        
         />
         <Modal
           title="Add User"

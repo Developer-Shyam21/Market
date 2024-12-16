@@ -6,15 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 import ContextProvider from "./ContextApi/Index";
 import "./i18n";
 
-
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    
     <ContextProvider>
-        <App />
+      <App />
     </ContextProvider>
-
   </React.StrictMode>
 );
 

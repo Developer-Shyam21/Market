@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import { PrimaryColor } from "../Config/index";
-
+import { PrimaryColor } from "../Config";
 const GlobalStyles = createGlobalStyle`
 *::-webkit-scrollbar-track, .ant-table-content::-webkit-scrollbar-track {
     border-radius: 8px;
@@ -29,8 +28,8 @@ const GlobalStyles = createGlobalStyle`
            
               background-color: #ffffff;
                   position: relative;
-    // display: flex;
-    // flex-direction: column;
+    display: flex;
+    flex-direction: column;
         min-width: 0;
             word-wrap: break-word;
                 box-shadow: 0px 9px 20px rgba(46, 35, 94, 0.07);

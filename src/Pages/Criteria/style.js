@@ -54,6 +54,7 @@ export const Wrapper = styled.div`
     font-weight: 700;
     padding: 16px;
     background-color: rgb(202 202 202 / 45%);
+    font-size: 15px;
   }
 
   .ant-table-tbody > tr > td {

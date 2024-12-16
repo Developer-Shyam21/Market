@@ -143,10 +143,13 @@ export const EmbedCodes = () => {
       key: "action",
       render: (_, record) => (
         <Button
-          type="link"
+          style={{
+            background: "transparent",
+            border: "none",
+            boxShadow: "none",
+          }}
           icon={<EditOutlined />}
           onClick={() => handleEdit(record)}
-          style={{ backgroundColor: "#f5f8fa", color: "#a2a5b8" }}
         ></Button>
       ),
     },
@@ -197,10 +200,9 @@ export const EmbedCodes = () => {
           scroll={{
             x: "max-content",
           }}
-          pagination = {{
-            showTotal : (total,range) => 
+          pagination={{
+            showTotal: (total, range) =>
               `${range[0]} - ${range[1]} of ${total} items`,
-            
           }}
         />
         <Modal

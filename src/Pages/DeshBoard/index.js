@@ -128,9 +128,9 @@ const DeshBoard = () => {
       ],
     },
     {
-      key: "AccountStatus",
+      key: "Account-Status",
       icon: <UserOutlined />,
-      label: "Account Status",
+      label: <Link to="/Account-Status">{t("Account Status")}</Link>,
     },
     {
       key: "User-Settings",
