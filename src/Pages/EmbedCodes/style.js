@@ -8,7 +8,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     min-height: 54px;
     align-items: center;
-    padding: 15px 30px 3px 30px;
+    padding: 10px 20px 10px 20px;
   }
 
   
@@ -29,24 +29,9 @@ export const Wrapper = styled.div`
   padding: 0 !important;
   }
   .ant-table {
-    border-radius: 10px;
+   
     overflow: hidden;
     padding: 0 20px;
-  }
-
-  .ant-table-wrapper .ant-table-thead > tr > th {
-    font-weight: 700;
-    padding: 16px;
-    background-color: rgb(202 202 202 / 45%);
-    font-size: 15px;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 16px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    background-color: rgb(202 202 202 / 10%);
   }
 
 `;

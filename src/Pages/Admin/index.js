@@ -14,6 +14,8 @@ import {
 import { useForm } from "antd/es/form/Form";
 import { ModalAdmin, Wrapper } from "./style";
 import { createStyles } from "antd-style";
+import { AddBTN } from "../../Component/Button";
+import { useSelector } from "react-redux";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -32,88 +34,18 @@ const useStyle = createStyles(({ css, token }) => {
     `,
   };
 });
+
 export const AdminPage = () => {
   const [form] = useForm();
   const [visible, setVisible] = useState(false);
   const { styles } = useStyle();
 
+  const adminDatas = useSelector((state)=> state.AdminPage.AdminData)
+    
   const handleSubmit = (value) => {
     console.log("Received values of form: ", value);
     setVisible(false);
   };
-
-  const UserData = [
-    {
-      key: 1,
-      name: "John Doe",
-      email: "john.doe@example.com",
-      mobile: "+1 (555) 123-4567",
-      action: "Action",
-    },
-    {
-      key: 2,
-      name: "Jane Smith",
-      email: "jane.smith@example.com",
-      mobile: "+1 (555) 234-5678",
-      action: "Action",
-    },
-    {
-      key: 3,
-      name: "Michael Johnson",
-      email: "michael.johnson@example.com",
-      mobile: "+1 (555) 345-6789",
-      action: "Action",
-    },
-    {
-      key: 4,
-      name: "Sarah Lee",
-      email: "sarah.lee@example.com",
-      mobile: "+1 (555) 456-7890",
-      action: "Action",
-    },
-    {
-      key: 5,
-      name: "David Brown",
-      email: "david.brown@example.com",
-      mobile: "+1 (555) 567-8901",
-      action: "Action",
-    },
-    {
-      key: 6,
-      name: "Emily Wilson",
-      email: "emily.wilson@example.com",
-      mobile: "+1 (555) 678-9012",
-      action: "Action",
-    },
-    {
-      key: 7,
-      name: "Robert Taylor",
-      email: "robert.taylor@example.com",
-      mobile: "+1 (555) 789-0123",
-      action: "Action",
-    },
-    {
-      key: 8,
-      name: "Laura Martinez",
-      email: "laura.martinez@example.com",
-      mobile: "+1 (555) 890-1234",
-      action: "Action",
-    },
-    {
-      key: 9,
-      name: "James Anderson",
-      email: "james.anderson@example.com",
-      mobile: "+1 (555) 901-2345",
-      action: "Action",
-    },
-    {
-      key: 10,
-      name: "Mary Harris",
-      email: "mary.harris@example.com",
-      mobile: "+1 (555) 012-3456",
-      action: "Action",
-    },
-  ];
 
   const columns = [
     {
@@ -198,20 +130,19 @@ export const AdminPage = () => {
       <Wrapper>
         <div className="User-Section">
           <div>
-            <Button
+            <AddBTN
               type="primary"
               icon={<PlusOutlined />}
               onClick={() => setVisible(true)}
             >
               Add
-            </Button>
+            </AddBTN>
           </div>
         </div>
-        <Divider />
 
         <Table
           columns={columns}
-          dataSource={UserData}
+          dataSource={adminDatas}
           className={styles.customTable}
           scroll={{
             x: "max-content",

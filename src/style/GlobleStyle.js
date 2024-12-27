@@ -2676,6 +2676,44 @@ cursor: pointer;
     .ant-layout-header {
             line-height: normal;
     }
+
+    
+
+  .ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:first-child{
+  border-start-start-radius: 0px;
+  }
+  .ant-table-wrapper .ant-table-container table>thead>tr:first-child >*:last-child{
+  border-start-end-radius: 0px;
+  }
+ .ant-table-wrapper table{
+  border-spacing:0 10px;
+  
+  }
+    .ant-table-wrapper .ant-table-thead > tr > th {
+    font-weight: 700;
+    padding: 16px;
+    background-color: rgb(202 202 202 / 45%);
+    font-size: 15px;
+  }
+
+  .ant-table-tbody > tr > td {
+    padding: 16px;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    background-color: rgb(202 202 202 / 10%);
+  }
+.ant-table-row>td:first-child::before{
+         content: "";
+      position: absolute;
+      left: 0;
+      top: 0px;
+      width: 2px;
+      height: 30px;
+      background: ${PrimaryColor} !important;
+      bottom: 0;
+      margin: auto;
+  }
   
 `;
 

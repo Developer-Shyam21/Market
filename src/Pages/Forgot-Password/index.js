@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { Wrapper } from "./style";
 import Forgot from "../../Images/forgot-password.png";
 import Market from "../../Images/logo-main.png";
+import { AddBTN } from "../../Component/Button";
  
 export const ForgotPassword = () => {
   const { Text, Title } = Typography;
@@ -112,9 +113,9 @@ export const ForgotPassword = () => {
                 )}
  
                 <Form.Item>
-                  <Button block type="primary" htmlType="submit">
+                  <AddBTN block type="primary" htmlType="submit">
                     Submit
-                  </Button>
+                  </AddBTN>
                 </Form.Item>
                 <div>
                   Back to Login Page <Link to="/login">Login</Link>

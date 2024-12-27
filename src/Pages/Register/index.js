@@ -5,6 +5,7 @@ import Market from "../../Images/logo-main.png";
 import { Wrapper } from "./style";
 import { Link, useNavigate } from "react-router-dom";
 import { ContextsApi } from "../../ContextApi/Index";
+import { AddBTN } from "../../Component/Button";
 
 export const Register = () => {
   const { Text, Title } = Typography;
@@ -222,9 +223,9 @@ export const Register = () => {
                     </Checkbox>
                   </Form.Item>
                   <Form.Item>
-                    <Button type="primary" htmlType="submit">
+                    <AddBTN type="primary" htmlType="submit">
                       Submit
-                    </Button>
+                    </AddBTN>
                   </Form.Item>
                 </Form>
               </div>

@@ -2,10 +2,11 @@ import { Button, List, Typography } from "antd";
 
 export const PrimaryColor = "linear-gradient(310deg, rgb(33, 82, 255), rgb(33, 212, 253))";
 export const SecondaryColor = "rgb(23, 121, 232)";
-export const thiredColor = "linear-gradient(310deg, rgb(33 82 255 / 25%), rgb(33 212 253 / 7%))";
+export const thiredColor = "linear-gradient(310deg, rgb(33 82 255 / 35%), rgb(33 212 253 / 10%))";
 export const TextColor = "rgb(73, 89, 140)";
 export const MenuItemsColor = "rgb(175, 88, 71)";
 export const InputColor = "rgb(253, 243, 241)";
+export const BorderFilter = `1px solid ${PrimaryColor}`;
 export const FormatUserName = (userName) => {
   // Replace hyphens with spaces
   let formattedName = userName?.replace(/-/g, " ");

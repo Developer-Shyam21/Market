@@ -122,6 +122,78 @@ const initialUserData = [
       action: "Action",
     },
   ];
+ const UserData = [
+    {
+      key: 1,
+      name: "John Doe",
+      email: "john.doe@example.com",
+      mobile: "+1 (555) 123-4567",
+      action: "Action",
+    },
+    {
+      key: 2,
+      name: "Jane Smith",
+      email: "jane.smith@example.com",
+      mobile: "+1 (555) 234-5678",
+      action: "Action",
+    },
+    {
+      key: 3,
+      name: "Michael Johnson",
+      email: "michael.johnson@example.com",
+      mobile: "+1 (555) 345-6789",
+      action: "Action",
+    },
+    {
+      key: 4,
+      name: "Sarah Lee",
+      email: "sarah.lee@example.com",
+      mobile: "+1 (555) 456-7890",
+      action: "Action",
+    },
+    {
+      key: 5,
+      name: "David Brown",
+      email: "david.brown@example.com",
+      mobile: "+1 (555) 567-8901",
+      action: "Action",
+    },
+    {
+      key: 6,
+      name: "Emily Wilson",
+      email: "emily.wilson@example.com",
+      mobile: "+1 (555) 678-9012",
+      action: "Action",
+    },
+    {
+      key: 7,
+      name: "Robert Taylor",
+      email: "robert.taylor@example.com",
+      mobile: "+1 (555) 789-0123",
+      action: "Action",
+    },
+    {
+      key: 8,
+      name: "Laura Martinez",
+      email: "laura.martinez@example.com",
+      mobile: "+1 (555) 890-1234",
+      action: "Action",
+    },
+    {
+      key: 9,
+      name: "James Anderson",
+      email: "james.anderson@example.com",
+      mobile: "+1 (555) 901-2345",
+      action: "Action",
+    },
+    {
+      key: 10,
+      name: "Mary Harris",
+      email: "mary.harris@example.com",
+      mobile: "+1 (555) 012-3456",
+      action: "Action",
+    },
+  ];
 
 const reducer = createSlice({
   name: "data",
@@ -157,13 +229,27 @@ const userReducer = createSlice({
   }
 })
 
+const AdminPage = createSlice({
+  name: "AdminData",
+  initialState: {
+    AdminData: UserData
+  },
+  reducers:{
+    setAdminData: (state,action ) => {
+      state.AdminData.push(action.payload);
+    }
+     }
+  
+})
 export const { setData, setDeleteData, setUpdateData } = reducer.actions;
 export const {setUserData} = userReducer.actions;
+export const {setAdminData} = AdminPage.actions
 
 const store = configureStore({
   reducer: {
     reducer: reducer.reducer,
     userReducer: userReducer.reducer,
+    AdminPage: AdminPage.reducer,  
   },
 });
 

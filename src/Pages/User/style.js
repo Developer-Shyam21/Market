@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     justify-content: space-between;
     min-height: 54px;
     align-items: center;
-    padding: 21px 30px 15px 30px;
+    padding: 10px 20px 10px 20px;
   }
   .switchuser {
     padding: 18px 14px;
@@ -83,28 +83,15 @@ export const Wrapper = styled.div`
   }
 
   .ant-table {
-    border-radius: 10px;
+   
     overflow: hidden;
     padding: 0 20px;
   }
+
   .ant-table-wrapper .ant-table {
     scrollbar-color: unset;
   }
 
-  .ant-table-wrapper .ant-table-thead > tr > th {
-    font-weight: 700;
-    padding: 16px;
-    background-color: rgb(202 202 202 / 45%);
-    font-size: 15px;
-  }
-
-  .ant-table-tbody > tr > td {
-    padding: 16px;
-    font-size: 15px;
-    font-weight: 500;
-    letter-spacing: 0.3px;
-    background-color: rgb(202 202 202 / 10%);
-  }
 `;
 
 export const UserSection = styled("div")`

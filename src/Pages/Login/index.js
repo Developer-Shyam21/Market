@@ -1,5 +1,5 @@
 import { Col, Row, Typography, Form, Input, Button, message } from "antd";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useForm } from "antd/es/form/Form";
 import Market from "../../Images/market.png";
 import GraficImage from "../../Images/grafica-principale.svg";
@@ -7,10 +7,12 @@ import { Wrapper } from "./style";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { ContextsApi } from "../../ContextApi/Index";
 import Login_bg from "../../Images/login-bg-img.jpg";
+import { AddBTN } from "../../Component/Button";
 export const LogIn = () => {
   const { Text, Title } = Typography;
   const [ form ] = useForm();
   const navigate = useNavigate();
+  const [loading,setloading] = useState(false)
 
   const { updateState ,ApiData } = useContext(ContextsApi);
 
@@ -59,6 +61,7 @@ export const LogIn = () => {
       updateState("type", loggingUser.type);
       localStorage.setItem("Type", JSON.stringify(loggingUser.type));
       form.resetFields();
+      setloading(true);
     } 
     else {
       message.error(
@@ -130,9 +133,9 @@ export const LogIn = () => {
                   </div>
                 </Form.Item>
                 <Form.Item>
-                  <Button block type="primary" htmlType="submit">
+                  <AddBTN block type="primary" htmlType="submit"  loading={loading}>
                     Login
-                  </Button>
+                  </AddBTN>
                 </Form.Item>
               </Form>
             </div>

@@ -32,6 +32,7 @@ import { useNavigate } from "react-router-dom";
 import { BTN } from "../../Config";
 import { useDispatch, useSelector } from "react-redux";
 import { setDeleteData, setUpdateData, setUserData } from "../../Redux/reducer";
+import { AddBTN } from "../../Component/Button";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -205,12 +206,12 @@ export const UserList = () => {
             cancelText="No"
           >
             <Button
-            danger
-             style={{
-              background: "transparent",
-              border: "none",
-              boxShadow: "none",
-            }}
+              danger
+              style={{
+                background: "transparent",
+                border: "none",
+                boxShadow: "none",
+              }}
               icon={<DeleteOutlined />}
               onClick={() => handleDelete(record.key)}
             ></Button>
@@ -273,7 +274,11 @@ export const UserList = () => {
       <Wrapper>
         <div className="User-Section">
           <Flex gap={10}>
-            <Search placeholder="Search..." onChange={(e) => handleSearch(e)} value={searchQuery}/>
+            <Search
+              placeholder="Search..."
+              onChange={(e) => handleSearch(e)}
+              value={searchQuery}
+            />
             <Select
               placeholder="Active"
               style={{
@@ -296,16 +301,16 @@ export const UserList = () => {
             />
           </Flex>
           <div>
-            <Button
+            <AddBTN
               type="primary"
               icon={<PlusOutlined />}
               onClick={() => setVisible(true)}
             >
               Add
-            </Button>
+            </AddBTN>
           </div>
         </div>
-        <Divider />
+        {/* <Divider /> */}
 
         <Table
           columns={columns}
@@ -335,146 +340,202 @@ export const UserList = () => {
           }}
         >
           <UserSection>
+              {visible ?(
+                <>
             <Form form={form} layout="vertical" onFinish={handleSubmit}>
-              <Form.Item
-                label="Name"
-                name="name"
-                rules={[{ required: true, message: "Please input the name!" }]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Name"
+                    name="name"
+                    rules={[
+                      { required: true, message: "Please input the name!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Email"
-                name="email"
-                rules={[
-                  { required: true, message: "Please input the email!" },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      { required: true, message: "Please input the email!" },
+                      { type: "email", message: "Please enter a valid email!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  { required: true, message: "Please input your password!" },
-                  { min: 6, message: "Password must be at least 6 characters" },
-                ]}
-              >
-                <Input.Password />
-              </Form.Item>
+                  <Form.Item
+                    label="Password"
+                    name="password"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input your password!",
+                      },
+                      {
+                        min: 6,
+                        message: "Password must be at least 6 characters",
+                      },
+                    ]}
+                  >
+                    <Input.Password />
+                  </Form.Item>
 
-              <Form.Item
-                name="confirm"
-                label="Confirm Password"
-                dependencies={["password"]}
-                rules={[
-                  { required: true, message: "Please confirm your password!" },
-                  ({ getFieldValue }) => ({
-                    validator(_, value) {
-                      if (!value || getFieldValue("password") === value) {
-                        return Promise.resolve();
-                      }
-                      return Promise.reject(
-                        new Error("The passwords do not match!")
-                      );
-                    },
-                  }),
-                ]}
-              >
-                <Input.Password />
-              </Form.Item>
+                  <Form.Item
+                    name="confirm"
+                    label="Confirm Password"
+                    dependencies={["password"]}
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please confirm your password!",
+                      },
+                      ({ getFieldValue }) => ({
+                        validator(_, value) {
+                          if (!value || getFieldValue("password") === value) {
+                            return Promise.resolve();
+                          }
+                          return Promise.reject(
+                            new Error("The passwords do not match!")
+                          );
+                        },
+                      }),
+                    ]}
+                  >
+                    <Input.Password />
+                  </Form.Item>
 
-              <Form.Item
-                label="Buy Box Data Update Frequency"
-                name="updateFrequency"
-              >
-                <Select>
-                  <Select.Option value="12hrs">
-                    Once every 12 Hours
-                  </Select.Option>
-                  <Select.Option value="24hrs">
-                    Once every 24 Hours
-                  </Select.Option>
-                  <Select.Option value="48hrs">
-                    Once every 48 Hours
-                  </Select.Option>
-                </Select>
-              </Form.Item>
+                  <Form.Item
+                    label="Buy Box Data Update Frequency"
+                    name="updateFrequency"
+                  >
+                    <Select>
+                      <Select.Option value="12hrs">
+                        Once every 12 Hours
+                      </Select.Option>
+                      <Select.Option value="24hrs">
+                        Once every 24 Hours
+                      </Select.Option>
+                      <Select.Option value="48hrs">
+                        Once every 48 Hours
+                      </Select.Option>
+                    </Select>
+                  </Form.Item>
 
-              <Form.Item
-                label="Contact Number"
-                name="mobile"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the contact number!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Contact Number"
+                    name="mobile"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the contact number!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Address"
-                name="address"
-                rules={[
-                  { required: true, message: "Please input the address!" },
-                ]}
-              >
-                <TextArea rows={2} />
-              </Form.Item>
+                  <Form.Item
+                    label="Address"
+                    name="address"
+                    rules={[
+                      { required: true, message: "Please input the address!" },
+                    ]}
+                  >
+                    <TextArea rows={2} />
+                  </Form.Item>
 
-              <Form.Item
-                label="Reference Contact Name"
-                name="referenceName"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the reference name!",
-                  },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Reference Contact Name"
+                    name="referenceName"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the reference name!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Reference Email"
-                name="referenceEmail"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input the reference email!",
-                  },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Reference Email"
+                    name="referenceEmail"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the reference email!",
+                      },
+                      { type: "email", message: "Please enter a valid email!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Amazon Seller Name"
-                name="sellerName"
-                rules={[
-                  { required: true, message: "Please input the seller name!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
+                  <Form.Item
+                    label="Amazon Seller Name"
+                    name="sellerName"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the seller name!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
 
-              <Form.Item
-                label="Amazon Seller Email"
-                name="sellerEmail"
-                rules={[
-                  { required: true, message: "Please input the seller email!" },
-                  { type: "email", message: "Please enter a valid email!" },
-                ]}
-              >
-                <Input />
-              </Form.Item>
-            </Form>
+                  <Form.Item
+                    label="Amazon Seller Email"
+                    name="sellerEmail"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the seller email!",
+                      },
+                      { type: "email", message: "Please enter a valid email!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                    </Form>
+                </>
+              ) : (
+                <>
+                  <Form.Item
+                    label="Name"
+                    name="name"
+                    rules={[
+                      { required: true, message: "Please input the name!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                  <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                      { required: true, message: "Please input the email!" },
+                      { type: "email", message: "Please enter a valid email!" },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+
+                  <Form.Item
+                    label="Contact Number"
+                    name="mobile"
+                    rules={[
+                      {
+                        required: true,
+                        message: "Please input the contact number!",
+                      },
+                    ]}
+                  >
+                    <Input />
+                  </Form.Item>
+                </>
+              )}
           </UserSection>
         </Modal>
       </Wrapper>

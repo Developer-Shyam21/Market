@@ -23,6 +23,7 @@ import {
 import { useForm } from "antd/es/form/Form";
 import { Wrapper, ModalView } from "./style";
 import { createStyles } from "antd-style";
+import { AddBTN } from "../../Component/Button";
 
 const useStyle = createStyles(({ css, token }) => {
   const { antCls } = token;
@@ -318,16 +319,15 @@ export const Criteria = () => {
                 },
               ]}
             />
-            <Button
+            <AddBTN
               type="primary"
               icon={<PlusOutlined />}
               onClick={() => setVisible(true)}
             >
               Add
-            </Button>
+            </AddBTN>
           </Flex>
         </div>
-        <Divider />
 
         <Table
           columns={columns}

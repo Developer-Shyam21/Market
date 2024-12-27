@@ -19,6 +19,7 @@ import { UserOutlined } from "@ant-design/icons";
 import { useSelector } from "react-redux";
 import Password from "antd/es/input/Password";
 import { PrimaryColor } from "../../../Config";
+import { AddBTN } from "../../../Component/Button";
  
 export const UserSettings = () => {
   const [userDataList, setUserDataList] = useState([]);
@@ -171,7 +172,7 @@ export const UserSettings = () => {
               <Divider />
               <div className="sub-btn">
                 <Button>Discard</Button>
-                <Button type="primary">Save Change</Button>
+                <AddBTN type="primary">Save Change</AddBTN>
               </div>
             </div>
           </Col>
@@ -190,9 +191,9 @@ export const UserSettings = () => {
                     <div className="password1">**********</div>
                   </div>
                   <div>
-                    <Button type="primary" onClick={ChangePassword}>
+                    <AddBTN type="primary" onClick={ChangePassword}>
                       Reset Password
-                    </Button>
+                    </AddBTN>
                   </div>
                 </Flex>
               </div>
@@ -265,14 +266,14 @@ export const UserSettings = () => {
                       </Form.Item>
                     </Col>
                     <Col xs={24} sm={12} md={8} lg={6} xl={6}>
-                      <Button
+                      <AddBTN
                         block
                         type="primary"
                         htmlType="submit"
                         size="large"
                       >
                         Reset Password
-                      </Button>
+                      </AddBTN>
                     </Col>
                   </Row>
                 </Form>
